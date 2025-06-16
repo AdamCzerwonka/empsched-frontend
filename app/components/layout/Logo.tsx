@@ -14,5 +14,3 @@ export const Logo = ({ to, ...linkProps }: Props) => {
     </Link>
   );
 };
-
-export default Logo;

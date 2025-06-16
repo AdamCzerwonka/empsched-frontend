@@ -1,4 +1,4 @@
-import type { Route } from "./+types/home";
+import type { Route } from "../+types/root";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -8,5 +8,9 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  return <div>Hii </div>;
+  return (
+    <div className="text-center">
+      <h1>Welcome to / Witamy w EmployeeScheduler!</h1>
+    </div>
+  );
 }

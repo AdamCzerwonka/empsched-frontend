@@ -5,12 +5,10 @@ export const Footer = () => {
   const { t } = useTranslation("layout/footer");
 
   return (
-    <Card className="flex h-16 w-full flex-row items-center justify-center rounded-none">
+    <Card className="flex min-h-16 w-full flex-row items-center justify-center rounded-none">
       <h3>{t("aboutUs")}</h3>
       <h3>{t("contactUs")}</h3>
       <h3>{t("faqs")}</h3>
     </Card>
   );
 };
-
-export default Footer;

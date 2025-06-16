@@ -1,0 +1,15 @@
+{
+  "form": {
+    "title": "Zaloguj się do swojego konta",
+    "email": {
+      "label": "Adres email",
+      "placeholder": "Wprowadź adres email"
+    },
+    "password": {
+      "label": "Hasło",
+      "placeholder": "Wprowadź hasło"
+    },
+    "submit": "Zaloguj się"
+  },
+  "navigateHomepage": "Przejdź do strony głównej"
+}

@@ -1,0 +1,22 @@
+{
+  "form": {
+    "title": "Zaloguj się do swojego konta",
+    "email": {
+      "label": "Adres email",
+      "placeholder": "Wprowadź adres email"
+    },
+    "password": {
+      "label": "Hasło",
+      "placeholder": "Wprowadź hasło"
+    },
+    "name": {
+      "label": "Nazwa organizacji",
+      "placeholder": "Wprowadź nazwę organizacji"
+    },
+    "maxEmployees": {
+      "label": "Maksymalna liczba pracowników"
+    },
+    "submit": "Zarejestruj się"
+  },
+  "navigateHomepage": "Przejdź do strony głównej"
+}

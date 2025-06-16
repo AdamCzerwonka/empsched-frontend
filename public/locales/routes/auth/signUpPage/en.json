@@ -1,0 +1,22 @@
+{
+  "form": {
+    "title": "Sign in to your account",
+    "email": {
+      "label": "Email address",
+      "placeholder": "Enter your email address"
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Enter your password"
+    },
+    "name": {
+      "label": "Organisation name",
+      "placeholder": "Enter your organisation name"
+    },
+    "maxEmployees": {
+      "label": "Max employees"
+    },
+    "submit": "Sign up"
+  },
+  "navigateHomepage": "Go to homepage"
+}
