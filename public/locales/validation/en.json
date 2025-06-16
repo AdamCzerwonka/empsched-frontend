@@ -1,0 +1,10 @@
+{
+  "required": "Field is required",
+
+  "minLength": "Field must conatin at least {{val, number}} character(s)",
+  "maxLength": "Field cannot be longer than {{val, number}} character(s)",
+  "minValue": "Minimum value is {{val, number}}",
+  "maxValue": "Maximum value is {{val, number}}",
+
+  "email": "Field must be email (eg. john.doe@example.com)"
+}
