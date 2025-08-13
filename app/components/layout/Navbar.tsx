@@ -1,11 +1,10 @@
 import { Link } from "react-router";
-import { Card } from "../ui/card";
+import { Card, CardContent } from "../ui/card";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "../ui/navigation-menu";
 import { Logo } from "./Logo";
@@ -16,35 +15,38 @@ import { navigation } from "~/constants";
 
 export const Navbar = () => {
   const { t } = useTranslation("layout/navbar");
+
   return (
-    <Card className="flex min-h-16 w-full flex-row flex-wrap items-center justify-between rounded-none px-2">
-      <h1>
-        <Logo className="mx-2" />
-      </h1>
-      <div className="flex h-full items-center gap-2">
-        <ModeToggle />
-        <Separator orientation="vertical" />
-        <NavigationMenu>
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuLink
-                className={navigationMenuTriggerStyle()}
-                asChild
-              >
-                <Link to={navigation.signIn}>{t("signIn")}</Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink
-                className={navigationMenuTriggerStyle()}
-                asChild
-              >
-                <Link to={navigation.signUp}>{t("signUp")}</Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
-      </div>
+    <Card className="min-h-16 w-full justify-center p-2">
+      <CardContent className="flex flex-row flex-wrap items-center justify-between">
+        <h1>
+          <Logo />
+        </h1>
+        <div className="flex h-full items-center gap-2">
+          <ModeToggle />
+          <Separator orientation="vertical" />
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuLink
+                  className={navigationMenuTriggerStyle()}
+                  asChild
+                >
+                  <Link to={navigation.signIn}>{t("signIn")}</Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <NavigationMenuLink
+                  className={navigationMenuTriggerStyle()}
+                  asChild
+                >
+                  <Link to={navigation.signUp}>{t("signUp")}</Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+        </div>
+      </CardContent>
     </Card>
   );
 };

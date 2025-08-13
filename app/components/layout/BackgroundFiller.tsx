@@ -1,9 +1,16 @@
-interface Props
-  extends React.DetailedHTMLProps<
-    React.ImgHTMLAttributes<HTMLImageElement>,
-    HTMLImageElement
-  > {}
+import { cn } from "~/lib/utils";
 
-export const BackgroundFiller = ({ ...props }: Props) => {
-  return <img src="/assets/hexagon.svg" {...props} />;
+interface Props extends React.HTMLAttributes<HTMLDivElement> {}
+
+export const BackgroundFiller = ({ className = "", ...props }: Props) => {
+  return (
+    <div
+      className={cn(
+        "absolute inset-0 bg-[url('/assets/floating-cogs.svg')] bg-repeat",
+        className
+      )}
+      style={{ backgroundSize: "800px 800px" }}
+      {...props}
+    />
+  );
 };

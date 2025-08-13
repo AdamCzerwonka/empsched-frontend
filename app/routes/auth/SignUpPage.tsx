@@ -1,4 +1,10 @@
-import { Card } from "~/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "~/components/ui/card";
 import {
   Form,
   FormControl,
@@ -41,89 +47,95 @@ export const SignUpPage = () => {
 
   return (
     <Card className="w-full md:w-1/2 lg:w-1/3">
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(handleSubmit)}
-          className="m-2 mx-8 flex flex-col gap-2"
-        >
-          <h1 className="mb-2 text-2xl font-bold">{t("form.title")}</h1>
-          <FormField
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{t("form.email.label")}</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder={t("form.email.placeholder")}
-                    type="email"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{t("form.password.label")}</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder={t("form.password.placeholder")}
-                    type="password"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{t("form.name.label")}</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder={t("form.name.placeholder")}
-                    type="text"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            name="maxEmployees"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{t("form.maxEmployees.label")}</FormLabel>
-                <FormControl>
-                  <Input
-                    min={organisationValidation.maxEmployees.min}
-                    max={organisationValidation.maxEmployees.max}
-                    type="number"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <LoadingButton
-            className="mt-2 cursor-pointer"
-            type="submit"
-            isLoading={isPending}
+      <CardHeader>
+        <CardTitle>{t("form.title")}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(handleSubmit)}
+            className="flex flex-col gap-2"
           >
-            {t("form.submit")}
-          </LoadingButton>
-        </form>
-      </Form>
-      <Button variant={"link"} asChild>
-        <Link to={navigation.home}>{t("navigateHomepage")}</Link>
-      </Button>
+            <FormField
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t("form.email.label")}</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder={t("form.email.placeholder")}
+                      type="email"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t("form.password.label")}</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder={t("form.password.placeholder")}
+                      type="password"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t("form.name.label")}</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder={t("form.name.placeholder")}
+                      type="text"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              name="maxEmployees"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t("form.maxEmployees.label")}</FormLabel>
+                  <FormControl>
+                    <Input
+                      min={organisationValidation.maxEmployees.min}
+                      max={organisationValidation.maxEmployees.max}
+                      type="number"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <LoadingButton
+              className="mt-2 cursor-pointer"
+              type="submit"
+              isLoading={isPending}
+            >
+              {t("form.submit")}
+            </LoadingButton>
+          </form>
+        </Form>
+      </CardContent>
+      <CardFooter className="flex-col">
+        <Button variant={"link"} className="w-full" asChild>
+          <Link to={navigation.home}>{t("navigateHomepage")}</Link>
+        </Button>
+      </CardFooter>
     </Card>
   );
 };
