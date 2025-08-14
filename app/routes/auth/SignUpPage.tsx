@@ -5,16 +5,8 @@ import {
   CardHeader,
   CardTitle,
 } from "~/components/ui/card";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "~/components/ui/form";
+import { Form } from "~/components/ui/form";
 import { useTranslation } from "react-i18next";
-import { Input } from "~/components/ui/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "~/components/ui/button";
@@ -27,6 +19,7 @@ import {
   organisationCreateSchema,
   type organisationCreateSchemaType,
 } from "~/types/schemas";
+import { CustomFormField } from "~/components/form";
 
 export const SignUpPage = () => {
   const { t: tVal } = useTranslation("validation");
@@ -54,86 +47,37 @@ export const SignUpPage = () => {
             onSubmit={form.handleSubmit(handleSubmit)}
             className="flex flex-col gap-2"
           >
-            <FormField
+            <CustomFormField
               name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t("form.email.label")}</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder={t("form.email.placeholder")}
-                      type="email"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              label={t("form.email.label")}
+              placeholder={t("form.email.placeholder")}
+              type="email"
             />
-            <FormField
+            <CustomFormField
               name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t("form.password.label")}</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder={t("form.password.placeholder")}
-                      type="password"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              label={t("form.password.label")}
+              placeholder={t("form.password.placeholder")}
+              type="password"
             />
-            <FormField
+            <CustomFormField
               name="confirmPassword"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t("form.confirmPassword.label")}</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder={t("form.confirmPassword.placeholder")}
-                      type="password"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              label={t("form.confirmPassword.label")}
+              placeholder={t("form.confirmPassword.placeholder")}
+              type="password"
             />
-            <FormField
+            <CustomFormField
               name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t("form.name.label")}</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder={t("form.name.placeholder")}
-                      type="text"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              label={t("form.name.label")}
+              placeholder={t("form.name.placeholder")}
+              type="text"
             />
-            <FormField
+            <CustomFormField
               name="maxEmployees"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t("form.maxEmployees.label")}</FormLabel>
-                  <FormControl>
-                    <Input
-                      min={organisationValidation.maxEmployees.min}
-                      max={organisationValidation.maxEmployees.max}
-                      type="number"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              label={t("form.maxEmployees.label")}
+              placeholder={t("form.maxEmployees.placeholder")}
+              type="number"
+              min={organisationValidation.maxEmployees.min}
+              max={organisationValidation.maxEmployees.max}
             />
             <LoadingButton
               className="mt-2 cursor-pointer"
