@@ -1,69 +1,30 @@
 import type { TFunction } from "i18next";
 import { z } from "zod/v4-mini";
-import { accountSchema } from "../accountSchema";
-import { organisationSchema } from "../organisationSchema";
-import { accountValidation, organisationValidation } from "~/constants";
+import { accountSchema, organisationSchema } from "..";
 
-export const organisationCreateSchema = (t: TFunction) =>
-  z.object({
-    email: z.string().check(
-      z.email(t("email")),
-      z.minLength(
-        accountValidation.mail.minLength,
-        t("minLength", {
-          val: accountValidation.mail.minLength,
-        }).toString()
-      ),
-      z.maxLength(
-        accountValidation.mail.maxLength,
-        t("maxLength", {
-          val: accountValidation.mail.maxLength,
-        }).toString()
-      )
-    ),
-    password: z.string().check(
-      z.minLength(
-        accountValidation.password.minLength,
-        t("minLength", {
-          val: accountValidation.password.minLength,
-        }).toString()
-      ),
-      z.maxLength(
-        accountValidation.password.maxLength,
-        t("maxLength", {
-          val: accountValidation.password.maxLength,
-        }).toString()
-      )
-    ),
-    name: z.string().check(
-      z.minLength(
-        organisationValidation.name.minLength,
-        t("minLength", {
-          val: organisationValidation.name.minLength,
-        }).toString()
-      ),
-      z.maxLength(
-        organisationValidation.name.maxLength,
-        t("maxLength", {
-          val: organisationValidation.name.maxLength,
-        }).toString()
-      )
-    ),
-    maxEmployees: z.number().check(
-      z.minimum(
-        organisationValidation.maxEmployees.min,
-        t("minValue", {
-          val: organisationValidation.maxEmployees.min,
-        }).toString()
-      ),
-      z.maximum(
-        organisationValidation.maxEmployees.max,
-        t("maxValue", {
-          val: organisationValidation.maxEmployees.max,
-        }).toString()
-      )
-    ),
+export const organisationCreateSchema = (t: TFunction) => {
+  const pickedAccount = z.pick(accountSchema(t), {
+    email: true,
+    password: true,
   });
+  const pickedOrganisation = z.pick(organisationSchema(t), {
+    name: true,
+    maxEmployees: true,
+  });
+
+  return z
+    .object({
+      ...pickedAccount.def.shape,
+      ...pickedOrganisation.def.shape,
+      confirmPassword: pickedAccount.def.shape.password,
+    })
+    .check(
+      z.refine((val) => val.confirmPassword === val.password, {
+        message: t("passwordsDoNotMatch"),
+        path: ["confirmPassword"],
+      })
+    );
+};
 
 export type organisationCreateSchemaType = z.infer<
   ReturnType<typeof organisationCreateSchema>
@@ -73,6 +34,7 @@ export const defaultOrganisationCreateSchemaValues: organisationCreateSchemaType
   {
     email: "",
     password: "",
+    confirmPassword: "",
     name: "",
     maxEmployees: 3,
   };

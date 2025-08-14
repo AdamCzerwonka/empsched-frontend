@@ -6,5 +6,7 @@
   "minValue": "Minimum value is {{val, number}}",
   "maxValue": "Maximum value is {{val, number}}",
 
+  "passwordsDoNotMatch": "Passwords do not match",
+
   "email": "Field must be email (eg. john.doe@example.com)"
 }

@@ -9,6 +9,10 @@
       "label": "Hasło",
       "placeholder": "Wprowadź hasło"
     },
+    "confirmPassword": {
+      "label": "Potwierdź hasło",
+      "placeholder": "Wprowadź ponownie hasło"
+    },
     "name": {
       "label": "Nazwa organizacji",
       "placeholder": "Wprowadź nazwę organizacji"

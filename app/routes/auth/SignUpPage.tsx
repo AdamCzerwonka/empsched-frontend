@@ -20,15 +20,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "~/components/ui/button";
 import { Link } from "react-router";
 import { navigation, organisationValidation } from "~/constants";
-import { useSignIn } from "~/api/hooks";
 import { LoadingButton } from "~/components/LoadingButton";
 import { useCreateOrganisation } from "~/api/hooks/organisation/useCreateOrganisation";
 import {
   defaultOrganisationCreateSchemaValues,
   organisationCreateSchema,
   type organisationCreateSchemaType,
-} from "~/types/schemas/organisation/organisationCreateSchema";
-import { signInSchema } from "~/types/schemas";
+} from "~/types/schemas";
 
 export const SignUpPage = () => {
   const { t: tVal } = useTranslation("validation");
@@ -80,6 +78,22 @@ export const SignUpPage = () => {
                   <FormControl>
                     <Input
                       placeholder={t("form.password.placeholder")}
+                      type="password"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              name="confirmPassword"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t("form.confirmPassword.label")}</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder={t("form.confirmPassword.placeholder")}
                       type="password"
                       {...field}
                     />
