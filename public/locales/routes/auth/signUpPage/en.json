@@ -9,6 +9,10 @@
       "label": "Password",
       "placeholder": "Enter your password"
     },
+    "confirmPassword": {
+      "label": "Confirm password",
+      "placeholder": "Re-enter your password"
+    },
     "name": {
       "label": "Organisation name",
       "placeholder": "Enter your organisation name"
