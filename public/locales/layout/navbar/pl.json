@@ -1,4 +1,6 @@
 {
   "signIn": "Zaloguj",
-  "signUp": "Zarejestruj"
+  "signUp": "Zarejestruj",
+  "myAccount": "Moje konto",
+  "logout": "Wyloguj"
 }

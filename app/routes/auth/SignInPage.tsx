@@ -15,16 +15,19 @@ import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "~/components/ui/button";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { navigation } from "~/constants";
 import { useSignIn } from "~/api/hooks";
 import { LoadingButton } from "~/components/LoadingButton";
 import { CustomFormField } from "~/components/form";
+import { useAuthStore } from "~/store";
 
 export const SignInPage = () => {
   const { t: tVal } = useTranslation("validation");
   const { t } = useTranslation("routes/auth/signInPage");
   const { signInAsync, isPending } = useSignIn();
+  const navigate = useNavigate();
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
 
   const form = useForm({
     resolver: zodResolver(signInSchema(tVal)),
@@ -32,8 +35,15 @@ export const SignInPage = () => {
   });
 
   const handleSubmit = async (values: signInSchemaType) => {
-    const response = await signInAsync(values);
-    console.log("Sign In Response:", response);
+    try {
+      const response = await signInAsync(values);
+
+      if (isAuthenticated()) {
+        navigate(navigation.home);
+      }
+    } catch (error) {
+      console.error("Sign in failed:", error);
+    }
   };
 
   return (
