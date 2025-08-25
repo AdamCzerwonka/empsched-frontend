@@ -1,50 +1,31 @@
-import { Link } from "react-router";
 import { Card, CardContent } from "../ui/card";
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  navigationMenuTriggerStyle,
-} from "../ui/navigation-menu";
 import { Logo } from "./Logo";
-import { useTranslation } from "react-i18next";
-import { Separator } from "../ui/separator";
 import { ModeToggle } from "../mode-toggle";
-import { navigation } from "~/constants";
+import { AccountSection } from "./AccountSection";
+import { NavigationMenu, NavigationMenuList } from "../ui/navigation-menu";
+import { useIsMobile } from "~/hooks/use-mobile";
+import { SidebarTrigger } from "../ui/sidebar";
 
 export const Navbar = () => {
-  const { t } = useTranslation("layout/navbar");
+  const isMobile = useIsMobile();
 
   return (
-    <Card className="min-h-16 w-full justify-center p-2">
+    <Card
+      id="navbar"
+      className="relative z-10 min-h-16 w-full justify-center p-2"
+    >
       <CardContent className="flex flex-row flex-wrap items-center justify-between">
         <h1>
           <Logo />
         </h1>
         <div className="flex h-full items-center gap-2">
-          <ModeToggle />
-          <Separator orientation="vertical" />
-          <NavigationMenu>
+          <NavigationMenu viewport={isMobile}>
             <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuLink
-                  className={navigationMenuTriggerStyle()}
-                  asChild
-                >
-                  <Link to={navigation.signIn}>{t("signIn")}</Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuLink
-                  className={navigationMenuTriggerStyle()}
-                  asChild
-                >
-                  <Link to={navigation.signUp}>{t("signUp")}</Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
+              <ModeToggle />
+              {!isMobile && <AccountSection />}
             </NavigationMenuList>
           </NavigationMenu>
+          {isMobile && <SidebarTrigger />}
         </div>
       </CardContent>
     </Card>
