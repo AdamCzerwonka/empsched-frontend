@@ -1,29 +1,54 @@
 import { useAuthStore } from "~/store";
 import {
-  NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
-  NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "../ui/navigation-menu";
+} from "../ui";
 import { Link } from "react-router";
 import { accountActions, navigation } from "~/constants";
 import { useTranslation } from "react-i18next";
 import { User } from "lucide-react";
+import { LinkItem } from "./LinkItem";
+import { cn } from "~/lib/utils";
 
 export const AccountSection = () => {
   const { t } = useTranslation("layout/navbar");
   const { isAuthenticated } = useAuthStore();
 
-  const authenticatedSection = (
+  if (!isAuthenticated()) {
+    return (
+      <>
+        <NavigationMenuItem>
+          <NavigationMenuLink className={navigationMenuTriggerStyle()} asChild>
+            <Link to={navigation.signIn}>{t("signIn")}</Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink
+            className={cn(
+              navigationMenuTriggerStyle(),
+              "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground"
+            )}
+            asChild
+          >
+            <Link to={navigation.signUp}>{t("signUp")}</Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+      </>
+    );
+  }
+
+  return (
     <NavigationMenuItem>
       <NavigationMenuTrigger>
-        <span className="flex items-center gap-2">
-          <User size={"1.3rem"} />
-          {t("myAccount")}
-        </span>
+        <LinkItem
+          item={{
+            i18nTextKey: "myAccount",
+            icon: User,
+          }}
+        />
       </NavigationMenuTrigger>
       <NavigationMenuContent className="min-w-max">
         <ul>
@@ -31,10 +56,12 @@ export const AccountSection = () => {
             <li key={item.i18nKey}>
               <NavigationMenuLink asChild>
                 <Link to={item.link}>
-                  <span className="flex min-w-max items-center gap-2">
-                    {<item.icon />}
-                    {t(item.i18nKey)}
-                  </span>
+                  <LinkItem
+                    item={{
+                      i18nTextKey: item.i18nKey,
+                      icon: item.icon,
+                    }}
+                  />
                 </Link>
               </NavigationMenuLink>
             </li>
@@ -43,21 +70,4 @@ export const AccountSection = () => {
       </NavigationMenuContent>
     </NavigationMenuItem>
   );
-
-  const unauthenticatedSection = (
-    <>
-      <NavigationMenuItem>
-        <NavigationMenuLink className={navigationMenuTriggerStyle()} asChild>
-          <Link to={navigation.signIn}>{t("signIn")}</Link>
-        </NavigationMenuLink>
-      </NavigationMenuItem>
-      <NavigationMenuItem>
-        <NavigationMenuLink className={navigationMenuTriggerStyle()} asChild>
-          <Link to={navigation.signUp}>{t("signUp")}</Link>
-        </NavigationMenuLink>
-      </NavigationMenuItem>
-    </>
-  );
-
-  return isAuthenticated() ? authenticatedSection : unauthenticatedSection;
 };

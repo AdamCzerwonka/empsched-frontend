@@ -1,4 +1,4 @@
-export type signInRequest = {
+export interface SignInRequest {
   email: string;
   password: string;
-};
+}

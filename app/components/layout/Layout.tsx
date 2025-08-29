@@ -1,7 +1,7 @@
 import { Navbar } from "./Navbar";
 import { Content } from "./Content";
 import { Footer } from "./Footer";
-import { SidebarProvider } from "../ui/sidebar";
+import { SidebarProvider } from "../ui";
 import { LayoutSidebar } from "./LayoutSidebar";
 
 export const Layout = () => {

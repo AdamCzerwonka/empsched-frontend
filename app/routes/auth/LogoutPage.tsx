@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
-import { LoadingButton } from "~/components/LoadingButton";
-import { Card, CardContent } from "~/components/ui/card";
+import { LoadingButton, Card, CardContent } from "~/components/ui";
 import { navigation } from "~/constants";
 import { useAuthStore } from "~/store";
 

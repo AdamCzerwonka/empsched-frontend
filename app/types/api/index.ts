@@ -1,2 +1,2 @@
-export * from "./auth/signInRequest";
-export * from "./organisation/organisationCreateRequest";
+export * from "./auth/SignInRequest";
+export * from "./organisation/OrganisationCreateRequest";
