@@ -4,15 +4,15 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "~/components/ui/card";
-import { Form } from "~/components/ui/form";
+  Form,
+  Button,
+  LoadingButton,
+} from "~/components/ui";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "~/components/ui/button";
 import { Link } from "react-router";
 import { navigation, organisationValidation } from "~/constants";
-import { LoadingButton } from "~/components/LoadingButton";
 import { useCreateOrganisation } from "~/api/hooks/organisation/useCreateOrganisation";
 import {
   defaultOrganisationCreateSchemaValues,
