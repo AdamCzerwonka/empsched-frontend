@@ -79,7 +79,10 @@ export const SignInPage = () => {
           </form>
         </Form>
       </CardContent>
-      <CardFooter className="flex-col">
+      <CardFooter className="flex-col gap-2">
+        <Button variant={"secondary"} className="w-full" asChild>
+          <Link to={navigation.signUp}>{t("signUpQuestion")}</Link>
+        </Button>
         <Button variant={"link"} className="w-full" asChild>
           <Link to={navigation.home}>{t("navigateHomepage")}</Link>
         </Button>

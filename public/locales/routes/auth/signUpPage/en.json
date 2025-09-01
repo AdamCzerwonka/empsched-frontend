@@ -1,6 +1,6 @@
 {
   "form": {
-    "title": "Sign in to your account",
+    "title": "Sign Up",
     "email": {
       "label": "Email address",
       "placeholder": "Enter your email address"
@@ -22,5 +22,6 @@
     },
     "submit": "Sign up"
   },
-  "navigateHomepage": "Go to homepage"
+  "navigateHomepage": "Go to homepage",
+  "signInQuestion": "Already have an account? Sign in"
 }

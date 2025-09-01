@@ -1,0 +1,7 @@
+{
+  "message": {
+    "default": "An error occurred",
+    "login.failed": "Login failed",
+    "user.already.exists": "User already exists"
+  }
+}
