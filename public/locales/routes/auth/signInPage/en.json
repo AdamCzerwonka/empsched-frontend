@@ -11,5 +11,6 @@
     },
     "submit": "Sign in"
   },
-  "navigateHomepage": "Go to homepage"
+  "navigateHomepage": "Go to homepage",
+  "signUpQuestion": "Don't have an account? Sign up"
 }

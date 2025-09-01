@@ -11,5 +11,6 @@
     },
     "submit": "Zaloguj się"
   },
-  "navigateHomepage": "Przejdź do strony głównej"
+  "navigateHomepage": "Przejdź do strony głównej",
+  "signUpQuestion": "Nie masz konta? Zarejestruj się"
 }

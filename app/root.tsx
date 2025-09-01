@@ -11,7 +11,17 @@ import type { Route } from "./+types/root";
 import "./app.css";
 import "./i18n/i18n";
 import { ThemeProvider } from "./components/theme-provider";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+  MutationCache,
+  QueryCache,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
+import { showApiErrorToast } from "./lib/toastUtils";
+import type { AxiosError } from "axios";
+import type { ErrorResponse } from "./types/api";
+import { useTranslation } from "react-i18next";
+import { ToasterWrapper } from "./components/system/ToasterWrapper";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -45,12 +55,26 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  const queryClient = new QueryClient();
+  const { t } = useTranslation("errors");
+
+  const queryClient = new QueryClient({
+    queryCache: new QueryCache({
+      onError: (error) => {
+        showApiErrorToast(error as AxiosError<ErrorResponse>, t);
+      },
+    }),
+    mutationCache: new MutationCache({
+      onError: (error, _, __, ___) => {
+        showApiErrorToast(error as AxiosError<ErrorResponse>, t);
+      },
+    }),
+  });
 
   return (
     <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
       <QueryClientProvider client={queryClient}>
         <Outlet />
+        <ToasterWrapper />
       </QueryClientProvider>
     </ThemeProvider>
   );

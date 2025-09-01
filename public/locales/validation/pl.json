@@ -1,7 +1,7 @@
 {
   "required": "Pole jest wymagane",
 
-  "minLength": "Pole musi mieć conajmniej {{val, number}} znak(i/ów)",
+  "minLength": "Pole musi mieć co najmniej {{val, number}} znak(i/ów)",
   "maxLength": "Pole może mieć maksymalnie {{val, number}} znak(i/ów)",
   "minValue": "Minimalna wartość to {{val, number}}",
   "maxValue": "Maksymalna wartość to {{val, number}}",

@@ -13,7 +13,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "react-router";
 import { navigation, organisationValidation } from "~/constants";
-import { useCreateOrganisation } from "~/api/hooks/organisation/useCreateOrganisation";
+import { useCreateOrganisation } from "~/api/hooks";
 import {
   defaultOrganisationCreateSchemaValues,
   organisationCreateSchema,
@@ -89,7 +89,10 @@ export const SignUpPage = () => {
           </form>
         </Form>
       </CardContent>
-      <CardFooter className="flex-col">
+      <CardFooter className="flex-col gap-2">
+        <Button variant={"secondary"} className="w-full" asChild>
+          <Link to={navigation.signIn}>{t("signInQuestion")}</Link>
+        </Button>
         <Button variant={"link"} className="w-full" asChild>
           <Link to={navigation.home}>{t("navigateHomepage")}</Link>
         </Button>

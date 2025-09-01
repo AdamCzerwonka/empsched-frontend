@@ -1,6 +1,6 @@
 {
   "form": {
-    "title": "Zaloguj się do swojego konta",
+    "title": "Zarejestruj się",
     "email": {
       "label": "Adres email",
       "placeholder": "Wprowadź adres email"
@@ -22,5 +22,6 @@
     },
     "submit": "Zarejestruj się"
   },
-  "navigateHomepage": "Przejdź do strony głównej"
+  "navigateHomepage": "Przejdź do strony głównej",
+  "signInQuestion": "Masz już konto? Zaloguj się"
 }
