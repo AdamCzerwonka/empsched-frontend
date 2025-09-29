@@ -1,0 +1,6 @@
+export enum OrganisationPlanEnum {
+  UNIT = "UNIT",
+  DEPARTMENT = "DEPARTMENT",
+  DIVISION = "DIVISION",
+  HEADQUARTERS = "HEADQUARTERS",
+}

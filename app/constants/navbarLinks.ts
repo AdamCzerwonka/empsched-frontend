@@ -1,4 +1,4 @@
-import type { NavbarLink } from "~/types/general/NavbarLink";
+import type { NavbarLink } from "~/types/general";
 import { navigation } from "./navigation";
 
 // example navbarLink

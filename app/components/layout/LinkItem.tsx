@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import type { NavbarLink } from "~/types/general/NavbarLink";
+import type { NavbarLink } from "~/types/general";
 
 export const LinkItem = ({ item }: { item: NavbarLink }) => {
   const { t } = useTranslation("layout/navbar");

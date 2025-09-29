@@ -1,13 +1,13 @@
 import { useMutation } from "@tanstack/react-query";
 import { api } from "~/api";
-import { organisationEndpoints } from "~/constants";
+import { workflowEndpoints } from "~/constants";
 import type { OrganisationCreateRequest } from "~/types/api";
 
 export const useCreateOrganisation = () => {
   const { mutateAsync, isPending } = useMutation({
     mutationFn: async (data: OrganisationCreateRequest) => {
-      const reponse = await api.post(organisationEndpoints.create, data);
-      return reponse.data;
+      const response = await api.post(workflowEndpoints.create, data);
+      return response.data;
     },
   });
 

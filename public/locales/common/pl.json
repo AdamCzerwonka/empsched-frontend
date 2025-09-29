@@ -1,4 +1,25 @@
 {
   "submit": "Zatwierdź",
-  "cancel": "Anuluj"
+  "cancel": "Anuluj",
+  "next": "Dalej",
+  "previous": "Wstecz",
+
+  "plans": {
+    "unit": {
+      "name": "Jednostka",
+      "description": "Odpowiednia dla małych organizacji koncentrujących się na lokalnej koordynacji i prostych potrzebach kadrowych."
+    },
+    "department": {
+      "name": "Dział",
+      "description": "Przeznaczona dla średnich organizacji koordynujących kilka zespołów i zarządzających szerszym zakresem obowiązków."
+    },
+    "division": {
+      "name": "Oddział",
+      "description": "Dla dużych organizacji działających w wielu regionach lub obszarach działalności, które wymagają scentralizowanego nadzoru i spójności."
+    },
+    "headquarters": {
+      "name": "Centrala",
+      "description": "Dla organizacji korporacyjnych potrzebujących zarządzania obejmującego całą strukturę, rozwiązań dostosowanych do potrzeb i dedykowanego wsparcia."
+    }
+  }
 }

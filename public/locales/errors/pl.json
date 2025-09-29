@@ -2,6 +2,11 @@
   "message": {
     "default": "Wystąpił błąd",
     "login.failed": "Logowanie nie powiodło się",
-    "user.already.exists": "Użytkownik już istnieje"
+    "user": {
+      "already.exists": "Użytkownik już istnieje"
+    },
+    "organisation": {
+      "already.exists": "Organizacja już istnieje"
+    }
   }
 }

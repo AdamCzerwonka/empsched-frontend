@@ -1,4 +1,25 @@
 {
   "submit": "Submit",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "next": "Next",
+  "previous": "Previous",
+
+  "plans": {
+    "unit": {
+      "name": "Unit",
+      "description": "Suited to small organizations focused on local coordination and straightforward staffing needs."
+    },
+    "department": {
+      "name": "Department",
+      "description": "Intended for mid-sized organizations coordinating multiple teams and managing broader staffing responsibilities."
+    },
+    "division": {
+      "name": "Division",
+      "description": "Fits large organizations operating across regions or business lines that require centralized oversight and alignment."
+    },
+    "headquarters": {
+      "name": "Headquarters",
+      "description": "For enterprise-level organizations seeking organization-wide governance, bespoke arrangements, and dedicated support structures."
+    }
+  }
 }

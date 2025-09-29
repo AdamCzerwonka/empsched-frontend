@@ -1,6 +1,15 @@
 {
+  "chooseYourPlan": "Choose your plan",
+  "fillDetails": "Fill in your details",
+  "employeesLimit": "up to {{val}} employees",
+  "pricePerMonth": "{{val}} / month",
+  "selectPlan": "Select plan",
+  "selectedPlan": "Selected plan",
+  "toast": {
+    "success": "Organisation created successfully"
+  },
   "form": {
-    "title": "Sign Up",
+    "title": "Welcome! Sign Up",
     "email": {
       "label": "Email address",
       "placeholder": "Enter your email address"
