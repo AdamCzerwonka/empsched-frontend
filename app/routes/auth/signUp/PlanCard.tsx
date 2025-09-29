@@ -41,7 +41,10 @@ export const PlanCard = ({ plan, isSelected, onSelect }: Props) => {
         {tCommon(plan.description)}
       </CardContent>
       <CardFooter className="mt-auto flex flex-col gap-2">
-        <p className="font-bold">${t("pricePerMonth", { val: plan.price })}</p>
+        <p className="mt-2">
+          <span className="font-mono text-2xl font-bold">${plan.price}</span>
+          <span className="text-sm">{t("pricePerMonth")}</span>
+        </p>
         <Button
           type="button"
           variant={isSelected ? "default" : "outline"}

@@ -2,7 +2,7 @@
   "chooseYourPlan": "Choose your plan",
   "fillDetails": "Fill in your details",
   "employeesLimit": "up to {{val}} employees",
-  "pricePerMonth": "{{val}} / month",
+  "pricePerMonth": " / month",
   "selectPlan": "Select plan",
   "selectedPlan": "Selected plan",
   "toast": {
