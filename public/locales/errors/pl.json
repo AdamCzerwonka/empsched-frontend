@@ -7,6 +7,9 @@
     },
     "organisation": {
       "already.exists": "Organizacja już istnieje"
+    },
+    "position": {
+      "already.exists": "Stanowisko o tej nazwie już istnieje"
     }
   }
 }

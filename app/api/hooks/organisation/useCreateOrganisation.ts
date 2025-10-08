@@ -6,7 +6,10 @@ import type { OrganisationCreateRequest } from "~/types/api";
 export const useCreateOrganisation = () => {
   const { mutateAsync, isPending } = useMutation({
     mutationFn: async (data: OrganisationCreateRequest) => {
-      const response = await api.post(workflowEndpoints.create, data);
+      const response = await api.post(
+        workflowEndpoints.createOrganisation,
+        data
+      );
       return response.data;
     },
   });

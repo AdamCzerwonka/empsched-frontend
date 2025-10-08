@@ -15,6 +15,8 @@ import { Link } from "react-router";
 import { LinkItem } from "./LinkItem";
 import type { NavbarLink } from "~/types/general";
 import { useMemo } from "react";
+import { useAuthStore } from "~/store";
+import { filterNavbarLinksByAccess } from "~/lib";
 
 interface Props {
   isSidebar: boolean;
@@ -37,7 +39,9 @@ export const NavbarLinksSection = ({ isSidebar }: Props) => {
     [isSidebar]
   );
 
-  return navbarLinks.map((value) => (
+  const { roles } = useAuthStore();
+
+  return filterNavbarLinksByAccess(navbarLinks, roles ?? []).map((value) => (
     <components.Item key={value.i18nTextKey} className="list-none">
       {hasChildren(value) ? (
         <>

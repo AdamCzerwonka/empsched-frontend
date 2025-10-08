@@ -5,11 +5,15 @@ export const authEndpoints = Object.fromEntries(
 );
 
 export const organisationEndpoints = Object.fromEntries(
-  Object.entries({}).map(([key, value]) => [key, `organisations${value}`])
+  Object.entries({
+    getOrganisation: "/",
+    getPositions: "/positions",
+  }).map(([key, value]) => [key, `organisation${value}`])
 );
 
 export const workflowEndpoints = Object.fromEntries(
   Object.entries({
-    create: "/organisations",
+    createOrganisation: "/organisations",
+    createPosition: "/positions",
   }).map(([key, value]) => [key, `workflow${value}`])
 );

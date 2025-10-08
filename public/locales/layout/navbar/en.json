@@ -2,5 +2,20 @@
   "signIn": "Sign In",
   "signUp": "Sign Up",
   "myAccount": "My account",
-  "logout": "Log out"
+  "logout": "Log out",
+
+  "organisation": {
+    "name": "Organisation",
+    "child": {
+      "details": {
+        "name": "Details"
+      },
+      "employees": {
+        "name": "Employees"
+      },
+      "positions": {
+        "name": "Positions"
+      }
+    }
+  }
 }

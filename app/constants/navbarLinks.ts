@@ -1,39 +1,44 @@
-import type { NavbarLink } from "~/types/general";
+import { ExtendedRoleEnum, RoleEnum, type NavbarLink } from "../types/general";
 import { navigation } from "./navigation";
+import {
+  BetweenHorizontalStart,
+  Building2,
+  IdCardLanyard,
+  NotebookText,
+} from "lucide-react";
 
-// example navbarLink
-// {
-//   i18nTextKey: "template",
-//   i18nDescriptionKey: null,
-//   link: navigation.home,
-//   icon: HomeIcon,
-//   access: [],
-//   child: [
-//     {
-//       i18nTextKey: "main page",
-//       i18nDescriptionKey: "main page is accessible to all users",
-//       link: navigation.home,
-//       icon: Axis3d,
-//       access: [],
-//       child: null,
-//     },
-//     {
-//       i18nTextKey: "sign up",
-//       i18nDescriptionKey: "sign up is accessible to all users",
-//       link: navigation.signUp,
-//       icon: SettingsIcon,
-//       access: [],
-//       child: null,
-//     },
-//     {
-//       i18nTextKey: "sign in",
-//       i18nDescriptionKey: "sign in is accessible to all users",
-//       link: navigation.signIn,
-//       icon: SettingsIcon,
-//       access: [],
-//       child: null,
-//     },
-//   ],
-// },
-
-export const navbarLinks: NavbarLink[] = [];
+export const navbarLinks: NavbarLink[] = [
+  {
+    i18nTextKey: "organisation.name",
+    i18nDescriptionKey: undefined,
+    link: navigation.organisation,
+    icon: Building2,
+    access: [ExtendedRoleEnum.AUTHENTICATED],
+    child: [
+      {
+        i18nTextKey: "organisation.child.details.name",
+        i18nDescriptionKey: undefined,
+        link: navigation.organisation + "?tab=details",
+        icon: NotebookText,
+        access: [ExtendedRoleEnum.AUTHENTICATED],
+        child: null,
+      },
+      {
+        i18nTextKey: "organisation.child.employees.name",
+        i18nDescriptionKey: undefined,
+        link: navigation.organisation + "?tab=employees",
+        icon: IdCardLanyard,
+        access: [RoleEnum.ORGANISATION_ADMIN],
+        child: null,
+      },
+      {
+        i18nTextKey: "organisation.child.positions.name",
+        i18nDescriptionKey: undefined,
+        link: navigation.organisation + "?tab=positions",
+        icon: BetweenHorizontalStart,
+        access: [RoleEnum.ORGANISATION_ADMIN],
+        child: null,
+      },
+    ],
+  },
+];

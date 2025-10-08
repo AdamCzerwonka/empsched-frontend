@@ -2,5 +2,20 @@
   "signIn": "Zaloguj",
   "signUp": "Zarejestruj",
   "myAccount": "Moje konto",
-  "logout": "Wyloguj"
+  "logout": "Wyloguj",
+
+  "organisation": {
+    "name": "Organizacja",
+    "child": {
+      "details": {
+        "name": "Szczegóły"
+      },
+      "employees": {
+        "name": "Pracownicy"
+      },
+      "positions": {
+        "name": "Stanowiska"
+      }
+    }
+  }
 }

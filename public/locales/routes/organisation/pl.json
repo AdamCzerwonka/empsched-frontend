@@ -1,0 +1,39 @@
+{
+  "tabs": {
+    "details": {
+      "trigger": "Szczegóły",
+      "title": "Szczegóły organizacji",
+      "fields": {
+        "name": {
+          "value": "Nazwa",
+          "placeholder": "Wprowadź nazwę organizacji"
+        },
+        "owner.value": "Właściciel",
+        "plan.value": "Plan"
+      }
+    },
+    "employees": {
+      "trigger": "Pracownicy"
+    },
+    "positions": {
+      "trigger": "Stanowiska",
+      "title": "Stanowiska w organizacji",
+      "add": {
+        "button": "Dodaj stanowisko",
+        "form": {
+          "title": "Dodaj nowe stanowisko",
+          "briefDescription": "Stanowiska definiują role w Twojej organizacji. Możesz przypisać pracowników do stanowisk.",
+          "name": {
+            "label": "Nazwa",
+            "placeholder": "Wprowadź nazwę stanowiska"
+          },
+          "description": {
+            "label": "Opis",
+            "placeholder": "Wprowadź opis stanowiska"
+          }
+        },
+        "toast.success": "Stanowisko zostało pomyślnie dodane"
+      }
+    }
+  }
+}
