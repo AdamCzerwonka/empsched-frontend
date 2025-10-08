@@ -11,6 +11,12 @@ export default [
     route(navigation.signIn, "./routes/auth/SignInPage.tsx"),
     route(navigation.signUp, "./routes/auth/signUp/SignUpPage.tsx"),
     route(navigation.logout, "./routes/auth/LogoutPage.tsx"),
-    layout("./components/layout/Layout.tsx", [index("routes/HomePage.tsx")]),
+    layout("./components/layout/Layout.tsx", [
+      index("routes/HomePage.tsx"),
+      route(
+        navigation.organisation,
+        "./routes/organisation/OrganisationPage.tsx"
+      ),
+    ]),
   ]),
 ] satisfies RouteConfig;

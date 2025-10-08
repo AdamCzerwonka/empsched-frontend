@@ -17,6 +17,7 @@ export const Navbar = () => {
   return (
     <Card
       id="navbar"
+      variant={"soft"}
       className="relative z-10 min-h-16 w-full justify-center p-2"
     >
       <CardContent className="flex flex-row items-center justify-between gap-2">

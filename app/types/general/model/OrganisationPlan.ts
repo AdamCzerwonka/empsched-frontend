@@ -1,4 +1,4 @@
-import type { OrganisationPlanEnum } from "./enums/OrganisationPlanEnum";
+import type { OrganisationPlanEnum } from "../enums/OrganisationPlanEnum";
 
 export interface OrganisationPlan {
   type: OrganisationPlanEnum;

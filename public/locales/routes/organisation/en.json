@@ -1,0 +1,39 @@
+{
+  "tabs": {
+    "details": {
+      "trigger": "Details",
+      "title": "Organisation details",
+      "fields": {
+        "name": {
+          "value": "Name",
+          "placeholder": "Enter organisation name"
+        },
+        "owner.value": "Owner",
+        "plan.value": "Plan"
+      }
+    },
+    "employees": {
+      "trigger": "Employees"
+    },
+    "positions": {
+      "trigger": "Positions",
+      "title": "Organisation positions",
+      "add": {
+        "button": "Add position",
+        "form": {
+          "title": "Add new position",
+          "briefDescription": "Positions define roles within your organisation. You can assign employees to positions.",
+          "name": {
+            "label": "Name",
+            "placeholder": "Enter position name"
+          },
+          "description": {
+            "label": "Description",
+            "placeholder": "Enter position description"
+          }
+        },
+        "toast.success": "Position has been added successfully"
+      }
+    }
+  }
+}

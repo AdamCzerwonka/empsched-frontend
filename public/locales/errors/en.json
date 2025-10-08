@@ -7,6 +7,9 @@
     },
     "organisation": {
       "already.exists": "Organisation already exists"
+    },
+    "position": {
+      "already.exists": "Position with this name already exists"
     }
   }
 }

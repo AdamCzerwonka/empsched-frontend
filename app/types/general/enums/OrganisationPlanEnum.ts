@@ -4,3 +4,5 @@ export enum OrganisationPlanEnum {
   DIVISION = "DIVISION",
   HEADQUARTERS = "HEADQUARTERS",
 }
+
+export type OrganisationPlanType = keyof typeof OrganisationPlanEnum;

@@ -7,7 +7,7 @@ export const Footer = () => {
   const { t } = useTranslation("layout/footer");
 
   return (
-    <Card className="min-h-16 w-full">
+    <Card variant={"soft"} className="min-h-16 w-full">
       <CardContent className="flex flex-row flex-wrap items-center justify-center gap-2 md:gap-6">
         <h3>
           <Button

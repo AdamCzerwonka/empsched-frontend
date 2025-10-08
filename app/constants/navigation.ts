@@ -3,4 +3,5 @@ export const navigation = {
   signIn: "/sign-in",
   signUp: "/sign-up",
   logout: "/logout",
+  organisation: "/organisation",
 };

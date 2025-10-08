@@ -46,7 +46,7 @@ export const SignUpPage = () => {
   };
 
   return (
-    <Card className="w-full md:w-1/2 lg:min-w-2/3">
+    <Card variant={"soft"} className="w-full md:w-1/2 lg:min-w-2/3">
       <CardHeader>
         <CardTitle>{t("form.title")}</CardTitle>
       </CardHeader>
