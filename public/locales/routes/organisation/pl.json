@@ -13,7 +13,23 @@
       }
     },
     "employees": {
-      "trigger": "Pracownicy"
+      "trigger": "Pracownicy",
+      "title": "Pracownicy organizacji",
+      "noEmployees": "Brak pracowników w organizacji",
+      "add": {
+        "button": "Dodaj pracownika",
+        "form": {
+          "title": "Dodaj nowego pracownika",
+          "briefDescription": "Pracownicy to osoby pracujące w Twojej organizacji. Możesz przypisać ich do stanowisk i zarządzać ich grafikami."
+        }
+      },
+      "table": {
+        "header": {
+          "name": "Nazwa",
+          "email": "Email",
+          "actions": "Akcje"
+        }
+      }
     },
     "positions": {
       "trigger": "Stanowiska",

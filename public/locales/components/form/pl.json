@@ -1,0 +1,26 @@
+{
+  "firstName": {
+    "label": "Imię",
+    "placeholder": "Wprowadź imię"
+  },
+  "lastName": {
+    "label": "Nazwisko",
+    "placeholder": "Wprowadź nazwisko"
+  },
+  "email": {
+    "label": "Email",
+    "placeholder": "Wprowadź email"
+  },
+  "phoneNumber": {
+    "label": "Numer telefonu",
+    "placeholder": "Wprowadź numer telefonu"
+  },
+  "password": {
+    "label": "Hasło",
+    "placeholder": "Wprowadź hasło"
+  },
+  "confirmPassword": {
+    "label": "Potwierdź hasło",
+    "placeholder": "Wprowadź ponownie hasło"
+  }
+}

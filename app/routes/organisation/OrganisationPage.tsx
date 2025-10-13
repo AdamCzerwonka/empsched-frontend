@@ -4,6 +4,7 @@ import { Card, CardContent } from "~/components/ui";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import { OrganisationDetails } from "./OrganisationDetails";
 import { PositionsDetails } from "./PositionsDetails";
+import { EmployeesDetails } from "./EmployeesDetails";
 
 export const OrganisationPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -38,7 +39,7 @@ export const OrganisationPage = () => {
             <OrganisationDetails />
           </TabsContent>
           <TabsContent value="employees">
-            <div>[placeholder for employees content]</div>
+            <EmployeesDetails />
           </TabsContent>
           <TabsContent value="positions">
             <PositionsDetails />

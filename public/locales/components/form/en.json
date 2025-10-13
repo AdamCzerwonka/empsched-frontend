@@ -1,0 +1,26 @@
+{
+  "firstName": {
+    "label": "First Name",
+    "placeholder": "Enter first name"
+  },
+  "lastName": {
+    "label": "Last Name",
+    "placeholder": "Enter last name"
+  },
+  "email": {
+    "label": "Email",
+    "placeholder": "Enter email"
+  },
+  "phoneNumber": {
+    "label": "Phone Number",
+    "placeholder": "Enter phone number"
+  },
+  "password": {
+    "label": "Password",
+    "placeholder": "Enter password"
+  },
+  "confirmPassword": {
+    "label": "Confirm Password",
+    "placeholder": "Re-enter password"
+  }
+}

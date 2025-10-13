@@ -1,38 +1,58 @@
 import type { TFunction } from "i18next";
 import { accountValidation } from "~/constants";
 import { z } from "zod/v4-mini";
+import { stringMinMaxValidation } from "~/lib";
 
 export const accountSchema = (t: TFunction) =>
   z.object({
-    email: z.string().check(
-      z.email(t("email")),
-      z.minLength(
-        accountValidation.mail.minLength,
-        t("minLength", {
-          val: accountValidation.mail.minLength,
-        }).toString()
+    firstName: z
+      .string()
+      .check(
+        ...stringMinMaxValidation(
+          t,
+          accountValidation.firstName.minLength,
+          accountValidation.firstName.maxLength
+        )
       ),
-      z.maxLength(
-        accountValidation.mail.maxLength,
-        t("maxLength", {
-          val: accountValidation.mail.maxLength,
-        }).toString()
-      )
-    ),
-    password: z.string().check(
-      z.minLength(
-        accountValidation.password.minLength,
-        t("minLength", {
-          val: accountValidation.password.minLength,
-        }).toString()
+    lastName: z
+      .string()
+      .check(
+        ...stringMinMaxValidation(
+          t,
+          accountValidation.lastName.minLength,
+          accountValidation.lastName.maxLength
+        )
       ),
-      z.maxLength(
-        accountValidation.password.maxLength,
-        t("maxLength", {
-          val: accountValidation.password.maxLength,
-        }).toString()
-      )
+    phoneNumber: z.optional(
+      z
+        .string()
+        .check(
+          ...stringMinMaxValidation(
+            t,
+            accountValidation.phoneNumber.minLength,
+            accountValidation.phoneNumber.maxLength
+          )
+        )
     ),
+    email: z
+      .string()
+      .check(
+        z.email(t("email")),
+        ...stringMinMaxValidation(
+          t,
+          accountValidation.mail.minLength,
+          accountValidation.mail.maxLength
+        )
+      ),
+    password: z
+      .string()
+      .check(
+        ...stringMinMaxValidation(
+          t,
+          accountValidation.password.minLength,
+          accountValidation.password.maxLength
+        )
+      ),
   });
 
 export type accountSchemaType = z.infer<ReturnType<typeof accountSchema>>;
