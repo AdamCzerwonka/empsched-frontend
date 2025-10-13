@@ -13,7 +13,23 @@
       }
     },
     "employees": {
-      "trigger": "Employees"
+      "trigger": "Employees",
+      "title": "Organisation employees",
+      "noEmployees": "No employees in the organisation",
+      "add": {
+        "button": "Add employee",
+        "form": {
+          "title": "Add new employee",
+          "briefDescription": "Employees are the people who work in your organisation. You can assign them to positions and manage their schedules."
+        }
+      },
+      "table": {
+        "header": {
+          "name": "Name",
+          "email": "Email",
+          "actions": "Actions"
+        }
+      }
     },
     "positions": {
       "trigger": "Positions",

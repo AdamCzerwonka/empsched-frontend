@@ -11,9 +11,16 @@ export const organisationEndpoints = Object.fromEntries(
   }).map(([key, value]) => [key, `organisation${value}`])
 );
 
+export const employeeEndpoints = Object.fromEntries(
+  Object.entries({
+    getEmployees: "/",
+  }).map(([key, value]) => [key, `employees${value}`])
+);
+
 export const workflowEndpoints = Object.fromEntries(
   Object.entries({
     createOrganisation: "/organisations",
     createPosition: "/positions",
+    createEmployee: "/employees",
   }).map(([key, value]) => [key, `workflow${value}`])
 );
