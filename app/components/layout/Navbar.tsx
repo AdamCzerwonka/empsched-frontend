@@ -4,9 +4,9 @@ import {
   SidebarTrigger,
   NavigationMenu,
   NavigationMenuList,
+  ModeToggle,
 } from "../ui";
 import { Logo } from "./Logo";
-import { ModeToggle } from "../mode-toggle";
 import { AccountSection } from "./AccountSection";
 import { useIsMobile } from "~/hooks/use-mobile";
 import { NavbarLinksSection } from "./NavbarLinksSection";

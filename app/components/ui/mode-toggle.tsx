@@ -1,12 +1,5 @@
 import { MonitorCog, Moon, Sun } from "lucide-react";
 
-import { Button } from "~/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "~/components/ui/dropdown-menu";
 import { useTheme } from "~/components/theme-provider";
 import { useTranslation } from "react-i18next";
 import {
@@ -14,20 +7,18 @@ import {
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuTrigger,
-} from "./ui/navigation-menu";
+} from "./navigation-menu";
 
 export function ModeToggle() {
   const { setTheme } = useTheme();
-  const { t } = useTranslation("components/theme");
+  const { t } = useTranslation("components/ui/theme");
 
   return (
     <NavigationMenuItem>
-      <NavigationMenuTrigger>
-        <Button variant="ghost" size="icon" className="cursor-pointer">
-          <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
-          <span className="sr-only">{t("srInformation")}</span>
-        </Button>
+      <NavigationMenuTrigger showChevron={false} className="items-center gap-2">
+        <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+        <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
+        <span className="sr-only">{t("srInformation")}</span>
       </NavigationMenuTrigger>
       <NavigationMenuContent>
         <ul>

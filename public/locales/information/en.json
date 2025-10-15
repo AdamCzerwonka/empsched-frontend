@@ -1,5 +1,14 @@
 {
+  "auth": {
+    "signedIn": "Signed in successfully"
+  },
+  "organisations": {
+    "organisationCreated": "Organisation account created successfully"
+  },
   "employees": {
-    "accountCreated": "Employee account created successfully"
+    "employeeCreated": "Employee account created successfully"
+  },
+  "positions": {
+    "positionCreated": "Position created successfully"
   }
 }

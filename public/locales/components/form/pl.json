@@ -7,9 +7,13 @@
     "label": "Nazwisko",
     "placeholder": "Wprowadź nazwisko"
   },
+  "name": {
+    "label": "Nazwa",
+    "placeholder": "Wprowadź nazwę"
+  },
   "email": {
-    "label": "Email",
-    "placeholder": "Wprowadź email"
+    "label": "Adres email",
+    "placeholder": "Wprowadź adres email"
   },
   "phoneNumber": {
     "label": "Numer telefonu",
@@ -22,5 +26,7 @@
   "confirmPassword": {
     "label": "Potwierdź hasło",
     "placeholder": "Wprowadź ponownie hasło"
-  }
+  },
+  "signInButton": "Zaloguj się",
+  "signUpButton": "Zarejestruj się"
 }

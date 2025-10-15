@@ -1,15 +1,6 @@
 {
   "form": {
-    "title": "Sign in to your account",
-    "email": {
-      "label": "Email address",
-      "placeholder": "Enter your email address"
-    },
-    "password": {
-      "label": "Password",
-      "placeholder": "Enter your password"
-    },
-    "submit": "Sign in"
+    "title": "Sign in to your account"
   },
   "navigateHomepage": "Go to homepage",
   "signUpQuestion": "Don't have an account? Sign up"

@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { api } from "~/api/api";
-import { workflowEndpoints } from "~/constants";
+import { organisationEndpoints } from "~/constants";
 import type { PositionCreateRequest } from "~/types/api";
 import type { Position } from "~/types/general";
 
@@ -8,7 +8,7 @@ export const useCreatePosition = () => {
   const { mutateAsync, isPending } = useMutation({
     mutationFn: async (data: PositionCreateRequest) => {
       const response = await api.post<Position>(
-        workflowEndpoints.createPosition,
+        organisationEndpoints.createPosition,
         data
       );
       return response.data;

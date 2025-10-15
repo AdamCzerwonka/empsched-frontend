@@ -7,9 +7,13 @@
     "label": "Last Name",
     "placeholder": "Enter last name"
   },
+  "name": {
+    "label": "Name",
+    "placeholder": "Enter name"
+  },
   "email": {
-    "label": "Email",
-    "placeholder": "Enter email"
+    "label": "Email address",
+    "placeholder": "Enter email address"
   },
   "phoneNumber": {
     "label": "Phone Number",
@@ -22,5 +26,7 @@
   "confirmPassword": {
     "label": "Confirm Password",
     "placeholder": "Re-enter password"
-  }
+  },
+  "signInButton": "Sign In",
+  "signUpButton": "Sign Up"
 }

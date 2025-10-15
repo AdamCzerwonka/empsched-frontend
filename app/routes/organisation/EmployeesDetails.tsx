@@ -17,7 +17,7 @@ export const EmployeesDetails = () => {
   return (
     <div>
       <section className="mb-4 flex flex-wrap items-center justify-between gap-2 align-middle">
-        <h1 className="mb-4 text-2xl font-bold">{t("tabs.employees.title")}</h1>
+        <h1 className="text-2xl font-bold">{t("tabs.employees.title")}</h1>
         <AddEmployeeDrawer />
       </section>
       <section>

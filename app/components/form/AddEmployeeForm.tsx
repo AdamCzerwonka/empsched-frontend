@@ -8,18 +8,15 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslation } from "react-i18next";
 import { useCreateEmployee } from "~/api/hooks";
-import { toast } from "sonner";
 import { CustomFormField } from "./CustomFormField";
-
-interface Props {
-  showToast?: boolean;
-  successCallback: () => void;
-}
+import type { CustomFormProps } from "~/types/general";
+import { baseFormSuccessHandler } from "~/lib";
 
 export const AddEmployeeForm = ({
+  resetForm = true,
   showToast = true,
-  successCallback,
-}: Props) => {
+  onSuccess,
+}: CustomFormProps) => {
   const { t } = useTranslation("components/form");
   const { t: tVal } = useTranslation("validation");
   const { t: tCommon } = useTranslation("common");
@@ -32,13 +29,15 @@ export const AddEmployeeForm = ({
   });
 
   const handleSubmit = async (values: employeeCreateSchemaType) => {
-    const response = await createEmployeeAsync(values, {
+    await createEmployeeAsync(values, {
       onSuccess: () => {
-        form.reset();
-        if (showToast) {
-          toast.success(tInfo("employees.accountCreated"));
-        }
-        successCallback();
+        baseFormSuccessHandler(
+          form,
+          resetForm,
+          showToast,
+          tInfo("employees.employeeCreated"),
+          onSuccess
+        );
       },
     });
   };

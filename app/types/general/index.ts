@@ -1,4 +1,5 @@
 export * from "./app/AccountActions";
+export * from "./app/CustomFormProps";
 export * from "./app/NavbarLink";
 export * from "./enums/OrganisationPlanEnum";
 export * from "./enums/RoleEnum";

@@ -1,21 +1,16 @@
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { navigation, OrganisationPlans } from "~/constants";
-import { PlanCard } from "./PlanCard";
-import type { UseFormReturn } from "react-hook-form";
-import type { organisationCreateSchemaType } from "~/types/schemas";
-import type { OrganisationPlanEnum } from "~/types/general";
+import { navigation } from "~/constants";
 import type { CarouselApi } from "~/components/ui/carousel";
 import { Button } from "~/components/ui";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router";
+import { SignUpFormPlanStep } from "~/components/form";
 
 interface Props {
-  form: UseFormReturn<organisationCreateSchemaType>;
   carouselApi: CarouselApi;
 }
 
-export const PlanStep = ({ form, carouselApi }: Props) => {
+export const PlanStep = ({ carouselApi }: Props) => {
   const { t: tCommon } = useTranslation("common");
   const { t } = useTranslation("routes/auth/signUpPage");
 
@@ -24,18 +19,7 @@ export const PlanStep = ({ form, carouselApi }: Props) => {
       <h1 className="text-muted-foreground mb-4 text-2xl font-medium">
         {t("chooseYourPlan")}
       </h1>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
-        {OrganisationPlans.map((planData) => (
-          <PlanCard
-            key={planData.type}
-            plan={planData}
-            onSelect={(value: OrganisationPlanEnum) => {
-              form.setValue("plan", value);
-            }}
-            isSelected={form.watch("plan") === planData.type}
-          />
-        ))}
-      </div>
+      <SignUpFormPlanStep />
       <Button
         type="button"
         variant="link"

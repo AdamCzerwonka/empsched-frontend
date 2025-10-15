@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { api } from "~/api/api";
-import { employeeEndpoints } from "~/constants";
+import { employeeEndpoints, queryKeys } from "~/constants";
 import type { Employee } from "~/types/general";
 
 export const useEmployees = () => {
   const { data } = useQuery({
-    queryKey: ["employees"],
+    queryKey: [queryKeys.getEmployees],
     queryFn: async () => {
       const response = await api.get<Employee[]>(
         employeeEndpoints.getEmployees

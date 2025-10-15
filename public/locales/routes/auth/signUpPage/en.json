@@ -1,10 +1,6 @@
 {
   "chooseYourPlan": "Choose your plan",
   "fillDetails": "Fill in your details",
-  "employeesLimit": "up to {{val}} employees",
-  "pricePerMonth": " / month",
-  "selectPlan": "Select plan",
-  "selectedPlan": "Selected plan",
   "toast": {
     "success": "Organisation created successfully"
   },

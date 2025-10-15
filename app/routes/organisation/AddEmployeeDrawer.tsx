@@ -12,17 +12,12 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "~/components/ui";
+import { queryKeys } from "~/constants";
 
 export const AddEmployeeDrawer = () => {
   const [open, setOpen] = useState(false);
   const { t } = useTranslation("routes/organisation");
-  const { t: tVal } = useTranslation("validation");
   const queryClient = useQueryClient();
-
-  const handleSuccess = () => {
-    queryClient.invalidateQueries({ queryKey: ["employees"] });
-    setOpen(false);
-  };
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
@@ -38,7 +33,14 @@ export const AddEmployeeDrawer = () => {
             {t("tabs.employees.add.form.briefDescription")}
           </DrawerDescription>
         </DrawerHeader>
-        <AddEmployeeForm successCallback={handleSuccess} />
+        <AddEmployeeForm
+          onSuccess={() => {
+            queryClient.invalidateQueries({
+              queryKey: [queryKeys.getEmployees],
+            });
+            setOpen(false);
+          }}
+        />
       </DrawerContent>
     </Drawer>
   );
