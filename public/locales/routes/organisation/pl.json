@@ -4,10 +4,7 @@
       "trigger": "Szczegóły",
       "title": "Szczegóły organizacji",
       "fields": {
-        "name": {
-          "value": "Nazwa",
-          "placeholder": "Wprowadź nazwę organizacji"
-        },
+        "name.value": "Nazwa",
         "owner.value": "Właściciel",
         "plan.value": "Plan"
       }
@@ -16,39 +13,24 @@
       "trigger": "Pracownicy",
       "title": "Pracownicy organizacji",
       "noEmployees": "Brak pracowników w organizacji",
-      "add": {
-        "button": "Dodaj pracownika",
-        "form": {
-          "title": "Dodaj nowego pracownika",
-          "briefDescription": "Pracownicy to osoby pracujące w Twojej organizacji. Możesz przypisać ich do stanowisk i zarządzać ich grafikami."
-        }
-      },
       "table": {
         "header": {
           "name": "Nazwa",
           "email": "Email",
           "actions": "Akcje"
         }
+      },
+      "empty": {
+        "title": "Brak pracowników w organizacji",
+        "description": "Pracownicy to osoby pracujące w Twojej organizacji. Możesz przypisywać ich do stanowisk i zarządzać ich harmonogramami."
       }
     },
     "positions": {
       "trigger": "Stanowiska",
       "title": "Stanowiska w organizacji",
-      "add": {
-        "button": "Dodaj stanowisko",
-        "form": {
-          "title": "Dodaj nowe stanowisko",
-          "briefDescription": "Stanowiska definiują role w Twojej organizacji. Możesz przypisać pracowników do stanowisk.",
-          "name": {
-            "label": "Nazwa",
-            "placeholder": "Wprowadź nazwę stanowiska"
-          },
-          "description": {
-            "label": "Opis",
-            "placeholder": "Wprowadź opis stanowiska"
-          }
-        },
-        "toast.success": "Stanowisko zostało pomyślnie dodane"
+      "empty": {
+        "title": "Brak stanowisk w organizacji",
+        "description": "Stanowiska to role w Twojej organizacji. Możesz przypisywać pracowników do stanowisk oraz zarządzać ich harmonogramami."
       }
     }
   }

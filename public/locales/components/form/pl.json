@@ -19,6 +19,10 @@
     "label": "Numer telefonu",
     "placeholder": "Wprowadź numer telefonu"
   },
+  "description": {
+    "label": "Opis",
+    "placeholder": "Wprowadź opis"
+  },
   "password": {
     "label": "Hasło",
     "placeholder": "Wprowadź hasło"

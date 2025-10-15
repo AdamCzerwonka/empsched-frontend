@@ -4,7 +4,7 @@ import { organisationEndpoints, queryKeys } from "~/constants";
 import type { Position } from "~/types/general";
 
 export const usePositions = () => {
-  const { data } = useQuery({
+  const { data, isPending } = useQuery({
     queryKey: [queryKeys.getPositions],
     queryFn: async () => {
       const response = await api.get<Position[]>(
@@ -14,5 +14,5 @@ export const usePositions = () => {
     },
   });
 
-  return { positions: data };
+  return { positions: data, isPending };
 };

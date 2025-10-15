@@ -19,6 +19,10 @@
     "label": "Phone Number",
     "placeholder": "Enter phone number"
   },
+  "description": {
+    "label": "Description",
+    "placeholder": "Enter description"
+  },
   "password": {
     "label": "Password",
     "placeholder": "Enter password"

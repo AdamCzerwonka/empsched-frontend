@@ -1,0 +1,7 @@
+{
+  "triggerButton": "Dodaj pracownika",
+  "form": {
+    "title": "Dodaj nowego pracownika",
+    "briefDescription": "Pracownicy to osoby pracujące w Twojej organizacji. Możesz przypisać ich do stanowisk i zarządzać ich grafikami."
+  }
+}

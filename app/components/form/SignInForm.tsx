@@ -9,7 +9,7 @@ import {
   type signInSchemaType,
 } from "~/types/schemas";
 import { Form, LoadingButton } from "../ui";
-import { CustomFormField } from "./CustomFormField";
+import { BaseFormField } from "./BaseFormField";
 import { baseFormSuccessHandler } from "~/lib";
 
 export const SignInForm = ({
@@ -47,13 +47,13 @@ export const SignInForm = ({
         onSubmit={form.handleSubmit(handleSubmit)}
         className="flex flex-col gap-2"
       >
-        <CustomFormField
+        <BaseFormField
           name="email"
           label={t("email.label")}
           placeholder={t("email.placeholder")}
           type="email"
         />
-        <CustomFormField
+        <BaseFormField
           name="password"
           label={t("password.label")}
           placeholder={t("password.placeholder")}

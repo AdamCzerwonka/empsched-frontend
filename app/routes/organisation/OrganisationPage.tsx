@@ -34,14 +34,14 @@ export const OrganisationPage = () => {
         </CardContent>
       </Card>
       <Card variant={"soft"}>
-        <CardContent>
-          <TabsContent value="details">
+        <CardContent className="h-full w-full">
+          <TabsContent className="h-full w-full" value="details">
             <OrganisationDetails />
           </TabsContent>
-          <TabsContent value="employees">
+          <TabsContent className="h-full w-full" value="employees">
             <EmployeesDetails />
           </TabsContent>
-          <TabsContent value="positions">
+          <TabsContent className="h-full w-full" value="positions">
             <PositionsDetails />
           </TabsContent>
         </CardContent>

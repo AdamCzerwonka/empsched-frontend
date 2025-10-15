@@ -1,6 +1,8 @@
+import { useQueryClient } from "@tanstack/react-query";
 import { Plus } from "lucide-react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { AddPositionForm } from "~/components/form";
+import { AddEmployeeForm } from "~/components/form";
 import {
   Button,
   Drawer,
@@ -10,35 +12,31 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "~/components/ui";
-import { useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
 import { queryKeys } from "~/constants";
 
-export const AddPositionDrawer = () => {
+export const AddEmployeeDrawer = () => {
   const [open, setOpen] = useState(false);
-  const { t } = useTranslation("routes/organisation");
+  const { t } = useTranslation("components/drawer/addEmployeeDrawer");
   const queryClient = useQueryClient();
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
         <Button>
-          <Plus /> {t("tabs.positions.add.button")}
+          <Plus /> {t("triggerButton")}
         </Button>
       </DrawerTrigger>
       <DrawerContent className="p-4">
         <DrawerHeader>
-          <DrawerTitle>{t("tabs.positions.add.form.title")}</DrawerTitle>
-          <DrawerDescription>
-            {t("tabs.positions.add.form.briefDescription")}
-          </DrawerDescription>
+          <DrawerTitle>{t("form.title")}</DrawerTitle>
+          <DrawerDescription>{t("form.briefDescription")}</DrawerDescription>
         </DrawerHeader>
-        <AddPositionForm
+        <AddEmployeeForm
           onSuccess={() => {
-            setOpen(false);
             queryClient.invalidateQueries({
-              queryKey: [queryKeys.getPositions],
+              queryKey: [queryKeys.getEmployees],
             });
+            setOpen(false);
           }}
         />
       </DrawerContent>

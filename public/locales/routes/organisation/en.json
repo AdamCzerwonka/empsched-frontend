@@ -4,10 +4,7 @@
       "trigger": "Details",
       "title": "Organisation details",
       "fields": {
-        "name": {
-          "value": "Name",
-          "placeholder": "Enter organisation name"
-        },
+        "name.value": "Name",
         "owner.value": "Owner",
         "plan.value": "Plan"
       }
@@ -15,40 +12,24 @@
     "employees": {
       "trigger": "Employees",
       "title": "Organisation employees",
-      "noEmployees": "No employees in the organisation",
-      "add": {
-        "button": "Add employee",
-        "form": {
-          "title": "Add new employee",
-          "briefDescription": "Employees are the people who work in your organisation. You can assign them to positions and manage their schedules."
-        }
-      },
       "table": {
         "header": {
           "name": "Name",
           "email": "Email",
           "actions": "Actions"
         }
+      },
+      "empty": {
+        "title": "No employees in the organisation",
+        "description": "Employees are people working in your organisation. You can assign them to positions and manage their schedules."
       }
     },
     "positions": {
       "trigger": "Positions",
       "title": "Organisation positions",
-      "add": {
-        "button": "Add position",
-        "form": {
-          "title": "Add new position",
-          "briefDescription": "Positions define roles within your organisation. You can assign employees to positions.",
-          "name": {
-            "label": "Name",
-            "placeholder": "Enter position name"
-          },
-          "description": {
-            "label": "Description",
-            "placeholder": "Enter position description"
-          }
-        },
-        "toast.success": "Position has been added successfully"
+      "empty": {
+        "title": "No positions in the organisation",
+        "description": "Positions are roles within your organisation. You can assign employees to positions and manage their schedules."
       }
     }
   }

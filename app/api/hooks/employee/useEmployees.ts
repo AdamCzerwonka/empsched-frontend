@@ -4,7 +4,7 @@ import { employeeEndpoints, queryKeys } from "~/constants";
 import type { Employee } from "~/types/general";
 
 export const useEmployees = () => {
-  const { data } = useQuery({
+  const { data, isPending } = useQuery({
     queryKey: [queryKeys.getEmployees],
     queryFn: async () => {
       const response = await api.get<Employee[]>(
@@ -14,5 +14,5 @@ export const useEmployees = () => {
     },
   });
 
-  return { employees: data };
+  return { employees: data, isPending };
 };

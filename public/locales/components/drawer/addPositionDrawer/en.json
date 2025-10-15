@@ -1,0 +1,7 @@
+{
+  "triggerButton": "Add position",
+  "form": {
+    "title": "Add new position",
+    "briefDescription": "Positions define roles within your organisation. You can assign employees to positions."
+  }
+}

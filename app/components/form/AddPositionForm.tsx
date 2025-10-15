@@ -8,8 +8,8 @@ import {
   positionCreateSchema,
   type positionCreateSchemaType,
 } from "~/types/schemas";
-import { CustomFormField } from "./CustomFormField";
-import { CustomFormTextarea } from "./CustomFormTextarea";
+import { BaseFormField } from "./BaseFormField";
+import { BaseFormTextarea } from "./BaseFormTextarea";
 import { Form, LoadingButton } from "../ui";
 import { baseFormSuccessHandler } from "~/lib";
 
@@ -49,13 +49,13 @@ export const AddPositionForm = ({
         onSubmit={form.handleSubmit(handleSubmit)}
         className="mx-auto my-8 flex w-full max-w-sm flex-col gap-4"
       >
-        <CustomFormField
+        <BaseFormField
           name="name"
           label={t("name.label")}
           placeholder={t("name.placeholder")}
           type="text"
         />
-        <CustomFormTextarea
+        <BaseFormTextarea
           name="description"
           label={t("description.label")}
           placeholder={t("description.placeholder")}

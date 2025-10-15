@@ -12,7 +12,7 @@ import {
 import { Form, LoadingButton, PlanCard } from "../ui";
 import React from "react";
 import { OrganisationPlans } from "~/constants";
-import { CustomFormField } from ".";
+import { BaseFormField } from ".";
 
 type SignUpFormContextValue = {
   form: ReturnType<typeof useForm<organisationCreateSchemaType>>;
@@ -100,25 +100,25 @@ const SignUpFormDataStep = () => {
   return (
     <>
       <div className="flex w-full flex-col gap-2">
-        <CustomFormField
+        <BaseFormField
           name="email"
           label={t("email.label")}
           placeholder={t("email.placeholder")}
           type="email"
         />
-        <CustomFormField
+        <BaseFormField
           name="password"
           label={t("password.label")}
           placeholder={t("password.placeholder")}
           type="password"
         />
-        <CustomFormField
+        <BaseFormField
           name="confirmPassword"
           label={t("confirmPassword.label")}
           placeholder={t("confirmPassword.placeholder")}
           type="password"
         />
-        <CustomFormField
+        <BaseFormField
           name="name"
           label={t("name.label")}
           placeholder={t("name.placeholder")}
