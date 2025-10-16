@@ -1,3 +1,4 @@
+import { Textarea } from "../ui";
 import {
   FormControl,
   FormField,
@@ -5,17 +6,15 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
-import { Input } from "../ui/input";
 
-interface Props extends React.ComponentProps<"input"> {
+interface Props extends React.ComponentProps<"textarea"> {
   name: string;
   label: string;
   type?: string;
   description?: string;
-  description?: string;
 }
 
-export const BaseFormField = ({
+export const CustomFormTextarea = ({
   name,
   label,
   description,
@@ -28,11 +27,8 @@ export const BaseFormField = ({
         <FormItem>
           {label && <FormLabel>{label}</FormLabel>}
           <FormControl>
-            <Input {...props} {...field} />
+            <Textarea {...props} {...field} />
           </FormControl>
-          {description && (
-            <p className="text-muted-foreground text-sm">{description}</p>
-          )}
           {description && (
             <p className="text-muted-foreground text-sm">{description}</p>
           )}

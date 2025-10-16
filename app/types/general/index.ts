@@ -7,3 +7,8 @@ export * from "./model/OrganisationPlan";
 export * from "./model/Organisation";
 export * from "./model/Position";
 export * from "./model/Employee";
+export * from "./enums/RoleEnum";
+export * from "./model/OrganisationPlan";
+export * from "./model/Organisation";
+export * from "./model/Position";
+export * from "./model/Employee";
