@@ -1,13 +1,13 @@
 import { useTranslation } from "react-i18next";
-import type { NavbarLink } from "~/types/general/NavbarLink";
+import type { NavbarLink } from "~/types/general";
 
 export const LinkItem = ({ item }: { item: NavbarLink }) => {
   const { t } = useTranslation("layout/navbar");
   return (
     <>
       <div>
-        <span className="flex min-w-max items-center gap-2 text-sm leading-none">
-          {item.icon && <item.icon size={"1.3rem"} />}
+        <span className="flex min-w-max items-center gap-2 text-sm leading-none font-normal">
+          {item.icon && <item.icon className="h-[1.2rem] w-[1.2rem]" />}
           {t(item.i18nTextKey)}
         </span>
         {item.i18nDescriptionKey && (

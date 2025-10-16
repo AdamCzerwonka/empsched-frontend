@@ -13,7 +13,7 @@ import {
 } from "../ui";
 import { Link } from "react-router";
 import { LinkItem } from "./LinkItem";
-import type { NavbarLink } from "~/types/general/NavbarLink";
+import type { NavbarLink } from "~/types/general";
 import { useMemo } from "react";
 
 interface Props {

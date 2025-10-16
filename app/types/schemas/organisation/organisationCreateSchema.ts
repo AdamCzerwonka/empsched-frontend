@@ -1,6 +1,7 @@
 import type { TFunction } from "i18next";
 import { z } from "zod/v4-mini";
 import { accountSchema, organisationSchema } from "..";
+import { OrganisationPlanEnum } from "~/types/general";
 
 export const organisationCreateSchema = (t: TFunction) => {
   const pickedAccount = z.pick(accountSchema(t), {
@@ -9,7 +10,7 @@ export const organisationCreateSchema = (t: TFunction) => {
   });
   const pickedOrganisation = z.pick(organisationSchema(t), {
     name: true,
-    maxEmployees: true,
+    plan: true,
   });
 
   return z
@@ -36,5 +37,5 @@ export const defaultOrganisationCreateSchemaValues: organisationCreateSchemaType
     password: "",
     confirmPassword: "",
     name: "",
-    maxEmployees: 3,
+    plan: OrganisationPlanEnum.UNIT,
   };

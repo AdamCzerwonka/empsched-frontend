@@ -10,7 +10,6 @@ import { Input } from "../ui/input";
 interface Props extends React.ComponentProps<"input"> {
   name: string;
   label: string;
-  placeholder: string;
   type?: string;
 }
 

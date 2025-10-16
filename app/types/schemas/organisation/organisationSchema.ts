@@ -1,6 +1,7 @@
 import type { TFunction } from "i18next";
 import { z } from "zod/v4-mini";
 import { organisationValidation } from "~/constants";
+import { OrganisationPlanEnum } from "~/types/general";
 
 export const organisationSchema = (t: TFunction) =>
   z.object({
@@ -18,20 +19,7 @@ export const organisationSchema = (t: TFunction) =>
         }).toString()
       )
     ),
-    maxEmployees: z.number().check(
-      z.minimum(
-        organisationValidation.maxEmployees.min,
-        t("minValue", {
-          val: organisationValidation.maxEmployees.min,
-        }).toString()
-      ),
-      z.maximum(
-        organisationValidation.maxEmployees.max,
-        t("maxValue", {
-          val: organisationValidation.maxEmployees.max,
-        }).toString()
-      )
-    ),
+    plan: z.enum(OrganisationPlanEnum),
   });
 
 export type organisationSchemaType = z.infer<

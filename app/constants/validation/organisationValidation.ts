@@ -5,8 +5,4 @@ export const organisationValidation = {
     minLength: 3,
     maxLength: 50,
   },
-  maxEmployees: {
-    min: 1,
-    max: 1000,
-  },
 };
