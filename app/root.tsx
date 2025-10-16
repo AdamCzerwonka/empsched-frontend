@@ -21,7 +21,7 @@ import { showApiErrorToast } from "./lib/toastUtils";
 import type { AxiosError } from "axios";
 import type { ErrorResponse } from "./types/api";
 import { useTranslation } from "react-i18next";
-import { ToasterWrapper } from "./components/system/ToasterWrapper";
+import { ToasterWrapper } from "./components/system";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },

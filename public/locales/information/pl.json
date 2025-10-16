@@ -1,5 +1,14 @@
 {
+  "auth": {
+    "signedIn": "Zalogowano pomyślnie"
+  },
+  "organisations": {
+    "organisationCreated": "Konto organizacji zostało pomyślnie utworzone"
+  },
   "employees": {
-    "accountCreated": "Konto pracownika zostało pomyślnie utworzone"
+    "employeeCreated": "Konto pracownika zostało pomyślnie utworzone"
+  },
+  "positions": {
+    "positionCreated": "Stanowisko zostało pomyślnie utworzone"
   }
 }

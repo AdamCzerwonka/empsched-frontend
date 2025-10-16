@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { api } from "~/api";
-import { organisationEndpoints } from "~/constants";
+import { organisationEndpoints, queryKeys } from "~/constants";
 import type { Position } from "~/types/general";
 
 export const usePositions = () => {
-  const { data } = useQuery({
-    queryKey: ["positions"],
+  const { data, isPending } = useQuery({
+    queryKey: [queryKeys.getPositions],
     queryFn: async () => {
       const response = await api.get<Position[]>(
         organisationEndpoints.getPositions
@@ -14,5 +14,5 @@ export const usePositions = () => {
     },
   });
 
-  return { positions: data };
+  return { positions: data, isPending };
 };

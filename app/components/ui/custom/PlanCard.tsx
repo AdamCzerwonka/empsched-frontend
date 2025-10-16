@@ -14,12 +14,18 @@ import { cn } from "~/lib/utils";
 interface Props {
   plan: OrganisationPlan;
   isSelected?: boolean;
-  onSelect: (type: OrganisationPlanEnum) => void;
+  showSelectButton?: boolean;
+  onSelect?: (type: OrganisationPlanEnum) => void;
 }
 
-export const PlanCard = ({ plan, isSelected, onSelect }: Props) => {
-  const { t: tCommon } = useTranslation();
-  const { t } = useTranslation("routes/auth/signUpPage");
+export const PlanCard = ({
+  plan,
+  isSelected,
+  showSelectButton = false,
+  onSelect,
+}: Props) => {
+  const { t } = useTranslation("components/ui/planCard");
+  const { t: tCommon } = useTranslation("common");
 
   return (
     <Card
@@ -45,15 +51,17 @@ export const PlanCard = ({ plan, isSelected, onSelect }: Props) => {
           <span className="font-mono text-2xl font-bold">${plan.price}</span>
           <span className="text-sm">{t("pricePerMonth")}</span>
         </p>
-        <Button
-          type="button"
-          variant={isSelected ? "default" : "outline"}
-          disabled={isSelected}
-          className="w-full cursor-pointer"
-          onClick={() => onSelect(plan.type)}
-        >
-          {t(isSelected ? "selectedPlan" : "selectPlan")}
-        </Button>
+        {showSelectButton && (
+          <Button
+            type="button"
+            variant={isSelected ? "default" : "outline"}
+            disabled={isSelected}
+            className="w-full cursor-pointer"
+            onClick={() => onSelect?.(plan.type)}
+          >
+            {t(isSelected ? "selectedPlan" : "selectPlan")}
+          </Button>
+        )}
       </CardFooter>
     </Card>
   );

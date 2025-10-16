@@ -12,9 +12,10 @@ interface Props extends React.ComponentProps<"input"> {
   label: string;
   type?: string;
   description?: string;
+  description?: string;
 }
 
-export const CustomFormField = ({
+export const BaseFormField = ({
   name,
   label,
   description,
@@ -29,6 +30,9 @@ export const CustomFormField = ({
           <FormControl>
             <Input {...props} {...field} />
           </FormControl>
+          {description && (
+            <p className="text-muted-foreground text-sm">{description}</p>
+          )}
           {description && (
             <p className="text-muted-foreground text-sm">{description}</p>
           )}

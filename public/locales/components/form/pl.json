@@ -7,13 +7,21 @@
     "label": "Nazwisko",
     "placeholder": "Wprowadź nazwisko"
   },
+  "name": {
+    "label": "Nazwa",
+    "placeholder": "Wprowadź nazwę"
+  },
   "email": {
-    "label": "Email",
-    "placeholder": "Wprowadź email"
+    "label": "Adres email",
+    "placeholder": "Wprowadź adres email"
   },
   "phoneNumber": {
     "label": "Numer telefonu",
     "placeholder": "Wprowadź numer telefonu"
+  },
+  "description": {
+    "label": "Opis",
+    "placeholder": "Wprowadź opis"
   },
   "password": {
     "label": "Hasło",
@@ -22,5 +30,7 @@
   "confirmPassword": {
     "label": "Potwierdź hasło",
     "placeholder": "Wprowadź ponownie hasło"
-  }
+  },
+  "signInButton": "Zaloguj się",
+  "signUpButton": "Zarejestruj się"
 }

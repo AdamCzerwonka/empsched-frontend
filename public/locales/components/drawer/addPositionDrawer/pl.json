@@ -1,0 +1,7 @@
+{
+  "triggerButton": "Dodaj stanowisko",
+  "form": {
+    "title": "Dodaj nowe stanowisko",
+    "briefDescription": "Stanowiska definiują role w Twojej organizacji. Możesz przypisać pracowników do stanowisk."
+  }
+}

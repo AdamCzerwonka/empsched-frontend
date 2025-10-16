@@ -8,18 +8,15 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslation } from "react-i18next";
 import { useCreateEmployee } from "~/api/hooks";
-import { toast } from "sonner";
-import { CustomFormField } from "./CustomFormField";
-
-interface Props {
-  showToast?: boolean;
-  successCallback: () => void;
-}
+import { BaseFormField } from "./BaseFormField";
+import type { CustomFormProps } from "~/types/general";
+import { baseFormSuccessHandler } from "~/lib";
 
 export const AddEmployeeForm = ({
+  resetForm = true,
   showToast = true,
-  successCallback,
-}: Props) => {
+  onSuccess,
+}: CustomFormProps) => {
   const { t } = useTranslation("components/form");
   const { t: tVal } = useTranslation("validation");
   const { t: tCommon } = useTranslation("common");
@@ -32,13 +29,15 @@ export const AddEmployeeForm = ({
   });
 
   const handleSubmit = async (values: employeeCreateSchemaType) => {
-    const response = await createEmployeeAsync(values, {
+    await createEmployeeAsync(values, {
       onSuccess: () => {
-        form.reset();
-        if (showToast) {
-          toast.success(tInfo("employees.accountCreated"));
-        }
-        successCallback();
+        baseFormSuccessHandler(
+          form,
+          resetForm,
+          showToast,
+          tInfo("employees.employeeCreated"),
+          onSuccess
+        );
       },
     });
   };
@@ -49,37 +48,37 @@ export const AddEmployeeForm = ({
         onSubmit={form.handleSubmit(handleSubmit)}
         className="mx-auto my-8 flex w-full max-w-sm flex-col gap-4"
       >
-        <CustomFormField
+        <BaseFormField
           name="firstName"
           label={t("firstName.label")}
           placeholder={t("firstName.placeholder")}
           type="text"
         />
-        <CustomFormField
+        <BaseFormField
           name="lastName"
           label={t("lastName.label")}
           placeholder={t("lastName.placeholder")}
           type="text"
         />
-        <CustomFormField
+        <BaseFormField
           name="email"
           label={t("email.label")}
           placeholder={t("email.placeholder")}
           type="email"
         />
-        <CustomFormField
+        <BaseFormField
           name="phoneNumber"
           label={t("phoneNumber.label")}
           placeholder={t("phoneNumber.placeholder")}
           type="text"
         />
-        <CustomFormField
+        <BaseFormField
           name="password"
           label={t("password.label")}
           placeholder={t("password.placeholder")}
           type="password"
         />
-        <CustomFormField
+        <BaseFormField
           name="confirmPassword"
           label={t("confirmPassword.label")}
           placeholder={t("confirmPassword.placeholder")}

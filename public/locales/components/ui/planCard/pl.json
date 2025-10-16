@@ -1,0 +1,6 @@
+{
+  "employeesLimit": "do {{val}} pracowników",
+  "pricePerMonth": " / miesiąc",
+  "selectPlan": "Wybierz plan",
+  "selectedPlan": "Wybrano plan"
+}

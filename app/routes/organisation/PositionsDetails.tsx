@@ -1,12 +1,30 @@
 import { useTranslation } from "react-i18next";
-import { Accordion, Skeleton } from "~/components/ui";
-import { AddPositionDrawer } from "./AddPositionDrawer";
+import { Accordion, BaseEmpty, Skeleton } from "~/components/ui";
+import { AddPositionDrawer } from "~/components/drawer";
 import { usePositions } from "~/api/hooks";
 import { PositionElement } from "./PositionElement";
+import { BetweenHorizontalStart } from "lucide-react";
+import { DisplayData } from "~/components/system";
 
 export const PositionsDetails = () => {
   const { t } = useTranslation("routes/organisation");
-  const { positions } = usePositions();
+  const { positions, isPending } = usePositions();
+
+  const emptyContent = (
+    <BaseEmpty
+      icon={<BetweenHorizontalStart />}
+      title={t("tabs.positions.empty.title")}
+      description={t("tabs.positions.empty.description")}
+    />
+  );
+
+  const dataContent = (data: typeof positions) => (
+    <Accordion type="single" collapsible>
+      {data?.map((position) => (
+        <PositionElement key={position.id} position={position} />
+      ))}
+    </Accordion>
+  );
 
   return (
     <div>
@@ -15,18 +33,12 @@ export const PositionsDetails = () => {
         <AddPositionDrawer />
       </section>
       <section>
-        <Accordion type="single" collapsible>
-          {positions ? (
-            positions?.map((position) => (
-              <PositionElement key={position.id} position={position} />
-            ))
-          ) : (
-            <>
-              <Skeleton className="h-4 w-full" />
-              <Skeleton className="h-4 w-full" />
-            </>
-          )}
-        </Accordion>
+        <DisplayData
+          isLoading={isPending}
+          data={positions}
+          emptyContent={emptyContent}
+          dataContent={dataContent}
+        />
       </section>
     </div>
   );

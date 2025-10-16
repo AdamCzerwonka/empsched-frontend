@@ -1,6 +1,8 @@
 import { useTranslation } from "react-i18next";
 import { useEmployees } from "~/api/hooks";
 import {
+  BaseEmpty,
+  Spinner,
   Table,
   TableBody,
   TableCell,
@@ -8,49 +10,61 @@ import {
   TableHeader,
   TableRow,
 } from "~/components/ui";
-import { AddEmployeeDrawer } from "./AddEmployeeDrawer";
+import { AddEmployeeDrawer } from "~/components/drawer";
+import { DisplayData } from "~/components/system";
+import { IdCardLanyard } from "lucide-react";
 
 export const EmployeesDetails = () => {
-  const { employees } = useEmployees();
+  const { employees, isPending } = useEmployees();
   const { t } = useTranslation("routes/organisation");
 
+  const emptyContent = (
+    <BaseEmpty
+      icon={<IdCardLanyard />}
+      title={t("tabs.employees.empty.title")}
+      description={t("tabs.employees.empty.description")}
+    />
+  );
+
+  const dataContent = (data: typeof employees) => (
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead></TableHead>
+          <TableHead>{t("tabs.employees.table.header.name")}</TableHead>
+          <TableHead>{t("tabs.employees.table.header.email")}</TableHead>
+          <TableHead>{t("tabs.employees.table.header.actions")}</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {data?.map((employee, index) => (
+          <TableRow key={employee.id}>
+            <TableCell>{index + 1}</TableCell>
+            <TableCell>
+              {employee.firstName} {employee.lastName}
+            </TableCell>
+            <TableCell>{employee.email}</TableCell>
+            <TableCell></TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  );
+
   return (
-    <div>
+    <>
       <section className="mb-4 flex flex-wrap items-center justify-between gap-2 align-middle">
-        <h1 className="mb-4 text-2xl font-bold">{t("tabs.employees.title")}</h1>
+        <h1 className="text-2xl font-bold">{t("tabs.employees.title")}</h1>
         <AddEmployeeDrawer />
       </section>
-      <section>
-        {employees && employees.length === 0 && (
-          <p>{t("tabs.employees.noEmployees")}</p>
-        )}
-        {employees && employees.length > 0 && (
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead></TableHead>
-                <TableHead>{t("tabs.employees.table.header.name")}</TableHead>
-                <TableHead>{t("tabs.employees.table.header.email")}</TableHead>
-                <TableHead>
-                  {t("tabs.employees.table.header.actions")}
-                </TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {employees.map((employee, index) => (
-                <TableRow key={employee.id}>
-                  <TableCell>{index + 1}</TableCell>
-                  <TableCell>
-                    {employee.firstName} {employee.lastName}
-                  </TableCell>
-                  <TableCell>{employee.email}</TableCell>
-                  <TableCell></TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        )}
+      <section className="flex h-full w-full justify-center">
+        <DisplayData
+          isLoading={isPending}
+          data={employees}
+          emptyContent={emptyContent}
+          dataContent={dataContent}
+        />
       </section>
-    </div>
+    </>
   );
 };

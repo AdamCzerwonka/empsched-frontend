@@ -1,6 +1,7 @@
 import { Button, buttonVariants } from "~/components/ui/button";
 import { Loader2 } from "lucide-react";
 import type { VariantProps } from "class-variance-authority";
+import { Spinner } from "../spinner";
 
 interface Props
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -18,7 +19,7 @@ export const LoadingButton = ({
 }: Props) => {
   return (
     <Button {...props} disabled={isLoading || disableButton}>
-      {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+      {isLoading && <Spinner />}
       {children}
     </Button>
   );
