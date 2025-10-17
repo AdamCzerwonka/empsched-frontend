@@ -1,5 +1,4 @@
 import { Button, buttonVariants } from "~/components/ui/button";
-import { Loader2 } from "lucide-react";
 import type { VariantProps } from "class-variance-authority";
 import { Spinner } from "../spinner";
 

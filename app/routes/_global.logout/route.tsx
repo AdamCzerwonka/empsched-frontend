@@ -18,12 +18,9 @@ export const LogoutPage = () => {
   return (
     <Card>
       <CardContent>
-        <LoadingButton
-          disableButton={true}
-          isLoading={true}
-          children={<span>{t("information")}</span>}
-          variant={"ghost"}
-        />
+        <LoadingButton disableButton={true} isLoading={true} variant={"ghost"}>
+          {t("information")}
+        </LoadingButton>
       </CardContent>
     </Card>
   );
