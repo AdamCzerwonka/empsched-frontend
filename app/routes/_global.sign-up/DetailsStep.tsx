@@ -5,7 +5,7 @@ import type { CarouselApi } from "~/components/ui/carousel";
 import { ArrowLeft } from "lucide-react";
 
 interface Props {
-  carouselApi: CarouselApi;
+  carouselApi?: CarouselApi;
 }
 
 export const DetailsStep = ({ carouselApi }: Props) => {

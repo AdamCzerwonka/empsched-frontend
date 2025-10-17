@@ -1,22 +1,4 @@
-import {
-  type RouteConfig,
-  index,
-  layout,
-  route,
-} from "@react-router/dev/routes";
-import { navigation } from "./constants";
+import { type RouteConfig } from "@react-router/dev/routes";
+import { flatRoutes } from "@react-router/fs-routes";
 
-export default [
-  layout("./components/layout/GlobalLayout.tsx", [
-    route(navigation.signIn, "./routes/auth/SignInPage.tsx"),
-    route(navigation.signUp, "./routes/auth/signUp/SignUpPage.tsx"),
-    route(navigation.logout, "./routes/auth/LogoutPage.tsx"),
-    layout("./components/layout/Layout.tsx", [
-      index("routes/HomePage.tsx"),
-      route(
-        navigation.organisation,
-        "./routes/organisation/OrganisationPage.tsx"
-      ),
-    ]),
-  ]),
-] satisfies RouteConfig;
+export default flatRoutes() satisfies RouteConfig;

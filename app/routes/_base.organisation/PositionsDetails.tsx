@@ -19,7 +19,7 @@ export const PositionsDetails = () => {
   );
 
   const dataContent = (data: typeof positions) => (
-    <Accordion type="single" collapsible>
+    <Accordion className="w-full" type="single" collapsible>
       {data?.map((position) => (
         <PositionElement key={position.id} position={position} />
       ))}
@@ -27,12 +27,12 @@ export const PositionsDetails = () => {
   );
 
   return (
-    <div>
+    <>
       <section className="mb-4 flex flex-wrap items-center justify-between gap-2 align-middle">
         <h1 className="text-2xl font-bold">{t("tabs.positions.title")}</h1>
         <AddPositionDrawer />
       </section>
-      <section>
+      <section className="flex h-full w-full justify-center">
         <DisplayData
           isLoading={isPending}
           data={positions}
@@ -40,6 +40,6 @@ export const PositionsDetails = () => {
           dataContent={dataContent}
         />
       </section>
-    </div>
+    </>
   );
 };

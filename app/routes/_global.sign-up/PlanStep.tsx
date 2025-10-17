@@ -7,7 +7,7 @@ import { Link } from "react-router";
 import { SignUpFormPlanStep } from "~/components/form";
 
 interface Props {
-  carouselApi: CarouselApi;
+  carouselApi?: CarouselApi;
 }
 
 export const PlanStep = ({ carouselApi }: Props) => {
