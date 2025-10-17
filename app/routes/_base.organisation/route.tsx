@@ -5,6 +5,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import { OrganisationDetails } from "./OrganisationDetails";
 import { PositionsDetails } from "./PositionsDetails";
 import { EmployeesDetails } from "./EmployeesDetails";
+import {
+  BetweenHorizontalStart,
+  IdCardLanyard,
+  NotebookText,
+} from "lucide-react";
 
 export const OrganisationPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -18,22 +23,37 @@ export const OrganisationPage = () => {
       }}
       className="lg:grid-rows h-full lg:grid lg:grid-cols-[auto_1fr]"
     >
-      <Card variant={"soft"} className="p-0 shadow-none">
-        <CardContent className="p-0">
-          <TabsList className="h-full w-full gap-2 lg:grid">
-            <TabsTrigger value="details">
+      <Card variant={"soft"} className="p-0 lg:h-full">
+        <CardContent className="p-2">
+          <TabsList className="w-full gap-2 bg-transparent lg:grid lg:h-full">
+            <TabsTrigger
+              variant={"primary"}
+              value="details"
+              className="justify-start p-2"
+            >
+              <NotebookText />
               {t("tabs.details.trigger")}
             </TabsTrigger>
-            <TabsTrigger value="employees">
+            <TabsTrigger
+              variant={"primary"}
+              value="employees"
+              className="justify-start p-2"
+            >
+              <IdCardLanyard />
               {t("tabs.employees.trigger")}
             </TabsTrigger>
-            <TabsTrigger value="positions">
+            <TabsTrigger
+              variant={"primary"}
+              value="positions"
+              className="justify-start p-2"
+            >
+              <BetweenHorizontalStart />
               {t("tabs.positions.trigger")}
             </TabsTrigger>
           </TabsList>
         </CardContent>
       </Card>
-      <Card variant={"soft"}>
+      <Card variant={"soft"} className="h-full">
         <CardContent className="h-full w-full">
           <TabsContent className="h-full w-full" value="details">
             <OrganisationDetails />
