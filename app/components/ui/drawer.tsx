@@ -64,9 +64,9 @@ function DrawerContent({
         )}
         {...props}
       >
-        <ScrollArea className="overflow-y-auto">
-          <div className="bg-muted mx-auto mt-4 hidden h-2 w-[100px] shrink-0 rounded-full group-data-[vaul-drawer-direction=bottom]/drawer-content:block" />
-          {children}
+        <div className="bg-muted mx-auto mt-4 hidden h-2 w-[100px] shrink-0 rounded-full group-data-[vaul-drawer-direction=bottom]/drawer-content:block" />
+        <ScrollArea>
+          <div className="max-h-[85vh]">{children}</div>
         </ScrollArea>
       </DrawerPrimitive.Content>
     </DrawerPortal>

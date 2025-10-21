@@ -6,18 +6,17 @@ interface Props
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   children: React.ReactNode;
-  disableButton?: boolean;
   isLoading: boolean;
 }
 
 export const LoadingButton = ({
   children,
-  disableButton,
+  disabled,
   isLoading,
   ...props
 }: Props) => {
   return (
-    <Button {...props} disabled={isLoading || disableButton}>
+    <Button {...props} disabled={isLoading || disabled}>
       {isLoading && <Spinner />}
       {children}
     </Button>

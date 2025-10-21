@@ -18,7 +18,7 @@ export const LogoutPage = () => {
   return (
     <Card>
       <CardContent>
-        <LoadingButton disableButton={true} isLoading={true} variant={"ghost"}>
+        <LoadingButton disabled={true} isLoading={true} variant={"ghost"}>
           {t("information")}
         </LoadingButton>
       </CardContent>
