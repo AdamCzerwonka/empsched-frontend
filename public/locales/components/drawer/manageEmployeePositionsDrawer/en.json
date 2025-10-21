@@ -1,0 +1,13 @@
+{
+  "triggerButton": "Manage Positions",
+  "noPositions": "No positions available to manage.",
+  "assigned": "Assigned",
+  "header": {
+    "title": "Manage Employee Positions",
+    "briefDescription": "Assign and revoke positions for an employee within the organization."
+  },
+  "actions": {
+    "add": "Add",
+    "remove": "Remove"
+  }
+}

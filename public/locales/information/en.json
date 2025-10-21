@@ -9,6 +9,8 @@
     "employeeCreated": "Employee account created successfully"
   },
   "positions": {
-    "positionCreated": "Position created successfully"
+    "positionCreated": "Position created successfully",
+    "positionAssigned": "Position assigned successfully",
+    "positionRemoved": "Position removed successfully"
   }
 }

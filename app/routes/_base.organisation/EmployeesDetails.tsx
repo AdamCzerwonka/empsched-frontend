@@ -2,7 +2,6 @@ import { useTranslation } from "react-i18next";
 import { useEmployees } from "~/api/hooks";
 import {
   BaseEmpty,
-  Spinner,
   Table,
   TableBody,
   TableCell,
@@ -13,6 +12,7 @@ import {
 import { AddEmployeeDrawer } from "~/components/drawer";
 import { DisplayData } from "~/components/system";
 import { IdCardLanyard } from "lucide-react";
+import { EmployeeActionsDropdown } from "~/components/dropdown";
 
 export const EmployeesDetails = () => {
   const { employees, isPending } = useEmployees();
@@ -33,7 +33,9 @@ export const EmployeesDetails = () => {
           <TableHead></TableHead>
           <TableHead>{t("tabs.employees.table.header.name")}</TableHead>
           <TableHead>{t("tabs.employees.table.header.email")}</TableHead>
-          <TableHead>{t("tabs.employees.table.header.actions")}</TableHead>
+          <TableHead className="text-center">
+            {t("tabs.employees.table.header.actions")}
+          </TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -44,7 +46,9 @@ export const EmployeesDetails = () => {
               {employee.firstName} {employee.lastName}
             </TableCell>
             <TableCell>{employee.email}</TableCell>
-            <TableCell></TableCell>
+            <TableCell className="w-min text-center">
+              <EmployeeActionsDropdown employeeId={employee.id} />
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>

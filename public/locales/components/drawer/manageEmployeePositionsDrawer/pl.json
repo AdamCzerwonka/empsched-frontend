@@ -1,0 +1,13 @@
+{
+  "triggerButton": "Zarządzaj pozycjami",
+  "noPositions": "Brak dostępnych pozycji do zarządzania.",
+  "assigned": "Przydzielona",
+  "header": {
+    "title": "Zarządzaj pozycjami pracownika",
+    "briefDescription": "Przyznawaj i odbieraj pozycje pracownikowi w organizacji."
+  },
+  "actions": {
+    "add": "Dodaj",
+    "remove": "Usuń"
+  }
+}
