@@ -9,6 +9,8 @@
     "employeeCreated": "Konto pracownika zostało pomyślnie utworzone"
   },
   "positions": {
-    "positionCreated": "Stanowisko zostało pomyślnie utworzone"
+    "positionCreated": "Stanowisko zostało pomyślnie utworzone",
+    "positionAssigned": "Stanowisko zostało pomyślnie przydzielone",
+    "positionRemoved": "Stanowisko zostało pomyślnie usunięte"
   }
 }

@@ -17,5 +17,7 @@ export const employeeEndpoints = Object.fromEntries(
   Object.entries({
     createEmployee: "/",
     getEmployees: "/",
+    getEmployeePositions: "/positions/employees/:employeeId",
+    assignPositionToEmployee: "/positions/:positionId/employees/:employeeId",
   }).map(([key, value]) => [key, `employees${value}`])
 );
