@@ -26,7 +26,7 @@ export const AddEmployeeDrawer = () => {
           <Plus /> {t("triggerButton")}
         </Button>
       </DrawerTrigger>
-      <DrawerContent className="p-4">
+      <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>{t("form.title")}</DrawerTitle>
           <DrawerDescription>{t("form.briefDescription")}</DrawerDescription>
