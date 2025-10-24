@@ -12,7 +12,7 @@ import { navigation } from "~/constants";
 import { SignInForm } from "~/components/form";
 
 export const SignInPage = () => {
-  const { t } = useTranslation("routes/auth/signInPage");
+  const { t } = useTranslation("routes/sign-in");
   const navigate = useNavigate();
 
   return (

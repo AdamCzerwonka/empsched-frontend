@@ -6,7 +6,7 @@ import { navigation } from "~/constants";
 import { useAuthStore } from "~/store";
 
 export const LogoutPage = () => {
-  const { t } = useTranslation("routes/auth/logoutPage");
+  const { t } = useTranslation("routes/logout");
   const { clearToken } = useAuthStore();
   const navigate = useNavigate();
 

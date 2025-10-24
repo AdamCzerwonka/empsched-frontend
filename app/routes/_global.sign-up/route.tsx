@@ -21,7 +21,7 @@ import { SignUpForm } from "~/components/form";
 
 export const SignUpPage = () => {
   const [api, setApi] = useState<CarouselApi>();
-  const { t } = useTranslation("routes/auth/signUpPage");
+  const { t } = useTranslation("routes/sign-up");
   const navigate = useNavigate();
 
   return (
