@@ -12,7 +12,7 @@
     "employees": {
       "trigger": "Pracownicy",
       "title": "Pracownicy organizacji",
-      "noEmployees": "Brak pracowników w organizacji",
+      "totalEmployees": "Łącznie pracowników",
       "table": {
         "header": {
           "name": "Nazwa",
@@ -28,6 +28,7 @@
     "positions": {
       "trigger": "Stanowiska",
       "title": "Stanowiska w organizacji",
+      "totalPositions": "Łącznie stanowisk",
       "empty": {
         "title": "Brak stanowisk w organizacji",
         "description": "Stanowiska to role w Twojej organizacji. Możesz przypisywać pracowników do stanowisk oraz zarządzać ich harmonogramami."

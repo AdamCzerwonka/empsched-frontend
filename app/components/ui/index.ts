@@ -1,4 +1,5 @@
 export * from "./custom/BaseEmpty";
+export * from "./custom/BasePagination";
 export * from "./custom/LoadingButton";
 export * from "./custom/LoadingItem";
 export * from "./custom/PlanCard";
@@ -19,6 +20,7 @@ export * from "./item";
 export * from "./label";
 export * from "./mode-toggle";
 export * from "./navigation-menu";
+export * from "./pagination";
 export * from "./popover";
 export * from "./scroll-area";
 export * from "./separator";

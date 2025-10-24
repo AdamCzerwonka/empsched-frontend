@@ -1,3 +1,4 @@
+import type { PagedData } from "~/types/api";
 import { LoadingItem, type LoadingItemSize } from "../ui";
 
 interface Props<T> {
@@ -17,12 +18,24 @@ export const DisplayData = <T,>({
   emptyContent,
   defaultLoadingSize,
 }: Props<T>) => {
+  const isPagedData = (obj: any): obj is PagedData<T> => {
+    return (
+      obj && typeof obj === "object" && typeof obj.totalElements === "number"
+    );
+  };
+
   if (isLoading) {
     return <>{loadingContent ?? <LoadingItem size={defaultLoadingSize} />}</>;
   }
 
-  if (data && (Array.isArray(data) ? data.length > 0 : true)) {
-    return <>{dataContent(data)}</>;
+  if (data) {
+    if (isPagedData(data)) {
+      if (data.totalElements > 0) {
+        return <>{dataContent(data)}</>;
+      }
+    } else if (Array.isArray(data) ? data.length > 0 : true) {
+      return <>{dataContent(data)}</>;
+    }
   }
 
   return <>{emptyContent}</>;

@@ -12,6 +12,7 @@
     "employees": {
       "trigger": "Employees",
       "title": "Organisation employees",
+      "totalEmployees": "Total employees",
       "table": {
         "header": {
           "name": "Name",
@@ -27,6 +28,7 @@
     "positions": {
       "trigger": "Positions",
       "title": "Organisation positions",
+      "totalPositions": "Total positions",
       "empty": {
         "title": "No positions in the organisation",
         "description": "Positions are roles within your organisation. You can assign employees to positions and manage their schedules."
