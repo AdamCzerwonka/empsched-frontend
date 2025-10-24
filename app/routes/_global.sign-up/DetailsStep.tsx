@@ -10,7 +10,7 @@ interface Props {
 
 export const DetailsStep = ({ carouselApi }: Props) => {
   const { t: tCommon } = useTranslation("common");
-  const { t } = useTranslation("routes/auth/signUpPage");
+  const { t } = useTranslation("routes/sign-up");
 
   return (
     <div className="flex h-full flex-col items-center justify-center gap-4">
