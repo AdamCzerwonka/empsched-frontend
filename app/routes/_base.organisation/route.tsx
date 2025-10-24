@@ -17,7 +17,7 @@ export const OrganisationPage = () => {
 
   return (
     <Tabs
-      defaultValue={searchParams.get("tab") || "details"}
+      value={searchParams.get("tab") || "details"}
       onValueChange={(value) => {
         setSearchParams({ tab: value });
       }}
