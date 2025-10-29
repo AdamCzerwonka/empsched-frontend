@@ -31,6 +31,19 @@
     "label": "Potwierdź hasło",
     "placeholder": "Wprowadź ponownie hasło"
   },
+  "reason": {
+    "label": "Powód",
+    "placeholder": "Wybierz powód"
+  },
+  "startDate": {
+    "label": "Data rozpoczęcia",
+    "placeholder": "Wybierz datę rozpoczęcia"
+  },
+  "endDate": {
+    "label": "Data zakończenia",
+    "placeholder": "Wybierz datę zakończenia"
+  },
   "signInButton": "Zaloguj się",
-  "signUpButton": "Zarejestruj się"
+  "signUpButton": "Zarejestruj się",
+  "oneDayAbsence": "Nieobecność jednodniowa"
 }

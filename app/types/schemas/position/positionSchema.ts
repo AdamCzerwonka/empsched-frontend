@@ -1,6 +1,6 @@
 import type { TFunction } from "i18next";
 import { z } from "zod/v4-mini";
-import { positionValidation } from "~/constants/validation/positionValidation";
+import { positionValidation } from "~/constants";
 
 export const positionSchema = (t: TFunction) =>
   z.object({

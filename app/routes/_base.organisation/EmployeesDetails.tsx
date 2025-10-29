@@ -35,7 +35,7 @@ export const EmployeesDetails = () => {
 
   const dataContent = (data: typeof employees) => (
     <>
-      <span className="text-muted-foreground w-full text-start text-sm">
+      <span className="text-muted-foreground mb-2 w-full text-start text-sm">
         {t("tabs.employees.totalEmployees")}: {data?.totalElements}
       </span>
       <Table className="w-full flex-grow">

@@ -1,3 +1,4 @@
+export * from "./absence/useCreateAbsence";
 export * from "./auth/useSignIn";
 export * from "./organisation/useCreateOrganisation";
 export * from "./organisation/useOrganisation";

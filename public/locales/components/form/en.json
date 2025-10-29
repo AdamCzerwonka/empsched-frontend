@@ -31,6 +31,19 @@
     "label": "Confirm Password",
     "placeholder": "Re-enter password"
   },
+  "reason": {
+    "label": "Reason",
+    "placeholder": "Select reason"
+  },
+  "startDate": {
+    "label": "Start Date",
+    "placeholder": "Select start date"
+  },
+  "endDate": {
+    "label": "End Date",
+    "placeholder": "Select end date"
+  },
   "signInButton": "Sign In",
-  "signUpButton": "Sign Up"
+  "signUpButton": "Sign Up",
+  "oneDayAbsence": "One-day Absence"
 }

@@ -12,5 +12,8 @@
     "positionCreated": "Position created successfully",
     "positionAssigned": "Position assigned successfully",
     "positionRemoved": "Position removed successfully"
+  },
+  "absences": {
+    "absenceCreated": "Absence provided"
   }
 }

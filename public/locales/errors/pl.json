@@ -1,6 +1,7 @@
 {
   "message": {
     "default": "Wystąpił błąd",
+    "startDateAfterEndDate": "Data rozpoczęcia nie może być późniejsza niż data zakończenia",
     "login.failed": "Logowanie nie powiodło się",
     "user": {
       "already.exists": "Użytkownik już istnieje"
@@ -10,6 +11,9 @@
     },
     "position": {
       "already.exists": "Stanowisko o tej nazwie już istnieje"
+    },
+    "absence": {
+      "overlap": "Nie można dodać nieobecności, ponieważ nakłada się ona na inną nieobecność"
     }
   }
 }

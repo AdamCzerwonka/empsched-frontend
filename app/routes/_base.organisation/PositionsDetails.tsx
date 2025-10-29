@@ -25,7 +25,7 @@ export const PositionsDetails = () => {
 
   const dataContent = (data: typeof positions) => (
     <>
-      <span className="text-muted-foreground w-full text-start text-sm">
+      <span className="text-muted-foreground mb-2 w-full text-start text-sm">
         {t("tabs.positions.totalPositions")}: {data?.totalElements}
       </span>
       <Accordion className="w-full flex-grow" type="single" collapsible>

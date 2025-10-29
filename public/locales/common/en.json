@@ -22,5 +22,14 @@
       "name": "Headquarters",
       "description": "For enterprise-level organizations seeking organization-wide governance, bespoke arrangements, and dedicated support structures."
     }
+  },
+
+  "absenceReasons": {
+    "sick_leave": "Sick Leave",
+    "vacation": "Vacation",
+    "personal_leave": "Personal Leave",
+    "business_trip": "Business Trip",
+    "training": "Training",
+    "other": "Other"
   }
 }
