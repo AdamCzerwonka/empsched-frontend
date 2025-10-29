@@ -8,5 +8,9 @@
 
   "passwordsDoNotMatch": "Passwords do not match",
 
-  "email": "Field must be email (eg. john.doe@example.com)"
+  "email": "Field must be email (eg. john.doe@example.com)",
+
+  "invalidDateFormat": "Date format is invalid. Expected format: {{format, string}}",
+
+  "endDateMustBeAfterStartDate": "End date must be after start date"
 }

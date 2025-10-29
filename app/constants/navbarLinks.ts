@@ -3,6 +3,7 @@ import { navigation } from "./navigation";
 import {
   BetweenHorizontalStart,
   Building2,
+  CalendarX,
   IdCardLanyard,
   NotebookText,
 } from "lucide-react";
@@ -40,5 +41,13 @@ export const navbarLinks: NavbarLink[] = [
         child: null,
       },
     ],
+  },
+  {
+    i18nTextKey: "absences.name",
+    i18nDescriptionKey: undefined,
+    link: navigation.absences,
+    icon: CalendarX,
+    access: [ExtendedRoleEnum.AUTHENTICATED],
+    child: null,
   },
 ];

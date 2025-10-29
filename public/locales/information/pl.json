@@ -12,5 +12,8 @@
     "positionCreated": "Stanowisko zostało pomyślnie utworzone",
     "positionAssigned": "Stanowisko zostało pomyślnie przydzielone",
     "positionRemoved": "Stanowisko zostało pomyślnie usunięte"
+  },
+  "absences": {
+    "absenceCreated": "Nieobecność została wprowadzona"
   }
 }

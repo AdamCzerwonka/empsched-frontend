@@ -8,5 +8,9 @@
 
   "passwordsDoNotMatch": "Hasła nie pasują do siebie",
 
-  "email": "Pole musi być adresem email (np. jan.kowalski@example.com)"
+  "email": "Pole musi być adresem email (np. jan.kowalski@example.com)",
+
+  "invalidDateFormat": "Format daty jest nieprawidłowy. Oczekiwany format: {{format, string}}",
+
+  "endDateMustBeAfterStartDate": "Data zakończenia musi być późniejsza niż data rozpoczęcia"
 }

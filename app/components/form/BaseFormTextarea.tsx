@@ -1,11 +1,12 @@
 import { Textarea } from "../ui";
 import {
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
+} from "../ui";
 
 interface Props extends React.ComponentProps<"textarea"> {
   name: string;
@@ -29,9 +30,7 @@ export const BaseFormTextarea = ({
           <FormControl>
             <Textarea {...props} {...field} />
           </FormControl>
-          {description && (
-            <p className="text-muted-foreground text-sm">{description}</p>
-          )}
+          {description && <FormDescription>{description}</FormDescription>}
           <FormMessage />
         </FormItem>
       )}

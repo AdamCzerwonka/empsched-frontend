@@ -1,6 +1,7 @@
 {
   "message": {
     "default": "An error occurred",
+    "startDateAfterEndDate": "Start date cannot be after end date",
     "login.failed": "Login failed",
     "user": {
       "already.exists": "User already exists"
@@ -10,6 +11,9 @@
     },
     "position": {
       "already.exists": "Position with this name already exists"
+    },
+    "absence": {
+      "overlap": "Cannot add absence because it overlaps with another absence"
     }
   }
 }

@@ -1,4 +1,4 @@
-export interface FilterParams {
+export interface PaginationParams {
   pageNumber: number;
   pageSize: number;
 }

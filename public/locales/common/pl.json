@@ -22,5 +22,14 @@
       "name": "Centrala",
       "description": "Dla organizacji korporacyjnych potrzebujących zarządzania obejmującego całą strukturę, rozwiązań dostosowanych do potrzeb i dedykowanego wsparcia."
     }
+  },
+
+  "absenceReasons": {
+    "sick_leave": "Urlop chorobowy",
+    "vacation": "Urlop wypoczynkowy",
+    "personal_leave": "Urlop osobisty",
+    "business_trip": "Podróż służbowa",
+    "training": "Szkolenie",
+    "other": "Inny"
   }
 }
