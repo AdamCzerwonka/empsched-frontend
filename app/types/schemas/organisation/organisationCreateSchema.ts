@@ -5,6 +5,9 @@ import { OrganisationPlanEnum } from "~/types/general";
 
 export const organisationCreateSchema = (t: TFunction) => {
   const pickedAccount = z.pick(accountSchema(t), {
+    firstName: true,
+    lastName: true,
+    phoneNumber: true,
     email: true,
     password: true,
   });
@@ -33,6 +36,9 @@ export type organisationCreateSchemaType = z.infer<
 
 export const defaultOrganisationCreateSchemaValues: organisationCreateSchemaType =
   {
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
     email: "",
     password: "",
     confirmPassword: "",

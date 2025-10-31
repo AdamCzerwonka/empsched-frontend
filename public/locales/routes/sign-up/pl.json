@@ -1,31 +1,14 @@
 {
+  "title": "Witamy! Zarejestruj się",
   "chooseYourPlan": "Wybierz swój plan",
   "fillDetails": "Wypełnij swoje dane",
   "toast": {
     "success": "Organizacja została pomyślnie utworzona"
   },
-  "form": {
-    "title": "Witamy! Zarejestruj się",
-    "email": {
-      "label": "Adres email",
-      "placeholder": "Wprowadź adres email"
-    },
-    "password": {
-      "label": "Hasło",
-      "placeholder": "Wprowadź hasło"
-    },
-    "confirmPassword": {
-      "label": "Potwierdź hasło",
-      "placeholder": "Wprowadź ponownie hasło"
-    },
-    "name": {
-      "label": "Nazwa organizacji",
-      "placeholder": "Wprowadź nazwę organizacji"
-    },
-    "maxEmployees": {
-      "label": "Maksymalna liczba pracowników"
-    },
-    "submit": "Zarejestruj się"
+  "steps": {
+    "plan": "Plan",
+    "organisationInfo": "Organizacja",
+    "ownerInfo": "Właściciel"
   },
   "navigateHomepage": "Przejdź do strony głównej",
   "signInQuestion": "Masz już konto? Zaloguj się"

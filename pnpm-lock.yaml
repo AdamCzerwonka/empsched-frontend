@@ -62,6 +62,9 @@ importers:
       '@react-router/serve':
         specifier: ^7.8.0
         version: 7.8.1(react-router@7.8.1(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(typescript@5.9.2)
+      '@stepperize/react':
+        specifier: ^5.1.9
+        version: 5.1.9(react@19.1.1)(typescript@5.9.2)
       '@tanstack/react-query':
         specifier: ^5.85.2
         version: 5.85.5(react@19.1.1)
@@ -1172,6 +1175,16 @@ packages:
 
   '@standard-schema/utils@0.3.0':
     resolution: {integrity: sha512-e7Mew686owMaPJVNNLs55PUvgz371nKgwsc4vxE49zsODpJEnxgxRo2y/OKrqueavXgZNMDVj3DdHFlaSAeU8g==}
+
+  '@stepperize/core@1.2.7':
+    resolution: {integrity: sha512-XiUwLZ0XRAfaDK6AzWVgqvI/BcrylyplhUXKO8vzgRw0FTmyMKHAAbQLDvU//ZJAqnmG2cSLZDSkcwLxU5zSYA==}
+    peerDependencies:
+      typescript: '>=5.0.2'
+
+  '@stepperize/react@5.1.9':
+    resolution: {integrity: sha512-yBgw1I5Tx6/qZB4xTdVBaPGfTqH5aYS1WFB5vtR8+fwPeqd3YNuOnQ1pJM6w/xV/gvryuy31hbFw080lZc+/hw==}
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0 || ^19.0.0
 
   '@tailwindcss/node@4.1.12':
     resolution: {integrity: sha512-3hm9brwvQkZFe++SBt+oLjo4OLDtkvlE8q2WalaD/7QWaeM7KEJbAiY/LJZUaCs7Xa8aUu4xy3uoyX4q54UVdQ==}
@@ -3552,6 +3565,17 @@ snapshots:
     optional: true
 
   '@standard-schema/utils@0.3.0': {}
+
+  '@stepperize/core@1.2.7(typescript@5.9.2)':
+    dependencies:
+      typescript: 5.9.2
+
+  '@stepperize/react@5.1.9(react@19.1.1)(typescript@5.9.2)':
+    dependencies:
+      '@stepperize/core': 1.2.7(typescript@5.9.2)
+      react: 19.1.1
+    transitivePeerDependencies:
+      - typescript
 
   '@tailwindcss/node@4.1.12':
     dependencies:

@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useCreateOrganisation } from "~/api/hooks";
-import { baseFormSuccessHandler } from "~/lib";
+import { baseFormSuccessHandler, cn } from "~/lib";
 import type { CustomFormProps, OrganisationPlanEnum } from "~/types/general";
 import {
   defaultOrganisationCreateSchemaValues,
@@ -40,7 +40,11 @@ const SignUpForm = ({
   showToast = true,
   onSuccess,
   children,
-}: CustomFormProps & { children: React.ReactNode }) => {
+  className,
+}: CustomFormProps & {
+  children: React.ReactNode;
+  className?: HTMLFormElement["className"];
+}) => {
   const { t: tVal } = useTranslation("validation");
   const { t: tInfo } = useTranslation("information");
   const { createOrganisationAsync, isPending } = useCreateOrganisation();
@@ -67,7 +71,12 @@ const SignUpForm = ({
   return (
     <SignUpContext.Provider value={{ form, isPending }}>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(handleSubmit)}>{children}</form>
+        <form
+          onSubmit={form.handleSubmit(handleSubmit)}
+          className={cn("grid gap-4", className)}
+        >
+          {children}
+        </form>
       </Form>
     </SignUpContext.Provider>
   );
@@ -93,47 +102,86 @@ const SignUpFormPlanStep = () => {
   );
 };
 
-const SignUpFormDataStep = () => {
+const SignUpFormOwnerInfoStep = () => {
+  const { t } = useTranslation("components/form");
+
+  return (
+    <div className="flex w-full flex-col gap-5">
+      <BaseFormField
+        name="firstName"
+        label={t("firstName.label")}
+        placeholder={t("firstName.placeholder")}
+        type="text"
+      />
+      <BaseFormField
+        name="lastName"
+        label={t("lastName.label")}
+        placeholder={t("lastName.placeholder")}
+        type="text"
+      />
+      <BaseFormField
+        name="email"
+        label={t("email.label")}
+        placeholder={t("email.placeholder")}
+        type="email"
+      />
+      <BaseFormField
+        name="phoneNumber"
+        label={t("phoneNumber.label")}
+        placeholder={t("phoneNumber.placeholder")}
+        type="text"
+      />
+      <BaseFormField
+        name="password"
+        label={t("password.label")}
+        placeholder={t("password.placeholder")}
+        type="password"
+      />
+      <BaseFormField
+        name="confirmPassword"
+        label={t("confirmPassword.label")}
+        placeholder={t("confirmPassword.placeholder")}
+        type="password"
+      />
+    </div>
+  );
+};
+
+const SignUpFormOrganisationInfoStep = () => {
+  const { t } = useTranslation("components/form");
+
+  return (
+    <div className="flex w-full flex-col gap-5">
+      <BaseFormField
+        name="name"
+        label={t("name.label")}
+        placeholder={t("name.placeholder")}
+        type="text"
+      />
+    </div>
+  );
+};
+
+const SignUpFormSubmit = () => {
   const { isPending } = useSignUpForm();
   const { t } = useTranslation("components/form");
 
   return (
-    <>
-      <div className="flex w-full flex-col gap-2">
-        <BaseFormField
-          name="email"
-          label={t("email.label")}
-          placeholder={t("email.placeholder")}
-          type="email"
-        />
-        <BaseFormField
-          name="password"
-          label={t("password.label")}
-          placeholder={t("password.placeholder")}
-          type="password"
-        />
-        <BaseFormField
-          name="confirmPassword"
-          label={t("confirmPassword.label")}
-          placeholder={t("confirmPassword.placeholder")}
-          type="password"
-        />
-        <BaseFormField
-          name="name"
-          label={t("name.label")}
-          placeholder={t("name.placeholder")}
-          type="text"
-        />
-      </div>
-      <LoadingButton
-        className="mt-4 min-w-1/2 cursor-pointer"
-        type="submit"
-        isLoading={isPending}
-      >
-        {t("signUpButton")}
-      </LoadingButton>
-    </>
+    <LoadingButton
+      className="cursor-pointer"
+      type="submit"
+      isLoading={isPending}
+    >
+      {t("signUpButton")}
+    </LoadingButton>
   );
 };
 
-export { useSignUpForm, SignUpForm, SignUpFormPlanStep, SignUpFormDataStep };
+export {
+  useSignUpForm,
+  SignUpForm,
+  SignUpFormPlanStep,
+  SignUpFormOwnerInfoStep,
+  SignUpFormOrganisationInfoStep,
+  SignUpFormSubmit,
+};
