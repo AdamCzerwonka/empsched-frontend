@@ -1,31 +1,14 @@
 {
+  "title": "Welcome! Sign Up",
   "chooseYourPlan": "Choose your plan",
   "fillDetails": "Fill in your details",
   "toast": {
     "success": "Organisation created successfully"
   },
-  "form": {
-    "title": "Welcome! Sign Up",
-    "email": {
-      "label": "Email address",
-      "placeholder": "Enter your email address"
-    },
-    "password": {
-      "label": "Password",
-      "placeholder": "Enter your password"
-    },
-    "confirmPassword": {
-      "label": "Confirm password",
-      "placeholder": "Re-enter your password"
-    },
-    "name": {
-      "label": "Organisation name",
-      "placeholder": "Enter your organisation name"
-    },
-    "maxEmployees": {
-      "label": "Max employees"
-    },
-    "submit": "Sign up"
+  "steps": {
+    "plan": "Plan",
+    "organisationInfo": "Organisation",
+    "ownerInfo": "Owner"
   },
   "navigateHomepage": "Go to homepage",
   "signInQuestion": "Already have an account? Sign in"

@@ -12,7 +12,6 @@ interface Props extends React.ComponentProps<"input"> {
   label: string;
   type?: string;
   description?: string;
-  description?: string;
 }
 
 export const BaseFormField = ({

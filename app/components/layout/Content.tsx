@@ -5,7 +5,7 @@ export const Content = () => {
   return (
     <Card
       variant={"soft"}
-      className="flex h-full w-full flex-1 flex-col p-4 md:w-4/5"
+      className="container flex h-full w-full flex-1 flex-col p-4"
     >
       <CardContent className="h-full p-0">
         <Outlet />
