@@ -45,5 +45,6 @@
   },
   "signInButton": "Zaloguj się",
   "signUpButton": "Zarejestruj się",
-  "oneDayAbsence": "Nieobecność jednodniowa"
+  "oneDayAbsence": "Nieobecność jednodniowa",
+  "clearFormTooltip": "Wyczyść formularz"
 }

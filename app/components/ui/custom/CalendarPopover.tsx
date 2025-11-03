@@ -5,6 +5,7 @@ import { DateTime } from "luxon";
 import { cn } from "~/lib";
 
 interface Props {
+  triggerId?: string;
   triggerContent: ReactNode;
   selected: Date | undefined;
   onSelect: (date: Date | undefined) => void;
@@ -15,9 +16,11 @@ interface Props {
   calendarClassName?: string;
   open?: boolean;
   setOpen?: (open: boolean) => void;
+  disabled?: boolean;
 }
 
 export const CalendarPopover = ({
+  triggerId,
   triggerContent,
   selected,
   onSelect,
@@ -28,6 +31,7 @@ export const CalendarPopover = ({
   calendarClassName,
   open,
   setOpen,
+  disabled = false,
 }: Props) => {
   const defaultCalendarDateRange = useMemo(
     () => ({
@@ -39,7 +43,7 @@ export const CalendarPopover = ({
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
+      <PopoverTrigger id={triggerId} disabled={disabled} asChild>
         <Button
           variant="outline"
           className={cn(

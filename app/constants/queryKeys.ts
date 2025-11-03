@@ -3,4 +3,5 @@ export const queryKeys = {
   getOrganisationDetails: "organisation",
   getPositions: "positions",
   getEmployeePositions: "employeePositions",
+  getSelfAbsences: "selfAbsences",
 };

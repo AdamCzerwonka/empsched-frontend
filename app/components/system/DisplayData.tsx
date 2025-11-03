@@ -25,7 +25,11 @@ export const DisplayData = <T,>({
   };
 
   if (isLoading) {
-    return <>{loadingContent ?? <LoadingItem size={defaultLoadingSize} />}</>;
+    return (
+      <div className="flex h-full w-full items-center justify-center">
+        {loadingContent ?? <LoadingItem size={defaultLoadingSize} />}
+      </div>
+    );
   }
 
   if (data) {
