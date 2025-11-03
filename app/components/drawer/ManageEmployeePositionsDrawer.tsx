@@ -24,6 +24,7 @@ import {
 } from "~/api/hooks";
 import { DisplayData } from "../system";
 import { baseFormSuccessHandler } from "~/lib";
+import type { Position } from "~/types/general";
 
 interface Props {
   employeeId: string;
@@ -46,7 +47,7 @@ export const ManageEmployeePositionsDrawer = ({
   const { removeEmployeePositionAsync, isPending: isPendingRemove } =
     useRemoveEmployeePosition();
   const [currentEmployeePositions, setCurrentEmployeePositions] = useState<
-    typeof positions
+    Position[]
   >(employeePositions || []);
 
   const { t } = useTranslation(
@@ -102,10 +103,10 @@ export const ManageEmployeePositionsDrawer = ({
   const emptyContent = <p>{t("noPositions")}</p>;
 
   const dataContent = (data: typeof positions) => (
-    <section className="grid min-w-1/3 gap-2">
+    <section className="grid w-full gap-2 md:max-w-lg">
       <Table>
         <TableBody>
-          {data?.map((position) => (
+          {data?.content.map((position) => (
             <TableRow key={position.id}>
               <TableCell>{position.name}</TableCell>
               <TableCell className="flex items-center justify-end">

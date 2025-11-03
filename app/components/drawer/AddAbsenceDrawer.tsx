@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next";
 import { useQueryClient } from "@tanstack/react-query";
 import { Plus } from "lucide-react";
 import { AddAbsenceForm } from "../form";
+import { queryKeys } from "~/constants";
 
 export const AddAbsenceDrawer = () => {
   const [open, setOpen] = useState(false);
@@ -33,7 +34,7 @@ export const AddAbsenceDrawer = () => {
         <AddAbsenceForm
           onSuccess={() => {
             queryClient.invalidateQueries({
-              queryKey: ["getAbsences"],
+              queryKey: [queryKeys.getSelfAbsences],
             });
             setOpen(false);
           }}

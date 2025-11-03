@@ -1,3 +1,11 @@
 {
-  "title": "Absences"
+  "title": "Absences",
+  "emptyState": {
+    "title": "No absences recorded",
+    "description": "You have no absences recorded at the moment."
+  },
+  "totalAbsences": "Total Absences",
+  "approved": "Approved",
+  "notApproved": "Not Approved",
+  "deleteAbsenceTooltip": "Delete Absence"
 }
