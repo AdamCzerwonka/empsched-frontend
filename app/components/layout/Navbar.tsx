@@ -4,7 +4,6 @@ import {
   SidebarTrigger,
   NavigationMenu,
   NavigationMenuList,
-  ModeToggle,
 } from "../ui";
 import { Logo } from "./Logo";
 import { AccountSection } from "./AccountSection";
@@ -25,18 +24,18 @@ export const Navbar = () => {
           <Logo />
         </h1>
         <div className="flex h-full flex-wrap items-center gap-2">
-          <NavigationMenu viewport={isMobile}>
-            <NavigationMenuList>
-              {!isMobile && (
+          {!isMobile ? (
+            <NavigationMenu viewport={isMobile}>
+              <NavigationMenuList>
                 <span className="flex flex-1 flex-wrap items-center gap-2 lg:gap-0">
                   <NavbarLinksSection isSidebar={false} />
                 </span>
-              )}
-              <ModeToggle />
-              {!isMobile && <AccountSection />}
-            </NavigationMenuList>
-          </NavigationMenu>
-          {isMobile && <SidebarTrigger />}
+                <AccountSection />
+              </NavigationMenuList>
+            </NavigationMenu>
+          ) : (
+            <SidebarTrigger />
+          )}
         </div>
       </CardContent>
     </Card>
