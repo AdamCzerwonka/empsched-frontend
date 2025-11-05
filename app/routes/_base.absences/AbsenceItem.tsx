@@ -1,5 +1,7 @@
+import { useQueryClient } from "@tanstack/react-query";
 import { Calendar, Trash2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useDeleteAbsence } from "~/api/hooks";
 import {
   Badge,
   Button,
@@ -10,11 +12,13 @@ import {
   ItemFooter,
   ItemMedia,
   ItemTitle,
+  LoadingButton,
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "~/components/ui";
-import { parseFromIsoToDisplayDate } from "~/lib";
+import { queryKeys } from "~/constants";
+import { baseFormSuccessHandler, parseFromIsoToDisplayDate } from "~/lib";
 import type { Absence } from "~/types/general";
 
 interface Props {
@@ -23,7 +27,10 @@ interface Props {
 
 export const AbsenceItem = ({ absence }: Props) => {
   const { t } = useTranslation("routes/absences");
+  const { t: tInfo } = useTranslation("information");
   const { t: tCommon } = useTranslation("common");
+  const { deleteAbsenceAsync, isPending } = useDeleteAbsence();
+  const queryClient = useQueryClient();
   const isEndingSameDay = absence.startDate === absence.endDate;
 
   const formattedDate = isEndingSameDay
@@ -31,6 +38,23 @@ export const AbsenceItem = ({ absence }: Props) => {
     : `${parseFromIsoToDisplayDate(absence.startDate)} - ${parseFromIsoToDisplayDate(
         absence.endDate
       )}`;
+
+  const handleDeleteAbsence = async () => {
+    await deleteAbsenceAsync(absence.id, {
+      onSuccess: () => {
+        baseFormSuccessHandler(
+          null,
+          false,
+          true,
+          tInfo("absences.absenceDeleted"),
+          () =>
+            queryClient.invalidateQueries({
+              queryKey: [queryKeys.getSelfAbsences],
+            })
+        );
+      },
+    });
+  };
 
   return (
     <Item className="h-min w-full">
@@ -52,9 +76,13 @@ export const AbsenceItem = ({ absence }: Props) => {
         <ItemActions>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant={"outline"}>
+              <LoadingButton
+                variant={"outline"}
+                isLoading={isPending}
+                onClick={handleDeleteAbsence}
+              >
                 <Trash2 />
-              </Button>
+              </LoadingButton>
             </TooltipTrigger>
             <TooltipContent
               className="bg-destructive text-destructive-foreground"
