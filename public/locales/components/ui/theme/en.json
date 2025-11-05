@@ -2,5 +2,6 @@
   "light": "Light",
   "dark": "Dark",
   "system": "System",
-  "srInformation": "Toggle theme"
+  "srInformation": "Toggle theme",
+  "theme": "Theme"
 }

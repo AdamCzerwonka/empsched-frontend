@@ -1,6 +1,7 @@
 export * from "./custom/BaseEmpty";
 export * from "./custom/BasePagination";
 export * from "./custom/CalendarPopover";
+export * from "./custom/LanguageSelector";
 export * from "./custom/LoadingButton";
 export * from "./custom/LoadingItem";
 export * from "./custom/PlanCard";
