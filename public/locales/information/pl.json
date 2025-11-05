@@ -14,6 +14,7 @@
     "positionRemoved": "Stanowisko zostało pomyślnie usunięte"
   },
   "absences": {
-    "absenceCreated": "Nieobecność została wprowadzona"
+    "absenceCreated": "Nieobecność została wprowadzona",
+    "absenceDeleted": "Nieobecność została usunięta"
   }
 }

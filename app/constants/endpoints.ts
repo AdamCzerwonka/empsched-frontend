@@ -22,5 +22,6 @@ export const employeeEndpoints = Object.fromEntries(
     getSelfAbsences: "/absences",
     createSelfAbsence: "/absences",
     createEmployeeAbsence: "/absences/employees/:employeeId",
+    deleteAbsence: "/absences/:absenceId",
   }).map(([key, value]) => [key, `employees${value}`])
 );

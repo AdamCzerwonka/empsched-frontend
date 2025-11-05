@@ -1,4 +1,5 @@
 export * from "./absence/useCreateAbsence";
+export * from "./absence/useDeleteAbsence";
 export * from "./absence/useSelfAbsences";
 export * from "./auth/useSignIn";
 export * from "./organisation/useCreateOrganisation";
