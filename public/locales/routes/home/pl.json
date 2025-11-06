@@ -1,0 +1,45 @@
+{
+  "hero": {
+    "headline": "Łatwe planowanie grafików pracowniczych zaczyna się tutaj",
+    "subheadline": "Zarządzaj swoim zespołem, śledź nieobecności i automatyzuj grafiki z łatwością. Skup się na biznesie, my zajmiemy się resztą.",
+    "cta": "Zacznij teraz"
+  },
+  "features": {
+    "workforceManagement": {
+      "title": "Zarządzanie personelem",
+      "description": "Centralizuj dane swoich pracowników. Zarządzaj profilami, stanowiskami i rolami w jednym zorganizowanym miejscu."
+    },
+    "absenceTracking": {
+      "title": "Śledzenie nieobecności",
+      "description": "Uprość proces wnioskowania o urlop. Śledź urlopy, zwolnienia lekarskie i inne nieobecności w przejrzystym i prostym systemie."
+    },
+    "automatedScheduling": {
+      "title": "Automatyczne planowanie",
+      "description": "Oszczędzaj czas dzięki inteligentnemu planowaniu. Wybrany algorytm tworzy zoptymalizowane grafiki na podstawie Twoich zasad i dostępności pracowników."
+    },
+    "manualFlexibility": {
+      "title": "Ręczna elastyczność",
+      "description": "Masz pełną kontrolę. Łatwo wprowadzaj ręczne poprawki do wygenerowanych grafików, aby radzić sobie z nieoczekiwanymi zmianami."
+    }
+  },
+  "howItWorks": {
+    "title": "Jak to działa",
+    "step1": {
+      "title": "Stwórz swoją organizację",
+      "description": "Zarejestruj się i skonfiguruj profil swojej firmy w kilka minut."
+    },
+    "step2": {
+      "title": "Dodaj swoich pracowników",
+      "description": "Zaproś członków swojego zespołu i uzupełnij ich dane."
+    },
+    "step3": {
+      "title": "Wygeneruj swój pierwszy grafik",
+      "description": "Pozwól naszemu inteligentnemu algorytmowi stworzyć dla Ciebie zoptymalizowany grafik."
+    }
+  },
+  "finalCta": {
+    "title": "Gotowy, aby usprawnić swoje planowanie?",
+    "description": "Dołącz teraz i zrób pierwszy krok w kierunku bardziej efektywnego zarządzania personelem.",
+    "cta": "Zarejestruj się za darmo"
+  }
+}

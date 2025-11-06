@@ -1,0 +1,45 @@
+{
+  "hero": {
+    "headline": "Effortless Employee Scheduling Starts Here",
+    "subheadline": "Manage your team, track absences, and automate schedules with ease. Focus on your business, we'll handle the rota.",
+    "cta": "Get Started"
+  },
+  "features": {
+    "workforceManagement": {
+      "title": "Workforce Management",
+      "description": "Centralize your employee data. Manage profiles, positions, and roles in one organized place."
+    },
+    "absenceTracking": {
+      "title": "Absence Tracking",
+      "description": "Simplify leave requests. Track vacation, sick days, and other absences with a clear and simple system."
+    },
+    "automatedScheduling": {
+      "title": "Automated Scheduling",
+      "description": "Save time with smart scheduling. Selected algorithm creates optimized schedules based on your rules and employee availability."
+    },
+    "manualFlexibility": {
+      "title": "Manual Flexibility",
+      "description": "You're in control. Easily make manual adjustments to the generated schedules to handle unexpected changes."
+    }
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "step1": {
+      "title": "Create Your Organization",
+      "description": "Sign up and set up your company profile in minutes."
+    },
+    "step2": {
+      "title": "Add Your Employees",
+      "description": "Invite your team members and fill in their details."
+    },
+    "step3": {
+      "title": "Generate Your First Schedule",
+      "description": "Let our smart algorithm create an optimized schedule for you."
+    }
+  },
+  "finalCta": {
+    "title": "Ready to Streamline Your Scheduling?",
+    "description": "Join now and take the first step towards more efficient workforce management.",
+    "cta": "Sign Up for Free"
+  }
+}
