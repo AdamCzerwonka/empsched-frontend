@@ -1,16 +1,26 @@
 {
   "message": {
     "default": "An error occurred",
-    "startDateAfterEndDate": "Start date cannot be after end date",
-    "login.failed": "Login failed",
+    "validation": {
+      "startDateAfterEndDate": "Start date cannot be after end date"
+    },
+    "forbidden.operation": "You do not have permission to perform this operation",
+    "token.parsing.failed": "An error occurred. Please log in again.",
+    "invalid.credentials": "Invalid login credentials",
     "user": {
       "already.exists": "User already exists"
     },
     "organisation": {
-      "already.exists": "Organisation already exists"
+      "already.exists": "Organisation already exists",
+      "not.found": "Organisation not found"
     },
     "position": {
-      "already.exists": "Position with this name already exists"
+      "already.exists": "Position with this name already exists",
+      "not.found": "Position not found"
+    },
+    "employee": {
+      "not.found": "Employee not found",
+      "limit.reached": "Employee limit reached for your plan"
     },
     "absence": {
       "overlap": "Cannot add absence because it overlaps with another absence"

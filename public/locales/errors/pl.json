@@ -1,16 +1,26 @@
 {
   "message": {
     "default": "Wystąpił błąd",
-    "startDateAfterEndDate": "Data rozpoczęcia nie może być późniejsza niż data zakończenia",
-    "login.failed": "Logowanie nie powiodło się",
+    "validation": {
+      "startDateAfterEndDate": "Data rozpoczęcia nie może być późniejsza niż data zakończenia"
+    },
+    "forbidden.operation": "Nie masz uprawnień do wykonania tej operacji",
+    "token.parsing.failed": "Wystąpił błąd. Zaloguj się ponownie.",
+    "invalid.credentials": "Nieprawidłowe dane logowania",
     "user": {
       "already.exists": "Użytkownik już istnieje"
     },
     "organisation": {
-      "already.exists": "Organizacja już istnieje"
+      "already.exists": "Organizacja już istnieje",
+      "not.found": "Organizacja nie została znaleziona"
     },
     "position": {
-      "already.exists": "Stanowisko o tej nazwie już istnieje"
+      "already.exists": "Stanowisko o tej nazwie już istnieje",
+      "not.found": "Stanowisko nie zostało znalezione"
+    },
+    "employee": {
+      "not.found": "Pracownik nie został znaleziony",
+      "limit.reached": "Osiągnięto limit liczby pracowników dla Twojego planu"
     },
     "absence": {
       "overlap": "Nie można dodać nieobecności, ponieważ nakłada się ona na inną nieobecność"
