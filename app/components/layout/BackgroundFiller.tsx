@@ -6,7 +6,7 @@ export const BackgroundFiller = ({ className = "", ...props }: Props) => {
   return (
     <div
       className={cn(
-        "absolute inset-0 bg-[url('/assets/floating-cogs.svg')] bg-repeat",
+        "absolute inset-0 bg-[url('/assets/topography.svg')] bg-repeat",
         className
       )}
       style={{ backgroundSize: "800px 800px" }}
