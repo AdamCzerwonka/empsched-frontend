@@ -36,7 +36,7 @@ export const AbsencesPage = () => {
       <span className="text-muted-foreground mb-2 w-full text-start text-sm">
         {t("totalAbsences")}: {data?.totalElements}
       </span>
-      <div className="grid h-full w-full gap-3">
+      <div className="flex h-full w-full flex-col gap-3">
         {data?.content.map((absence, index) => {
           return (
             <>
