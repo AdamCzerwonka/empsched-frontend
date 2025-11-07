@@ -23,7 +23,8 @@
       "limit.reached": "Osiągnięto limit liczby pracowników dla Twojego planu"
     },
     "absence": {
-      "overlap": "Nie można dodać nieobecności, ponieważ nakłada się ona na inną nieobecność"
+      "overlap": "Nie można dodać nieobecności, ponieważ nakłada się ona na inną nieobecność",
+      "already.approved": "Nie można modyfikować nieobecności, która została już zatwierdzona"
     }
   }
 }

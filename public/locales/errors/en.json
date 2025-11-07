@@ -23,7 +23,8 @@
       "limit.reached": "Employee limit reached for your plan"
     },
     "absence": {
-      "overlap": "Cannot add absence because it overlaps with another absence"
+      "overlap": "Cannot add absence because it overlaps with another absence",
+      "already.approved": "Cannot modify an absence that has already been approved"
     }
   }
 }
