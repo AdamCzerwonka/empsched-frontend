@@ -1,3 +1,5 @@
+export * from "./account/useProfilePicture";
+export * from "./account/useUpdateProfilePicture";
 export * from "./absence/useCreateAbsence";
 export * from "./absence/useDeleteAbsence";
 export * from "./absence/useSelfAbsences";

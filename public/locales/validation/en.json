@@ -12,5 +12,11 @@
 
   "invalidDateFormat": "Date format is invalid. Expected format: {{format, string}}",
 
-  "endDateMustBeAfterStartDate": "End date must be after start date"
+  "endDateMustBeAfterStartDate": "End date must be after start date",
+
+  "file": {
+    "required": "File is required",
+    "tooLarge": "File is too large (max {{size}})",
+    "invalidType": "Invalid file type"
+  }
 }

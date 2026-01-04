@@ -43,6 +43,7 @@
     "label": "Data zakończenia",
     "placeholder": "Wybierz datę zakończenia"
   },
+  "uploadButton": "Prześlij",
   "signInButton": "Zaloguj się",
   "signUpButton": "Zarejestruj się",
   "oneDayAbsence": "Nieobecność jednodniowa",

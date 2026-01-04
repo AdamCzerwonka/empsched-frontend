@@ -9,7 +9,7 @@ import { Input } from "../ui/input";
 
 interface Props extends React.ComponentProps<"input"> {
   name: string;
-  label: string;
+  label?: string;
   type?: string;
   description?: string;
 }
@@ -27,11 +27,12 @@ export const BaseFormField = ({
         <FormItem>
           {label && <FormLabel>{label}</FormLabel>}
           <FormControl>
-            <Input {...props} {...field} />
+            <Input
+              {...field}
+              {...props}
+              value={props.type === "file" ? undefined : (field.value ?? "")}
+            />
           </FormControl>
-          {description && (
-            <p className="text-muted-foreground text-sm">{description}</p>
-          )}
           {description && (
             <p className="text-muted-foreground text-sm">{description}</p>
           )}
