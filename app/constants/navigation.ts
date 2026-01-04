@@ -3,6 +3,7 @@ export const navigation = {
   signIn: "/sign-in",
   signUp: "/sign-up",
   logout: "/logout",
+  myAccountSettings: "/my-account-settings",
   organisation: "/organisation",
   absences: "/absences",
 };

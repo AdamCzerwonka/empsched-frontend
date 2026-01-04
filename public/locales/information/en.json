@@ -16,5 +16,8 @@
   "absences": {
     "absenceCreated": "Absence provided",
     "absenceDeleted": "Absence deleted"
+  },
+  "profilePicture": {
+    "changeSuccess": "Profile picture changed successfully"
   }
 }

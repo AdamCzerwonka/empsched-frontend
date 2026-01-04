@@ -12,5 +12,11 @@
 
   "invalidDateFormat": "Format daty jest nieprawidłowy. Oczekiwany format: {{format, string}}",
 
-  "endDateMustBeAfterStartDate": "Data zakończenia musi być późniejsza niż data rozpoczęcia"
+  "endDateMustBeAfterStartDate": "Data zakończenia musi być późniejsza niż data rozpoczęcia",
+
+  "file": {
+    "required": "Plik jest wymagany",
+    "tooLarge": "Plik jest zbyt duży (maks. {{size}})",
+    "invalidType": "Nieprawidłowy typ pliku"
+  }
 }

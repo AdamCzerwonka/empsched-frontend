@@ -2,6 +2,7 @@
   "message": {
     "default": "An error occurred",
     "validation": {
+      "error": "Validation error",
       "startDateAfterEndDate": "Start date cannot be after end date"
     },
     "forbidden.operation": "You do not have permission to perform this operation",
@@ -25,6 +26,10 @@
     "absence": {
       "overlap": "Cannot add absence because it overlaps with another absence",
       "already.approved": "Cannot modify an absence that has already been approved"
+    },
+    "file": {
+      "parsing.failed": "An error occurred while processing the file. Please try again.",
+      "not.found": "File not found"
     }
   }
 }

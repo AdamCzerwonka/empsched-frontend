@@ -43,6 +43,7 @@
     "label": "End Date",
     "placeholder": "Select end date"
   },
+  "uploadButton": "Upload",
   "signInButton": "Sign In",
   "signUpButton": "Sign Up",
   "oneDayAbsence": "One-day Absence",

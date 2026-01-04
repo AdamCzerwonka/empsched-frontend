@@ -2,6 +2,7 @@
   "message": {
     "default": "Wystąpił błąd",
     "validation": {
+      "error": "Błąd walidacji",
       "startDateAfterEndDate": "Data rozpoczęcia nie może być późniejsza niż data zakończenia"
     },
     "forbidden.operation": "Nie masz uprawnień do wykonania tej operacji",
@@ -25,6 +26,10 @@
     "absence": {
       "overlap": "Nie można dodać nieobecności, ponieważ nakłada się ona na inną nieobecność",
       "already.approved": "Nie można modyfikować nieobecności, która została już zatwierdzona"
+    },
+    "file": {
+      "parsing.failed": "Wystąpił błąd podczas przetwarzania pliku. Spróbuj ponownie.",
+      "not.found": "Plik nie został znaleziony"
     }
   }
 }

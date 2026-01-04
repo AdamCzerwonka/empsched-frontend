@@ -5,11 +5,11 @@ import {
   NavigationMenuLink,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
+  ProfilePictureAvatar,
 } from "../ui";
 import { Link } from "react-router";
 import { accountActions, navigation } from "~/constants";
 import { useTranslation } from "react-i18next";
-import { User } from "lucide-react";
 import { LinkItem } from "./LinkItem";
 import { cn } from "~/lib/utils";
 
@@ -46,8 +46,8 @@ export const AccountSection = () => {
         <LinkItem
           item={{
             i18nTextKey: "myAccount",
-            icon: User,
           }}
+          customIconElement={<ProfilePictureAvatar size="miniature" />}
         />
       </NavigationMenuTrigger>
       <NavigationMenuContent className="min-w-max">

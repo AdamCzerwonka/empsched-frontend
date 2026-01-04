@@ -19,4 +19,16 @@ export const accountValidation = {
     minLength: 5,
     maxLength: 100,
   },
+  profilePicture: {
+    maxSize:
+      Number(import.meta.env.VITE_MAX_PROFILE_PICTURE_SIZE_MB) * 1024 * 1024,
+    acceptedTypes: [
+      "image/jpeg",
+      "image/png",
+      "image/bmp",
+      "image/webp",
+      "image/gif",
+      "image/svg+xml",
+    ],
+  },
 };

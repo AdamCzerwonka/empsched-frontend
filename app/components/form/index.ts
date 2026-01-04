@@ -6,3 +6,4 @@ export * from "./ClearFormButton";
 export * from "./AddEmployeeForm";
 export * from "./SignInForm";
 export * from "./SignUpForm";
+export * from "./UpdateProfilePictureForm";

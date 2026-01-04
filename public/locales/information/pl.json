@@ -16,5 +16,8 @@
   "absences": {
     "absenceCreated": "Nieobecność została wprowadzona",
     "absenceDeleted": "Nieobecność została usunięta"
+  },
+  "profilePicture": {
+    "changeSuccess": "Zdjęcie profilowe zostało pomyślnie zmienione"
   }
 }
