@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: 22
           cache: "pnpm"
-      - run: pnpm ci
+      - run: pnpm i
       - run: pnpm run build --if-present
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v6
