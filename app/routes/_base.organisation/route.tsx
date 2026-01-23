@@ -10,10 +10,14 @@ import {
   IdCardLanyard,
   NotebookText,
 } from "lucide-react";
+import { useAuthStore } from "~/store";
 
 export const OrganisationPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useTranslation("routes/organisation");
+  const roles = useAuthStore((state) => state.roles);
+
+  const isAdmin = roles?.includes("ADMIN") || roles?.includes("ORGANISATION_ADMIN");
 
   return (
     <Tabs
@@ -25,7 +29,7 @@ export const OrganisationPage = () => {
     >
       <Card variant={"soft"} className="p-0 lg:h-full">
         <CardContent className="p-2">
-          <TabsList className="w-full gap-2 bg-transparent lg:grid lg:h-full">
+          <TabsList className="w-full gap-0.5 sm:gap-2 bg-transparent lg:grid lg:h-full">
             <TabsTrigger
               variant={"primary"}
               value="details"
@@ -34,22 +38,26 @@ export const OrganisationPage = () => {
               <NotebookText />
               {t("tabs.details.trigger")}
             </TabsTrigger>
-            <TabsTrigger
-              variant={"primary"}
-              value="employees"
-              className="justify-start p-2"
-            >
-              <IdCardLanyard />
-              {t("tabs.employees.trigger")}
-            </TabsTrigger>
-            <TabsTrigger
-              variant={"primary"}
-              value="positions"
-              className="justify-start p-2"
-            >
-              <BetweenHorizontalStart />
-              {t("tabs.positions.trigger")}
-            </TabsTrigger>
+            {isAdmin && (
+              <>
+              <TabsTrigger
+                variant={"primary"}
+                value="employees"
+                className="justify-start p-2"
+              >
+                <IdCardLanyard />
+                {t("tabs.employees.trigger")}
+              </TabsTrigger>
+              <TabsTrigger
+                variant={"primary"}
+                value="positions"
+                className="justify-start p-2"
+              >
+                <BetweenHorizontalStart />
+                {t("tabs.positions.trigger")}
+              </TabsTrigger>
+              </>
+            )}
           </TabsList>
         </CardContent>
       </Card>
@@ -58,12 +66,16 @@ export const OrganisationPage = () => {
           <TabsContent className="h-full w-full" value="details">
             <OrganisationDetails />
           </TabsContent>
-          <TabsContent className="h-full w-full" value="employees">
-            <EmployeesDetails />
-          </TabsContent>
-          <TabsContent className="h-full w-full" value="positions">
-            <PositionsDetails />
-          </TabsContent>
+          {isAdmin && (
+            <>
+              <TabsContent className="h-full w-full" value="employees">
+                <EmployeesDetails />
+              </TabsContent>
+              <TabsContent className="h-full w-full" value="positions">
+                <PositionsDetails />
+              </TabsContent>
+            </>
+          )}
         </CardContent>
       </Card>
     </Tabs>
