@@ -11,7 +11,7 @@ export default defineConfig({
     reactRouter(),
     tsconfigPaths(),
     serwist({
-      swSrc: "src/sw.ts",
+      swSrc: "sw.ts",
       swDest: "sw.js",
       // globDirectory: "dist",
       globDirectory: "build/client",
