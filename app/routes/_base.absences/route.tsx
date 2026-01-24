@@ -1,27 +1,84 @@
-import { UserRoundX } from "lucide-react";
+import { useQueryClient } from "@tanstack/react-query";
+import { Trash2, UserRoundX } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useSelfAbsences } from "~/api/hooks";
+import { useDeleteAbsence, useSelfAbsences } from "~/api/hooks";
 import { AddAbsenceDrawer } from "~/components/drawer";
 import { AbsencesFilter } from "~/components/filter";
 import { DisplayData } from "~/components/system";
-import { BaseEmpty, BasePagination, Separator } from "~/components/ui";
 import {
-  defaultAbsenceFilterParams,
-  type AbsenceFilterParams,
+  AbsenceItem,
+  BaseEmpty,
+  BasePagination,
+  ItemActions,
+  LoadingButton,
+  Separator,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "~/components/ui";
+import { queryKeys } from "~/constants";
+import { baseFormSuccessHandler } from "~/lib";
+import {
+  defaultStartDateFilterParams,
+  type StartDateFilterParams,
 } from "~/types/api";
-import { AbsenceItem } from "./AbsenceItem";
+import type { Absence } from "~/types/general";
 
 export const AbsencesPage = () => {
   const { t } = useTranslation("routes/absences");
+  const { t: tInfo } = useTranslation("information");
+  const { deleteAbsenceAsync, isPending: isDeleting } = useDeleteAbsence();
   const [page, setPage] = useState<number>(0);
   const [absenceFilterParams, setAbsenceFilterParams] =
-    useState<AbsenceFilterParams>(defaultAbsenceFilterParams);
+    useState<StartDateFilterParams>(defaultStartDateFilterParams);
   const { absences, isPending } = useSelfAbsences({
+    ...absenceFilterParams,
     pageNumber: page,
     pageSize: 10,
-    ...absenceFilterParams,
   });
+  const queryClient = useQueryClient();
+
+  const handleDeleteAbsence = async (absenceId: string) => {
+    await deleteAbsenceAsync(absenceId, {
+      onSuccess: () => {
+        baseFormSuccessHandler(
+          null,
+          false,
+          true,
+          tInfo("absences.absenceDeleted"),
+          () =>
+            queryClient.invalidateQueries({
+              queryKey: [queryKeys.getSelfAbsences],
+            })
+        );
+      },
+    });
+  };
+
+  const absenceActions = (absence: Absence) => {
+    return !absence.approved ? (
+      <ItemActions>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <LoadingButton
+              variant={"outline"}
+              isLoading={isDeleting}
+              onClick={() => handleDeleteAbsence(absence.id)}
+            >
+              <Trash2 />
+            </LoadingButton>
+          </TooltipTrigger>
+          <TooltipContent
+            className="bg-destructive text-destructive-foreground"
+            arrowClassName="bg-destructive fill-destructive"
+          >
+            {t("deleteAbsenceTooltip")}
+          </TooltipContent>
+        </Tooltip>
+      </ItemActions>
+    ) : null;
+  };
 
   const emptyContent = (
     <BaseEmpty
@@ -40,7 +97,11 @@ export const AbsencesPage = () => {
         {data?.content.map((absence, index) => {
           return (
             <>
-              <AbsenceItem key={absence.id} absence={absence} />
+              <AbsenceItem
+                key={absence.id}
+                absence={absence}
+                actionSection={absenceActions(absence)}
+              />
               {index < data?.content.length - 1 && <Separator />}
             </>
           );

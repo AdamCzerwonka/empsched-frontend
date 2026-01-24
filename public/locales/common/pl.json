@@ -4,6 +4,9 @@
   "next": "Dalej",
   "previous": "Wstecz",
   "loading": "Ładowanie",
+  "approve": "Zatwierdź",
+  "approved": "Zatwierdzone",
+  "notApproved": "Niezatwierdzone",
 
   "plans": {
     "unit": {

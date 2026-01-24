@@ -25,6 +25,23 @@
         "description": "Pracownicy to osoby pracujące w Twojej organizacji. Możesz przypisywać ich do stanowisk i zarządzać ich harmonogramami."
       }
     },
+    "employeesAbsences": {
+      "trigger": "Nieobecności pracowników",
+      "title": "Nieobecności pracowników organizacji",
+      "totalAbsences": "Łącznie nieobecności",
+      "approveTooltip": "Zatwierdź nieobecność",
+      "table": {
+        "header": {
+          "name": "Nazwa",
+          "email": "Email",
+          "actions": "Akcje"
+        }
+      },
+      "empty": {
+        "title": "Brak zarejestrowanych nieobecności pracowników",
+        "description": "Nieobecności to okresy, kiedy pracownicy nie są dostępni do pracy. Możesz śledzić i zarządzać tymi nieobecnościami tutaj."
+      }
+    },
     "positions": {
       "trigger": "Stanowiska",
       "title": "Stanowiska w organizacji",

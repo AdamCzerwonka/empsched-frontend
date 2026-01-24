@@ -1,23 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import { api } from "~/api/api";
 import { employeeEndpoints, queryKeys } from "~/constants";
-import {
-  type PagedData,
-  type PaginationParams,
-  type StartDateFilterParams,
-} from "~/types/api";
-import type { Absence } from "~/types/general";
 import { sanitizeParams } from "~/lib";
+import type { PagedData, ExtendedAbsenceFilterParams } from "~/types/api";
+import { type Absence } from "~/types/general";
 
-export const useSelfAbsences = (
-  params?: PaginationParams & StartDateFilterParams
-) => {
+export const useAbsences = (params?: ExtendedAbsenceFilterParams) => {
   const { data, isPending } = useQuery({
-    queryKey: [queryKeys.getSelfAbsences, params],
+    queryKey: [queryKeys.getAbsences, params],
     queryFn: async () => {
       const cleanParams = sanitizeParams(params);
       const response = await api.get<PagedData<Absence>>(
-        employeeEndpoints.getSelfAbsences,
+        employeeEndpoints.getAbsences,
         { params: cleanParams }
       );
       return response.data;

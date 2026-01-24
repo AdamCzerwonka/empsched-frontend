@@ -14,6 +14,9 @@
       "employees": {
         "name": "Employees"
       },
+      "employeesAbsences": {
+        "name": "Employees Absences"
+      },
       "positions": {
         "name": "Positions"
       }

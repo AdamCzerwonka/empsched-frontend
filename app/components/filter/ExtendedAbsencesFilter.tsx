@@ -1,6 +1,6 @@
 import {
-  defaultStartDateFilterParams,
-  type StartDateFilterParams,
+  defaultExtendedAbsenceFilterParams,
+  type ExtendedAbsenceFilterParams,
 } from "~/types/api";
 import { CalendarPopover, Checkbox, Label } from "../ui";
 import { useTranslation } from "react-i18next";
@@ -11,15 +11,14 @@ import {
   parseToIsoDate,
 } from "~/lib";
 import { ClearFormButton } from "../form";
-import { DateTime } from "luxon";
 
 interface Props {
-  params: StartDateFilterParams;
-  changeParams: (newParams: StartDateFilterParams) => void;
+  params: ExtendedAbsenceFilterParams;
+  changeParams: (newParams: ExtendedAbsenceFilterParams) => void;
   disabled?: boolean;
 }
 
-export const AbsencesFilter = ({
+export const ExtendedAbsencesFilter = ({
   params,
   changeParams,
   disabled = false,
@@ -98,29 +97,22 @@ export const AbsencesFilter = ({
       />
       <span className="flex h-10 items-center gap-2">
         <Checkbox
-          id="upcoming"
-          checked={params.startFrom === DateTime.now().toISODate()}
+          id="approved"
+          checked={params.approved}
           onCheckedChange={(val) => {
-            if (!!val) {
-              changeParams({
-                ...params,
-                startFrom: DateTime.now().toISODate(),
-              });
-            } else {
-              changeParams({
-                ...params,
-                startFrom: "",
-              });
-            }
+            changeParams({
+              ...params,
+              approved: !!val,
+            });
           }}
         />
-        <Label htmlFor="upcoming" className="font-normal">
-          {t("upcoming")}
+        <Label htmlFor="approved" className="font-normal">
+          {t("approved")}
         </Label>
       </span>
       <ClearFormButton
         clearCallback={() => {
-          changeParams(defaultStartDateFilterParams);
+          changeParams(defaultExtendedAbsenceFilterParams);
         }}
         className="ml-2"
       />
