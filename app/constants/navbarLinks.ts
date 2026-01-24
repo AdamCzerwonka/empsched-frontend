@@ -33,6 +33,14 @@ export const navbarLinks: NavbarLink[] = [
         child: null,
       },
       {
+        i18nTextKey: "organisation.child.employeesAbsences.name",
+        i18nDescriptionKey: undefined,
+        link: navigation.organisation + "?tab=employeesAbsences",
+        icon: CalendarX,
+        access: [RoleEnum.ORGANISATION_ADMIN],
+        child: null,
+      },
+      {
         i18nTextKey: "organisation.child.positions.name",
         i18nDescriptionKey: undefined,
         link: navigation.organisation + "?tab=positions",
