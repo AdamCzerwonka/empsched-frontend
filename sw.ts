@@ -19,7 +19,37 @@ const serwist = new Serwist({
   skipWaiting: true,
   clientsClaim: true,
   navigationPreload: true,
-  runtimeCaching: defaultCache,
+  runtimeCaching: [
+    {
+      urlPattern: ({ url }) =>
+        url.pathname.startsWith(import.meta.env.VITE_API_URL),
+      handler: "NetworkFirst",
+      options: {
+        cacheName: "api-cache",
+        expiration: {
+          maxEntries: 50,
+          maxAgeSeconds: 60 * 60 * 24, // 24h
+        },
+        cacheableResponse: {
+          statuses: [0, 200],
+        },
+      },
+    },
+    {
+      urlPattern: ({ request }) => request.destination === "image",
+
+      handler: "CacheFirst",
+      options: {
+        cacheName: "images-cache",
+        expiration: {
+          maxEntries: 50,
+          maxAgeSeconds: 30 * 24 * 60 * 60, // 30d
+        },
+      },
+    },
+
+    ...defaultCache,
+  ],
 });
 
 serwist.addEventListeners();
