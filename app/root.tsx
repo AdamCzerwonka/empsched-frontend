@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   isRouteErrorResponse,
   Links,
@@ -24,6 +24,9 @@ import type { ErrorResponse } from "./types/api";
 import { useTranslation } from "react-i18next";
 import { ToasterWrapper } from "./components/system";
 import { getSerwist } from "virtual:serwist";
+import type { Serwist } from "serwist";
+import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
+import { createAsyncStoragePersister } from "@tanstack/query-async-storage-persister";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -44,7 +47,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>My awesome PWA app</title>
+        <title>Employe Scheduler</title>
         <meta name="description" content="Best PWA app in the world!" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="mask-icon" href="/icons/mask-icon.svg" color="#FFFFFF" />
@@ -126,6 +129,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   const { t } = useTranslation("errors");
+  const [showRefreshButton, setShowRefreshButton] = useState(false);
+  const [serwistInstance, setSerwistInstance] = useState<Serwist | null>(null);
 
   const queryClient = new QueryClient({
     queryCache: new QueryCache({
@@ -138,30 +143,93 @@ export default function App() {
         showApiErrorToast(error as AxiosError<ErrorResponse>, t);
       },
     }),
+    defaultOptions: {
+      queries: {
+        networkMode: "offlineFirst",
+        staleTime: 1000 * 60 * 5,
+        gcTime: 1000 * 60 * 60 * 24, //24h
+      },
+      mutations: {
+        networkMode: "offlineFirst",
+        retry: 3,
+      },
+    },
+  });
+
+  const persister = createAsyncStoragePersister({
+    storage: window.localStorage,
   });
 
   useEffect(() => {
+    // if (import.meta.env.DEV) return;
     const loadSerwist = async () => {
       if ("serviceWorker" in navigator) {
         const serwist = await getSerwist();
 
+        serwist?.addEventListener("waiting", () => {
+          console.log("Dostępna nowa wersja aplikacji!");
+          setShowRefreshButton(true); // Pokaż użytkownikowi przycisk/toast
+        });
+
+        // Opcjonalnie: logowanie instalacji
         serwist?.addEventListener("installed", () => {
-          console.log("Serwist installed!");
+          console.log("Aplikacja zainstalowana offline!");
         });
 
         void serwist?.register();
+        setSerwistInstance(serwist);
       }
     };
 
     loadSerwist();
   }, []);
 
+  const handleUpdateClick = () => {
+    if (serwistInstance) {
+      // To wysyła sygnał do SW: "pomiń czekanie, aktywuj się teraz!"
+      serwistInstance?.messageSkipWaiting();
+    }
+  };
+
   return (
     <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
-      <QueryClientProvider client={queryClient}>
+      <PersistQueryClientProvider
+        client={queryClient}
+        persister={persister}
+        persistOptions={{
+          persister,
+          maxAge: 1000 * 60 * 60 * 24, // 24h
+        }}
+        onSuccess={() => {
+          queryClient.resumePausedMutations();
+        }}
+      >
         <Outlet />
         <ToasterWrapper />
-      </QueryClientProvider>
+      </PersistQueryClientProvider>
+      {/* 4. Toast / Powiadomienie o aktualizacji */}
+      {showRefreshButton && (
+        <div
+          style={{
+            position: "fixed",
+            bottom: 20,
+            right: 20,
+            padding: 20,
+            background: "#333",
+            color: "#fff",
+            borderRadius: 8,
+            zIndex: 9999,
+          }}
+        >
+          Dostępna nowa wersja!
+          <button
+            onClick={handleUpdateClick}
+            style={{ marginLeft: 10, cursor: "pointer" }}
+          >
+            Odśwież
+          </button>
+        </div>
+      )}
     </ThemeProvider>
   );
 }

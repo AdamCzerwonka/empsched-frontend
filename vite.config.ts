@@ -12,8 +12,7 @@ export default defineConfig({
     tsconfigPaths(),
     serwist({
       swSrc: "sw.ts",
-      swDest: "sw.js",
-      // globDirectory: "dist",
+      swDest: "dest/sw.js",
       globDirectory: "build/client",
       injectionPoint: "self.__SW_MANIFEST",
       rollupFormat: "iife",
