@@ -4,6 +4,9 @@
   "next": "Next",
   "previous": "Previous",
   "loading": "Loading",
+  "approve": "Approve",
+  "approved": "Approved",
+  "notApproved": "Not Approved",
 
   "plans": {
     "unit": {

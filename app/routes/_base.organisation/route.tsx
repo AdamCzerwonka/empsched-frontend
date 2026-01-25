@@ -7,18 +7,15 @@ import { PositionsDetails } from "./PositionsDetails";
 import { EmployeesDetails } from "./EmployeesDetails";
 import {
   BetweenHorizontalStart,
+  CalendarX,
   IdCardLanyard,
   NotebookText,
 } from "lucide-react";
-import { useAuthStore } from "~/store";
-import { RoleEnum } from "~/types/general";
+import { EmployeesAbsencesDetails } from "./EmployeesAbsencesDetails";
 
 export const OrganisationPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useTranslation("routes/organisation");
-  const { roles } = useAuthStore();
-
-  const isAdmin = roles?.includes(RoleEnum.ADMIN) || roles?.includes(RoleEnum.ORGANISATION_ADMIN);
 
   return (
     <Tabs
@@ -30,7 +27,7 @@ export const OrganisationPage = () => {
     >
       <Card variant={"soft"} className="p-0 lg:h-full">
         <CardContent className="p-2">
-          <TabsList className="w-full gap-0.5 sm:gap-2 bg-transparent lg:grid lg:h-full">
+          <TabsList className="flex h-auto w-full flex-wrap justify-start gap-2 bg-transparent lg:grid lg:h-full">
             <TabsTrigger
               variant={"primary"}
               value="details"
@@ -39,26 +36,30 @@ export const OrganisationPage = () => {
               <NotebookText />
               {t("tabs.details.trigger")}
             </TabsTrigger>
-            {isAdmin && (
-              <>
-              <TabsTrigger
-                variant={"primary"}
-                value="employees"
-                className="justify-start p-2"
-              >
-                <IdCardLanyard />
-                {t("tabs.employees.trigger")}
-              </TabsTrigger>
-              <TabsTrigger
-                variant={"primary"}
-                value="positions"
-                className="justify-start p-2"
-              >
-                <BetweenHorizontalStart />
-                {t("tabs.positions.trigger")}
-              </TabsTrigger>
-              </>
-            )}
+            <TabsTrigger
+              variant={"primary"}
+              value="employees"
+              className="justify-start p-2"
+            >
+              <IdCardLanyard />
+              {t("tabs.employees.trigger")}
+            </TabsTrigger>
+            <TabsTrigger
+              variant={"primary"}
+              value="employeesAbsences"
+              className="justify-start p-2"
+            >
+              <CalendarX />
+              {t("tabs.employeesAbsences.trigger")}
+            </TabsTrigger>
+            <TabsTrigger
+              variant={"primary"}
+              value="positions"
+              className="justify-start p-2"
+            >
+              <BetweenHorizontalStart />
+              {t("tabs.positions.trigger")}
+            </TabsTrigger>
           </TabsList>
         </CardContent>
       </Card>
@@ -67,16 +68,15 @@ export const OrganisationPage = () => {
           <TabsContent className="h-full w-full" value="details">
             <OrganisationDetails />
           </TabsContent>
-          {isAdmin && (
-            <>
-              <TabsContent className="h-full w-full" value="employees">
-                <EmployeesDetails />
-              </TabsContent>
-              <TabsContent className="h-full w-full" value="positions">
-                <PositionsDetails />
-              </TabsContent>
-            </>
-          )}
+          <TabsContent className="h-full w-full" value="employees">
+            <EmployeesDetails />
+          </TabsContent>
+          <TabsContent className="h-full w-full" value="employeesAbsences">
+            <EmployeesAbsencesDetails />
+          </TabsContent>
+          <TabsContent className="h-full w-full" value="positions">
+            <PositionsDetails />
+          </TabsContent>
         </CardContent>
       </Card>
     </Tabs>

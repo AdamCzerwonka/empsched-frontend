@@ -1,3 +1,4 @@
+export * from "./custom/AbsenceItem";
 export * from "./custom/BaseEmpty";
 export * from "./custom/BasePagination";
 export * from "./custom/CalendarPopover";

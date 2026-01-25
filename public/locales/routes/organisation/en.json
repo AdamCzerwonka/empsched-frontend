@@ -11,7 +11,7 @@
     },
     "employees": {
       "trigger": "Employees",
-      "title": "Organisation emploi",
+      "title": "Organisation employees",
       "totalEmployees": "Total employees",
       "table": {
         "header": {
@@ -23,6 +23,23 @@
       "empty": {
         "title": "No employees in the organisation",
         "description": "Employees are people working in your organisation. You can assign them to positions and manage their schedules."
+      }
+    },
+    "employeesAbsences": {
+      "trigger": "Employees absences",
+      "title": "Organisation employees absences",
+      "totalAbsences": "Total absences",
+      "approveTooltip": "Approve absence",
+      "table": {
+        "header": {
+          "name": "Name",
+          "email": "Email",
+          "actions": "Actions"
+        }
+      },
+      "empty": {
+        "title": "No absences recorded for employees",
+        "description": "Absences are periods when employees are not available to work. You can track and manage these absences here."
       }
     },
     "positions": {

@@ -34,8 +34,8 @@ self.addEventListener("push", (event: PushEvent) => {
 
   const options: NotificationOptions = {
     body: payload.body,
-    icon: "/icons/android-chrome-192x192.png",
-    badge: "/icons/android-chrome-192x192.png",
+    icon: "/icons/icon-192x192.png",
+    badge: "/icons/icon-192x192.png",
     data: { url: payload.url, ...payload.data, type: payload.type },
     tag: payload.type,
   };
@@ -94,8 +94,7 @@ const serwist = new Serwist({
       handler: cacheFirst,
     },
     {
-      matcher: ({ url }) =>
-        url.pathname.startsWith(import.meta.env.VITE_API_URL),
+     matcher: ({ url }) => url.href.startsWith(import.meta.env.VITE_API_URL),
       handler: networkFirst,
     },
 
