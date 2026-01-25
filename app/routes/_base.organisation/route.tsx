@@ -11,13 +11,14 @@ import {
   NotebookText,
 } from "lucide-react";
 import { useAuthStore } from "~/store";
+import { RoleEnum } from "~/types/general";
 
 export const OrganisationPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useTranslation("routes/organisation");
-  const roles = useAuthStore((state) => state.roles);
+  const { roles } = useAuthStore();
 
-  const isAdmin = roles?.includes("ADMIN") || roles?.includes("ORGANISATION_ADMIN");
+  const isAdmin = roles?.includes(RoleEnum.ADMIN) || roles?.includes(RoleEnum.ORGANISATION_ADMIN);
 
   return (
     <Tabs

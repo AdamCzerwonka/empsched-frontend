@@ -9,9 +9,12 @@ import { Logo } from "./Logo";
 import { AccountSection } from "./AccountSection";
 import { useIsMobile } from "~/hooks/use-mobile";
 import { NavbarLinksSection } from "./NavbarLinksSection";
+import { NotificationBell } from "~/components/notifications";
+import { useAuthStore } from "~/store";
 
 export const Navbar = () => {
   const isMobile = useIsMobile();
+  const isAuthenticated = useAuthStore((s) => s.isAuthenticated());
 
   return (
     <Card
@@ -30,11 +33,15 @@ export const Navbar = () => {
                 <span className="flex flex-1 flex-wrap items-center gap-2 lg:gap-0">
                   <NavbarLinksSection isSidebar={false} />
                 </span>
+                {isAuthenticated && <NotificationBell />}
                 <AccountSection />
               </NavigationMenuList>
             </NavigationMenu>
           ) : (
-            <SidebarTrigger />
+            <>
+              {isAuthenticated && <NotificationBell />}
+              <SidebarTrigger />
+            </>
           )}
         </div>
       </CardContent>

@@ -5,5 +5,6 @@ export * from "./filter/AbsenceFilterParams";
 export * from "./filter/PaginationParams";
 export * from "./organisation/OrganisationCreateRequest";
 export * from "./position/PositionCreateRequest";
+export * from "./push/PushSubscriptionRequest";
 export * from "./ErrorResponse";
 export * from "./PagedData";

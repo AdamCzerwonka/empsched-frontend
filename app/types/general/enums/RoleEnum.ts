@@ -4,7 +4,7 @@ export enum RoleEnum {
   ORGANISATION_EMPLOYEE = "ROLE_ORGANISATION_EMPLOYEE",
 }
 
-export type RoleType = keyof typeof RoleEnum;
+export type RoleType = (typeof RoleEnum)[keyof typeof RoleEnum];
 
 export const ExtendedRoleEnum = {
   ...RoleEnum,
