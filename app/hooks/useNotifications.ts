@@ -14,12 +14,10 @@ interface PushPayload {
 export const useNotifications = () => {
   const { unreadCount, addNotification } = useNotificationStore();
 
-  // Sync badge on startup
   useEffect(() => {
     badgeApi.setBadge(unreadCount);
   }, []);
 
-  // Listen for messages from Service Worker
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
       if (event.data?.type === "PUSH_RECEIVED") {

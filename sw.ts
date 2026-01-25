@@ -17,7 +17,6 @@ declare const self: ServiceWorkerGlobalScope;
 // ============================================
 // PUSH NOTIFICATIONS - add BEFORE serwist.addEventListeners()
 // ============================================
-
 interface PushPayload {
   type: string;
   title: string;
@@ -26,7 +25,6 @@ interface PushPayload {
   data?: Record<string, string>;
 }
 
-// Handle push notification received
 self.addEventListener("push", (event: PushEvent) => {
   if (!event.data) return;
 
@@ -42,9 +40,7 @@ self.addEventListener("push", (event: PushEvent) => {
 
   event.waitUntil(
     Promise.all([
-      // Show native notification
       self.registration.showNotification(payload.title, options),
-      // Notify open app tabs
       self.clients
         .matchAll({ type: "window", includeUncontrolled: true })
         .then((clients) => {
@@ -59,7 +55,6 @@ self.addEventListener("push", (event: PushEvent) => {
   );
 });
 
-// Handle notification click
 self.addEventListener("notificationclick", (event: NotificationEvent) => {
   event.notification.close();
 
@@ -69,7 +64,6 @@ self.addEventListener("notificationclick", (event: NotificationEvent) => {
     self.clients
       .matchAll({ type: "window", includeUncontrolled: true })
       .then((clients) => {
-        // Check if app window is already open
         for (const client of clients) {
           if (client.url.includes(self.location.origin) && "focus" in client) {
             client.focus();
@@ -79,15 +73,10 @@ self.addEventListener("notificationclick", (event: NotificationEvent) => {
             return;
           }
         }
-        // Open new window
         return self.clients.openWindow(url);
       })
   );
 });
-
-// ============================================
-// SERWIST CONFIGURATION
-// ============================================
 
 const serwist = new Serwist({
   precacheEntries: self.__SW_MANIFEST,

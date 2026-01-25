@@ -7,7 +7,6 @@ import { useAuthStore } from "~/store";
 export const Content = () => {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated());
 
-  // Initialize notification listeners
   useNotifications();
 
   return (
