@@ -45,7 +45,22 @@
         "unassigned": "Nieprzypisany"
       },
       "actions": {
-        "solve": "Rozwiąż grafik"
+        "solve": "Rozwiąż grafik",
+        "addShift": "Dodaj zmianę",
+        "editShift": "Edytuj",
+        "deleteShift": "Usuń",
+        "unassign": "Odprzypisz",
+        "save": "Zapisz",
+        "cancel": "Anuluj"
+      },
+      "shiftForm": {
+        "title": "Dodaj nową zmianę",
+        "editTitle": "Edytuj zmianę",
+        "date": "Data",
+        "startTime": "Godzina rozpoczęcia",
+        "endTime": "Godzina zakończenia",
+        "position": "Stanowisko",
+        "selectPosition": "Wybierz stanowisko..."
       }
     }
   },

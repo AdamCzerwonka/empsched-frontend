@@ -19,7 +19,11 @@ import {
   LoadingButton,
   Separator,
 } from "~/components/ui";
-import { parseFromIsoToDisplayDate, parseToIsoDate } from "~/lib";
+import {
+  formatTimeToLocalDateTime,
+  parseFromIsoToDisplayDate,
+  parseToIsoDate,
+} from "~/lib";
 import { CalendarIcon, Clock, Plus, Trash2, Users } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
 import { queryKeys } from "~/constants";
@@ -200,8 +204,8 @@ export const ScheduleCreateDetails = () => {
       const shifts = weeklyPattern[day];
       if (shifts.length > 0) {
         const shiftDefinitions: ShiftDefinition[] = shifts.map((shift) => ({
-          startTime: shift.startTime,
-          endTime: shift.endTime,
+          startTime: formatTimeToLocalDateTime(shift.startTime),
+          endTime: formatTimeToLocalDateTime(shift.endTime),
           shiftRequirements: shift.requirements
             .filter((r) => r.positionId)
             .map(

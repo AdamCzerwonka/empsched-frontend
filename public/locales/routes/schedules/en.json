@@ -44,7 +44,22 @@
         "unassigned": "Unassigned"
       },
       "actions": {
-        "solve": "Solve Schedule"
+        "solve": "Solve Schedule",
+        "addShift": "Add Shift",
+        "editShift": "Edit",
+        "deleteShift": "Delete",
+        "unassign": "Unassign",
+        "save": "Save",
+        "cancel": "Cancel"
+      },
+      "shiftForm": {
+        "title": "Add New Shift",
+        "editTitle": "Edit Shift",
+        "date": "Date",
+        "startTime": "Start Time",
+        "endTime": "End Time",
+        "position": "Position",
+        "selectPosition": "Select position..."
       }
     }
   },
