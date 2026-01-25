@@ -59,7 +59,9 @@
         "startTime": "Start Time",
         "endTime": "End Time",
         "position": "Position",
-        "selectPosition": "Select position..."
+        "selectPosition": "Select position...",
+        "employee": "Assigned Employee",
+        "selectEmployee": "Select employee (optional)..."
       }
     }
   },

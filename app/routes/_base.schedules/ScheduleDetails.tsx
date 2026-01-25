@@ -8,6 +8,7 @@ import {
   useUpdateShift,
   useDeleteShift,
   useUnassignShift,
+  useEmployees,
 } from "~/api/hooks";
 import { DisplayData } from "~/components/system";
 import {
@@ -99,6 +100,7 @@ interface ShiftFormData {
   startTime: string;
   endTime: string;
   requiredPositionId: string;
+  assignedEmployeeId: string;
 }
 
 const defaultShiftFormData: ShiftFormData = {
@@ -106,6 +108,7 @@ const defaultShiftFormData: ShiftFormData = {
   startTime: "08:00",
   endTime: "16:00",
   requiredPositionId: "",
+  assignedEmployeeId: "",
 };
 
 interface ScheduleDetailsDrawerProps {
@@ -135,6 +138,7 @@ const ScheduleDetailsDrawer = ({
 }: ScheduleDetailsDrawerProps) => {
   const { t } = useTranslation("routes/schedules");
   const { positions } = usePositions({ pageNumber: 0, pageSize: 100 });
+  const { employees } = useEmployees({ pageNumber: 0, pageSize: 100 });
 
   const [isAddingShift, setIsAddingShift] = useState(false);
   const [editingShiftId, setEditingShiftId] = useState<string | null>(null);
@@ -144,6 +148,11 @@ const ScheduleDetailsDrawer = ({
   const getPositionName = (positionId: string) => {
     const position = positions?.content?.find((p) => p.id === positionId);
     return position?.name || positionId;
+  };
+
+  const getEmployeeName = (employeeId: string) => {
+    const employee = employees?.content?.find((e) => e.id === employeeId);
+    return employee ? `${employee.firstName} ${employee.lastName}` : employeeId;
   };
 
   const canSolve = schedule.status === ScheduleStatusEnum.DRAFT;
@@ -163,6 +172,7 @@ const ScheduleDetailsDrawer = ({
       startTime: extractTimeFromLocalDateTime(shift.startTime),
       endTime: extractTimeFromLocalDateTime(shift.endTime),
       requiredPositionId: shift.requiredPositionId,
+      assignedEmployeeId: shift.assignedEmployee || "",
     });
     setEditingShiftId(shift.id);
     setIsAddingShift(false);
@@ -187,6 +197,7 @@ const ScheduleDetailsDrawer = ({
         shiftFormData.date
       ),
       requiredPositionId: shiftFormData.requiredPositionId,
+      assignedEmployeeId: shiftFormData.assignedEmployeeId || undefined,
     };
 
     if (isAddingShift) {
@@ -275,6 +286,30 @@ const ScheduleDetailsDrawer = ({
           ))}
         </select>
       </div>
+      <div className="flex flex-col gap-1">
+        <Label className="text-xs">
+          {t("details.drawer.shiftForm.employee")}
+        </Label>
+        <select
+          className="border-input bg-background h-9 rounded-md border px-3 text-sm"
+          value={shiftFormData.assignedEmployeeId}
+          onChange={(e) =>
+            setShiftFormData((prev) => ({
+              ...prev,
+              assignedEmployeeId: e.target.value,
+            }))
+          }
+        >
+          <option value="">
+            {t("details.drawer.shiftForm.selectEmployee")}
+          </option>
+          {employees?.content?.map((emp) => (
+            <option key={emp.id} value={emp.id}>
+              {emp.firstName} {emp.lastName}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className="flex gap-2">
         <Button
           variant="outline"
@@ -298,8 +333,8 @@ const ScheduleDetailsDrawer = ({
   );
 
   return (
-    <Drawer direction="right" open={open} onOpenChange={onOpenChange}>
-      <DrawerContent className="sm:max-w-md">
+    <Drawer open={open} onOpenChange={onOpenChange}>
+      <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>{t("details.drawer.title")}</DrawerTitle>
           <DrawerDescription>
@@ -339,41 +374,47 @@ const ScheduleDetailsDrawer = ({
                 {t(`details.status.${schedule.status}`)}
               </Badge>
             </div>
-
-            <div className="flex flex-col gap-1">
-              <Label className="text-muted-foreground text-xs">
-                {t("details.drawer.score")}
-              </Label>
-              <span className="text-sm">{schedule.score || "-"}</span>
-            </div>
           </div>
+
+          {/* Solve Button */}
+          {canSolve && (
+            <LoadingButton
+              onClick={() => onSolve(schedule.id)}
+              isLoading={isSolving}
+              className="w-full"
+            >
+              <Play className="size-4" />
+              {t("details.drawer.actions.solve")}
+            </LoadingButton>
+          )}
 
           <Separator />
 
           {/* Shifts Section */}
           <div className="flex flex-col gap-3">
-            <div className="flex items-center justify-between">
-              <Label className="flex items-center gap-2">
-                <Clock className="size-4" />
-                {t("details.drawer.shifts")}
-              </Label>
-              <div className="flex items-center gap-2">
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center justify-between">
+                <Label className="flex items-center gap-2">
+                  <Clock className="size-4" />
+                  {t("details.drawer.shifts")}
+                </Label>
                 <span className="text-muted-foreground text-sm">
                   {t("details.drawer.shiftsCount", {
                     count: schedule.shiftList?.length || 0,
                   })}
                 </span>
-                {!isAddingShift && !editingShiftId && (
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() => setIsAddingShift(true)}
-                  >
-                    <Plus className="size-4" />
-                    {t("details.drawer.actions.addShift")}
-                  </Button>
-                )}
               </div>
+              {!isAddingShift && !editingShiftId && (
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="w-full"
+                  onClick={() => setIsAddingShift(true)}
+                >
+                  <Plus className="size-4" />
+                  {t("details.drawer.actions.addShift")}
+                </Button>
+              )}
             </div>
 
             {/* Shift Form (for adding new or editing existing) */}
@@ -384,7 +425,7 @@ const ScheduleDetailsDrawer = ({
                 {t("details.drawer.noShifts")}
               </p>
             ) : (
-              <ItemGroup className="max-h-[300px] overflow-y-auto rounded-md border">
+              <ItemGroup className="rounded-md border">
                 {schedule.shiftList.map((shift: Shift, index: number) => (
                   <div key={shift.id}>
                     <Item variant="muted" size="sm">
@@ -409,41 +450,36 @@ const ScheduleDetailsDrawer = ({
                             <span className="flex items-center gap-1">
                               <User className="size-3" />
                               {t("details.drawer.shiftDetails.employee")}:{" "}
-                              {shift.assignedEmployee}
+                              {getEmployeeName(shift.assignedEmployee)}
                             </span>
                           )}
                         </ItemDescription>
                       </ItemContent>
                       {/* Shift Actions */}
-                      <div className="flex items-center gap-1">
+                      <div className="flex w-full items-center justify-center gap-1">
                         <Button
-                          size="icon"
                           variant="ghost"
-                          className="size-8"
                           onClick={() => handleStartEditShift(shift)}
                           disabled={isAddingShift || !!editingShiftId}
                         >
-                          <Pencil className="size-3" />
+                          <Pencil />
                         </Button>
                         {shift.assignedEmployee && (
                           <Button
-                            size="icon"
                             variant="ghost"
-                            className="size-8"
                             onClick={() => onShiftUnassign(shift.id)}
                             disabled={isAddingShift || !!editingShiftId}
                           >
-                            <UserMinus className="size-3" />
+                            <UserMinus />
                           </Button>
                         )}
                         <Button
-                          size="icon"
                           variant="ghost"
-                          className="text-destructive hover:text-destructive size-8"
+                          className="text-destructive hover:text-destructive"
                           onClick={() => onShiftDelete(shift.id)}
                           disabled={isAddingShift || !!editingShiftId}
                         >
-                          <Trash2 className="size-3" />
+                          <Trash2 />
                         </Button>
                       </div>
                     </Item>
@@ -453,23 +489,6 @@ const ScheduleDetailsDrawer = ({
               </ItemGroup>
             )}
           </div>
-
-          {/* Actions Section */}
-          {canSolve && (
-            <>
-              <Separator />
-              <div className="flex flex-col gap-2">
-                <LoadingButton
-                  onClick={() => onSolve(schedule.id)}
-                  isLoading={isSolving}
-                  className="w-full"
-                >
-                  <Play className="size-4" />
-                  {t("details.drawer.actions.solve")}
-                </LoadingButton>
-              </div>
-            </>
-          )}
         </div>
       </DrawerContent>
     </Drawer>

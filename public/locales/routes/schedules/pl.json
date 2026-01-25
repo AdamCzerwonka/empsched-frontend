@@ -21,8 +21,8 @@
     },
     "status": {
       "DRAFT": "Wersja robocza",
-      "SOLVING": "W trakcie rozwiązywania",
-      "SOLVED": "Rozwiązany",
+      "SOLVING": "W trakcie przygotowywania",
+      "SOLVED": "Gotowy",
       "PUBLISHED": "Opublikowany",
       "ERROR": "Błąd"
     },
@@ -60,7 +60,9 @@
         "startTime": "Godzina rozpoczęcia",
         "endTime": "Godzina zakończenia",
         "position": "Stanowisko",
-        "selectPosition": "Wybierz stanowisko..."
+        "selectPosition": "Wybierz stanowisko...",
+        "employee": "Przypisany pracownik",
+        "selectEmployee": "Wybierz pracownika (opcjonalnie)..."
       }
     }
   },
