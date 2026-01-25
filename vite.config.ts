@@ -16,9 +16,12 @@ export default defineConfig({
       globDirectory: "dist",
       injectionPoint: "self.__SW_MANIFEST",
       rollupFormat: "iife",
-      // disable: process.env.NODE_ENV === "development",
+      disable: process.env.NODE_ENV === "development",
     }),
   ],
+  server: {
+    allowedHosts: ["essayistic-shantay-nonphotographically.ngrok-free.dev"],
+  },
   resolve: {
     alias: {
       "~": path.resolve(__dirname, "./app"),
