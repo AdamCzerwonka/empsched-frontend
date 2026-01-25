@@ -1,0 +1,33 @@
+{
+  "bell": {
+    "title": "Powiadomienia"
+  },
+  "center": {
+    "title": "Powiadomienia",
+    "markAllAsRead": "Oznacz jako przeczytane",
+    "clearAll": "Wyczyść wszystkie",
+    "empty": "Brak powiadomień"
+  },
+  "permission": {
+    "title": "Włącz powiadomienia",
+    "description": "Otrzymuj powiadomienia gdy zostaniesz przypisany do nowych pozycji lub gdy Twoje przypisania się zmienią.",
+    "enable": "Włącz",
+    "later": "Nie teraz"
+  },
+  "types": {
+    "POSITION_ASSIGNED": {
+      "title": "Nowa pozycja",
+      "body": "Przypisano Ci nową pozycję"
+    },
+    "POSITION_REMOVED": {
+      "title": "Usunięto pozycję",
+      "body": "Usunięto Ci pozycję"
+    }
+  },
+  "time": {
+    "justNow": "Przed chwilą",
+    "minutesAgo": "{{count}} min temu",
+    "hoursAgo": "{{count}} godz. temu",
+    "daysAgo": "{{count}} dni temu"
+  }
+}

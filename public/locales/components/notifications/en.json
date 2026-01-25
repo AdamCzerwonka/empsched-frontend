@@ -1,0 +1,33 @@
+{
+  "bell": {
+    "title": "Notifications"
+  },
+  "center": {
+    "title": "Notifications",
+    "markAllAsRead": "Mark all as read",
+    "clearAll": "Clear all",
+    "empty": "No notifications"
+  },
+  "permission": {
+    "title": "Enable Notifications",
+    "description": "Get notified when you're assigned to new positions or when your assignments change.",
+    "enable": "Enable",
+    "later": "Not now"
+  },
+  "types": {
+    "POSITION_ASSIGNED": {
+      "title": "New Position",
+      "body": "You have been assigned to a new position"
+    },
+    "POSITION_REMOVED": {
+      "title": "Position Removed",
+      "body": "You have been removed from a position"
+    }
+  },
+  "time": {
+    "justNow": "Just now",
+    "minutesAgo": "{{count}} min ago",
+    "hoursAgo": "{{count}}h ago",
+    "daysAgo": "{{count}}d ago"
+  }
+}

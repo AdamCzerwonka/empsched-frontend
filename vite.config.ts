@@ -24,4 +24,12 @@ export default defineConfig({
       "~": path.resolve(__dirname, "./app"),
     },
   },
+  preview: {
+    host: true,
+    port: 4173,
+    strictPort: true,
+    allowedHosts: ["cuneate-aphidious-clement.ngrok-free.dev"],
+  },
 });
+
+
