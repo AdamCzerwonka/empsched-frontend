@@ -6,4 +6,5 @@ export const queryKeys = {
   getEmployeePositions: "employeePositions",
   getAbsences: "absences",
   getSelfAbsences: "selfAbsences",
+  getSchedules: "schedules",
 };

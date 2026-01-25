@@ -22,6 +22,17 @@
       }
     }
   },
+  "schedules": {
+    "name": "Schedules",
+    "child": {
+      "create": {
+        "name": "Create"
+      },
+      "details": {
+        "name": "Details"
+      }
+    }
+  },
   "absences": {
     "name": "Absences"
   }

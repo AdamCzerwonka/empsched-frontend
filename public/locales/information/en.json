@@ -19,5 +19,9 @@
   },
   "profilePicture": {
     "changeSuccess": "Profile picture changed successfully"
+  },
+  "schedules": {
+    "draftCreated": "Draft schedule created successfully",
+    "solveStarted": "Schedule solving has been started"
   }
 }

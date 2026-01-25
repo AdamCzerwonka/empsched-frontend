@@ -19,5 +19,9 @@
   },
   "profilePicture": {
     "changeSuccess": "Zdjęcie profilowe zostało pomyślnie zmienione"
+  },
+  "schedules": {
+    "draftCreated": "Wersja robocza grafiku została pomyślnie utworzona",
+    "solveStarted": "Rozpoczęto rozwiązywanie grafiku"
   }
 }

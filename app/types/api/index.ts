@@ -6,5 +6,8 @@ export * from "./filter/PaginationParams";
 export * from "./filter/StartDateFilterParams";
 export * from "./organisation/OrganisationCreateRequest";
 export * from "./position/PositionCreateRequest";
+export * from "./schedule/ScheduleGenerationRequest";
+export * from "./schedule/ShifRequirement";
+export * from "./schedule/ShiftDefinition";
 export * from "./ErrorResponse";
 export * from "./PagedData";

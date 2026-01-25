@@ -5,5 +5,6 @@ export const navigation = {
   logout: "/logout",
   myAccountSettings: "/my-account-settings",
   organisation: "/organisation",
+  schedules: "/schedules",
   absences: "/absences",
 };
