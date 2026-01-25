@@ -2,8 +2,11 @@ import { ExtendedRoleEnum, RoleEnum, type NavbarLink } from "../types/general";
 import { navigation } from "./navigation";
 import {
   BetweenHorizontalStart,
+  BookOpenText,
   Building2,
   CalendarX,
+  ClipboardPlus,
+  FolderOpen,
   IdCardLanyard,
   NotebookText,
 } from "lucide-react";
@@ -46,6 +49,31 @@ export const navbarLinks: NavbarLink[] = [
         link: navigation.organisation + "?tab=positions",
         icon: BetweenHorizontalStart,
         access: [RoleEnum.ORGANISATION_ADMIN],
+        child: null,
+      },
+    ],
+  },
+  {
+    i18nTextKey: "schedules.name",
+    i18nDescriptionKey: undefined,
+    link: navigation.schedules,
+    icon: BookOpenText,
+    access: [ExtendedRoleEnum.AUTHENTICATED],
+    child: [
+      {
+        i18nTextKey: "schedules.child.details.name",
+        i18nDescriptionKey: undefined,
+        link: navigation.schedules + "?tab=details",
+        icon: FolderOpen,
+        access: [ExtendedRoleEnum.AUTHENTICATED],
+        child: null,
+      },
+      {
+        i18nTextKey: "schedules.child.create.name",
+        i18nDescriptionKey: undefined,
+        link: navigation.schedules + "?tab=create",
+        icon: ClipboardPlus,
+        access: [ExtendedRoleEnum.AUTHENTICATED],
         child: null,
       },
     ],

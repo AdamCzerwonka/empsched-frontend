@@ -22,6 +22,17 @@
       }
     }
   },
+  "schedules": {
+    "name": "Grafiki",
+    "child": {
+      "create": {
+        "name": "Utwórz"
+      },
+      "details": {
+        "name": "Szczegóły"
+      }
+    }
+  },
   "absences": {
     "name": "Nieobecności"
   }
