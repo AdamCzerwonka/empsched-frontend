@@ -11,7 +11,7 @@
     },
     "employees": {
       "trigger": "Employees",
-      "title": "Organisation emploi",
+      "title": "Organisation employees",
       "totalEmployees": "Total employees",
       "table": {
         "header": {

@@ -96,12 +96,16 @@ export default function App() {
         const serwist = await getSerwist();
 
         serwist?.addEventListener("waiting", () => {
-          console.log("new version!");
+          console.log("new versionn!");
           setShowRefreshButton(true);
         });
 
         serwist?.addEventListener("installed", () => {
           console.log("New version installed offline!");
+        });
+
+        serwist?.addEventListener("controlling", () => {
+          window.location.reload();
         });
 
         void serwist?.register();
@@ -135,10 +139,10 @@ export default function App() {
         staleTime: 1000 * 60 * 5,
         gcTime: 1000 * 60 * 60 * 24, //24h
       },
-      mutations: {
-        networkMode: "offlineFirst",
-        retry: 3,
-      },
+      // mutations: {
+      //   networkMode: "offlineFirst",
+      //   retry: 3,
+      // },
     },
   });
 
@@ -164,7 +168,7 @@ export default function App() {
         <ToasterWrapper />
       </PersistQueryClientProvider>
       {showRefreshButton && (
-        <div className="fixed right-5 bottom-5 z-[9999] rounded-lg bg-[#333] p-5 text-white">
+        <div className="fixed right-5 bottom-5 z-[9999] flex flex-col gap-2 rounded-lg bg-[#333] p-5 text-white">
           {tInfo("newVersion.description")}
           <Button onClick={handleUpdateClick}>
             {tInfo("newVersion.triggerButton")}

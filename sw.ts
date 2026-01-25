@@ -34,8 +34,8 @@ self.addEventListener("push", (event: PushEvent) => {
 
   const options: NotificationOptions = {
     body: payload.body,
-    icon: "/icons/android-chrome-192x192.png",
-    badge: "/icons/android-chrome-192x192.png",
+    icon: "/icons/icon-192x192.png",
+    badge: "/icons/icon-192x192.png",
     data: { url: payload.url, ...payload.data, type: payload.type },
     tag: payload.type,
   };
