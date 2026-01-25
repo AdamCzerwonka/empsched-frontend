@@ -1,6 +1,6 @@
 import { defaultCache } from "@serwist/vite/worker";
 import type { PrecacheEntry, SerwistGlobalConfig } from "serwist";
-import { Serwist } from "serwist";
+import { CacheFirst, NetworkFirst, Serwist } from "serwist";
 
 // This declares the value of `injectionPoint` to TypeScript.
 // `injectionPoint` is the string that will be replaced by the
@@ -13,43 +13,55 @@ declare global {
 }
 
 declare const self: ServiceWorkerGlobalScope;
+const cacheFirst = new CacheFirst();
+const networkFirst = new NetworkFirst();
 
 const serwist = new Serwist({
   precacheEntries: self.__SW_MANIFEST,
-  skipWaiting: true,
+  skipWaiting: false,
   clientsClaim: true,
   navigationPreload: true,
+  precacheOptions: {
+    cleanupOutdatedCaches: true,
+  },
   runtimeCaching: [
     {
-      urlPattern: ({ url }) =>
-        url.pathname.startsWith(import.meta.env.VITE_API_URL),
-      handler: "NetworkFirst",
-      options: {
-        cacheName: "api-cache",
-        expiration: {
-          maxEntries: 50,
-          maxAgeSeconds: 60 * 60 * 24, // 24h
-        },
-        cacheableResponse: {
-          statuses: [0, 200],
-        },
-      },
+      matcher: ({ url }) => url.pathname.includes("picture"),
+      handler: cacheFirst,
     },
     {
-      urlPattern: ({ request }) => request.destination === "image",
-
-      handler: "CacheFirst",
-      options: {
-        cacheName: "images-cache",
-        expiration: {
-          maxEntries: 50,
-          maxAgeSeconds: 30 * 24 * 60 * 60, // 30d
-        },
-      },
+      matcher: ({ url }) =>
+        url.pathname.startsWith(import.meta.env.VITE_API_URL),
+      handler: networkFirst,
     },
 
     ...defaultCache,
   ],
 });
 
+serwist.registerCapture(({ request, sameOrigin }) => {
+  return sameOrigin && request.destination === "image";
+}, new CacheFirst());
+
+// add fallbacks
+serwist.setCatchHandler(async ({ request }) => {
+  const dest = request.destination;
+
+  if (dest === "document") {
+    const match = await serwist.matchPrecache("/offline.html");
+    return match || Response.error();
+  }
+
+  if (dest === "image") {
+    const match = await serwist.matchPrecache("/fallback.png");
+    return match || Response.error();
+  }
+
+  if (dest === "font") {
+    const match = await serwist.matchPrecache("/fonts/fallback.woff2");
+    return match || Response.error();
+  }
+
+  return Response.error();
+});
 serwist.addEventListeners();
