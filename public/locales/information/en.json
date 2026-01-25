@@ -19,5 +19,9 @@
   },
   "profilePicture": {
     "changeSuccess": "Profile picture changed successfully"
+  },
+  "newVersion": {
+    "description": "New version available",
+    "triggerButton": "Refresh"
   }
 }

@@ -19,5 +19,9 @@
   },
   "profilePicture": {
     "changeSuccess": "Zdjęcie profilowe zostało pomyślnie zmienione"
+  },
+  "newVersion": {
+    "description": "Nowa wersja aplikacji dostępna",
+    "triggerButton": "Odswież"
   }
 }

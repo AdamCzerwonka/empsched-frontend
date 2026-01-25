@@ -24,9 +24,10 @@ import type { ErrorResponse } from "./types/api";
 import { useTranslation } from "react-i18next";
 import { ToasterWrapper } from "./components/system";
 import { getSerwist } from "virtual:serwist";
-import type { Serwist } from "serwist";
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import { createAsyncStoragePersister } from "@tanstack/query-async-storage-persister";
+import type { Serwist } from "@serwist/window";
+import { Button } from "./components/ui";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -39,6 +40,13 @@ export const links: Route.LinksFunction = () => [
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
   },
+  { rel: "manifest", href: "/manifest.json" },
+  { rel: "mask-icon", href: "/icons/icon-192x192.png" },
+
+  { rel: "shortcut icon", href: "/favicon.ico" },
+  { rel: "icon", type: "image/png", href: "/icons/logo.png" },
+
+  { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -48,73 +56,21 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Employe Scheduler</title>
-        <meta name="description" content="Best PWA app in the world!" />
-        <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="mask-icon" href="/icons/mask-icon.svg" color="#FFFFFF" />
-        <meta name="theme-color" content="#ffffff" />
-        {/* <link rel="apple-touch-icon" href="/icons/touch-icon-iphone.png" />
-        <link
-          rel="apple-touch-icon"
-          sizes="152x152"
-          href="/icons/touch-icon-ipad.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/icons/touch-icon-iphone-retina.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="167x167"
-          href="/icons/touch-icon-ipad-retina.png"
-        /> */}
-        <link rel="manifest" href="/manifest.json" />
+        <meta name="description" content="Best Scheduler!" />
+
+        <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:url" content="https://yourdomain.com" />
-        <meta name="twitter:title" content="My Awesome PWA app" />
-        <meta name="twitter:description" content="Best PWA app in the world!" />
-        <meta name="twitter:image" content="/icons/twitter.png" />
+        <meta name="twitter:url" content="https://p.lodz.pl/" />
+        <meta name="twitter:title" content="Employee Scheduler" />
+        <meta name="twitter:description" content="Best Scheduler!" />
+        <meta name="twitter:image" content="/icons/icon-512x512.png" />
+
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="My Awesome PWA app" />
-        <meta property="og:description" content="Best PWA app in the world!" />
-        <meta property="og:site_name" content="My awesome PWA app" />
-        <meta property="og:url" content="https://yourdomain.com" />
-        <meta property="og:image" content="/icons/og.png" />
-        {/* <link
-          rel="apple-touch-startup-image"
-          href="/images/apple_splash_2048.png"
-          sizes="2048x2732"
-        />
-        <link
-          rel="apple-touch-startup-image"
-          href="/images/apple_splash_1668.png"
-          sizes="1668x2224"
-        />
-        <link
-          rel="apple-touch-startup-image"
-          href="/images/apple_splash_1536.png"
-          sizes="1536x2048"
-        />
-        <link
-          rel="apple-touch-startup-image"
-          href="/images/apple_splash_1125.png"
-          sizes="1125x2436"
-        />
-        <link
-          rel="apple-touch-startup-image"
-          href="/images/apple_splash_1242.png"
-          sizes="1242x2208"
-        />
-        <link
-          rel="apple-touch-startup-image"
-          href="/images/apple_splash_750.png"
-          sizes="750x1334"
-        />
-        <link
-          rel="apple-touch-startup-image"
-          href="/images/apple_splash_640.png"
-          sizes="640x1136"
-        ></link> */}
+        <meta property="og:title" content="Employee Scheduler" />
+        <meta property="og:description" content="Best Employee Scheduler!" />
+        <meta property="og:site_name" content="Employee Scheduler" />
+        <meta property="og:url" content="https://p.lodz.pl/" />
+        <meta property="og:image" content="/icons/icon-512x512.png" />
         <Meta />
         <Links />
       </head>
@@ -129,8 +85,38 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   const { t } = useTranslation("errors");
+  const { t: tInfo } = useTranslation("information");
+
   const [showRefreshButton, setShowRefreshButton] = useState(false);
   const [serwistInstance, setSerwistInstance] = useState<Serwist | null>(null);
+
+  useEffect(() => {
+    const loadSerwist = async () => {
+      if ("serviceWorker" in navigator) {
+        const serwist = await getSerwist();
+
+        serwist?.addEventListener("waiting", () => {
+          console.log("new version!");
+          setShowRefreshButton(true);
+        });
+
+        serwist?.addEventListener("installed", () => {
+          console.log("New version installed offline!");
+        });
+
+        void serwist?.register();
+        if (serwist) setSerwistInstance(serwist);
+      }
+    };
+
+    loadSerwist();
+  }, []);
+
+  const handleUpdateClick = () => {
+    if (serwistInstance) {
+      serwistInstance?.messageSkipWaiting();
+    }
+  };
 
   const queryClient = new QueryClient({
     queryCache: new QueryCache({
@@ -160,74 +146,29 @@ export default function App() {
     storage: window.localStorage,
   });
 
-  useEffect(() => {
-    // if (import.meta.env.DEV) return;
-    const loadSerwist = async () => {
-      if ("serviceWorker" in navigator) {
-        const serwist = await getSerwist();
-
-        serwist?.addEventListener("waiting", () => {
-          console.log("Dostępna nowa wersja aplikacji!");
-          setShowRefreshButton(true); // Pokaż użytkownikowi przycisk/toast
-        });
-
-        // Opcjonalnie: logowanie instalacji
-        serwist?.addEventListener("installed", () => {
-          console.log("Aplikacja zainstalowana offline!");
-        });
-
-        void serwist?.register();
-        setSerwistInstance(serwist);
-      }
-    };
-
-    loadSerwist();
-  }, []);
-
-  const handleUpdateClick = () => {
-    if (serwistInstance) {
-      // To wysyła sygnał do SW: "pomiń czekanie, aktywuj się teraz!"
-      serwistInstance?.messageSkipWaiting();
-    }
-  };
-
   return (
     <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
       <PersistQueryClientProvider
         client={queryClient}
-        persister={persister}
         persistOptions={{
           persister,
           maxAge: 1000 * 60 * 60 * 24, // 24h
         }}
         onSuccess={() => {
-          queryClient.resumePausedMutations();
+          queryClient.resumePausedMutations().then(() => {
+            queryClient.invalidateQueries();
+          });
         }}
       >
         <Outlet />
         <ToasterWrapper />
       </PersistQueryClientProvider>
-      {/* 4. Toast / Powiadomienie o aktualizacji */}
       {showRefreshButton && (
-        <div
-          style={{
-            position: "fixed",
-            bottom: 20,
-            right: 20,
-            padding: 20,
-            background: "#333",
-            color: "#fff",
-            borderRadius: 8,
-            zIndex: 9999,
-          }}
-        >
-          Dostępna nowa wersja!
-          <button
-            onClick={handleUpdateClick}
-            style={{ marginLeft: 10, cursor: "pointer" }}
-          >
-            Odśwież
-          </button>
+        <div className="fixed right-5 bottom-5 z-[9999] rounded-lg bg-[#333] p-5 text-white">
+          {tInfo("newVersion.description")}
+          <Button onClick={handleUpdateClick}>
+            {tInfo("newVersion.triggerButton")}
+          </Button>
         </div>
       )}
     </ThemeProvider>

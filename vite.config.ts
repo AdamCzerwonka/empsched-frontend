@@ -12,10 +12,11 @@ export default defineConfig({
     tsconfigPaths(),
     serwist({
       swSrc: "sw.ts",
-      swDest: "dest/sw.js",
-      globDirectory: "build/client",
+      swDest: "sw.js",
+      globDirectory: "dist",
       injectionPoint: "self.__SW_MANIFEST",
       rollupFormat: "iife",
+      // disable: process.env.NODE_ENV === "development",
     }),
   ],
   resolve: {
