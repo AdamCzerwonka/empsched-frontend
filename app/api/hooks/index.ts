@@ -18,3 +18,7 @@ export * from "./employee/useCreateEmployee";
 export * from "./schedule/useCreateDraftSchedule";
 export * from "./schedule/useSchedule";
 export * from "./schedule/useSolveSchedule";
+export * from "./shift/useAddShift";
+export * from "./shift/useDeleteShift";
+export * from "./shift/useUnassignShift";
+export * from "./shift/useUpdateShift";

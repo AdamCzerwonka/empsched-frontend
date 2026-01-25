@@ -1,17 +1,28 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useSchedule, usePositions, useSolveSchedule } from "~/api/hooks";
+import {
+  useSchedule,
+  usePositions,
+  useSolveSchedule,
+  useAddShift,
+  useUpdateShift,
+  useDeleteShift,
+  useUnassignShift,
+} from "~/api/hooks";
 import { DisplayData } from "~/components/system";
 import {
   Badge,
   BaseEmpty,
   BasePagination,
+  Button,
   Drawer,
   DrawerContent,
   DrawerDescription,
   DrawerHeader,
   DrawerTitle,
+  Input,
   Item,
+  ItemActions,
   ItemContent,
   ItemDescription,
   ItemGroup,
@@ -21,13 +32,30 @@ import {
   LoadingButton,
   Separator,
 } from "~/components/ui";
-import { parseFromIsoToDisplayDate } from "~/lib";
-import { CalendarDays, Clock, Play, User } from "lucide-react";
+import {
+  extractDateFromLocalDateTime,
+  extractIsoDateFromLocalDateTime,
+  extractTimeFromLocalDateTime,
+  formatTimeToLocalDateTime,
+  parseFromIsoToDisplayDate,
+} from "~/lib";
+import {
+  CalendarDays,
+  Clock,
+  Pencil,
+  Play,
+  Plus,
+  Trash2,
+  User,
+  UserMinus,
+  X,
+} from "lucide-react";
 import type { Schedule, Shift } from "~/types/general";
 import { ScheduleStatusEnum } from "~/types/general";
 import { useQueryClient } from "@tanstack/react-query";
 import { queryKeys } from "~/constants";
 import { toast } from "sonner";
+import type { ShiftUpdateRequest } from "~/types/api";
 
 const getStatusBadgeStyles = (status: ScheduleStatusEnum) => {
   switch (status) {
@@ -66,12 +94,31 @@ const getStatusBadgeStyles = (status: ScheduleStatusEnum) => {
   }
 };
 
+interface ShiftFormData {
+  date: string;
+  startTime: string;
+  endTime: string;
+  requiredPositionId: string;
+}
+
+const defaultShiftFormData: ShiftFormData = {
+  date: new Date().toISOString().split("T")[0],
+  startTime: "08:00",
+  endTime: "16:00",
+  requiredPositionId: "",
+};
+
 interface ScheduleDetailsDrawerProps {
   schedule: Schedule;
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onSolve: (scheduleId: string) => void;
   isSolving: boolean;
+  onShiftAdd: (scheduleId: string, data: ShiftUpdateRequest) => Promise<void>;
+  onShiftUpdate: (shiftId: string, data: ShiftUpdateRequest) => Promise<void>;
+  onShiftDelete: (shiftId: string) => Promise<void>;
+  onShiftUnassign: (shiftId: string) => Promise<void>;
+  isShiftLoading: boolean;
 }
 
 const ScheduleDetailsDrawer = ({
@@ -80,9 +127,19 @@ const ScheduleDetailsDrawer = ({
   onOpenChange,
   onSolve,
   isSolving,
+  onShiftAdd,
+  onShiftUpdate,
+  onShiftDelete,
+  onShiftUnassign,
+  isShiftLoading,
 }: ScheduleDetailsDrawerProps) => {
   const { t } = useTranslation("routes/schedules");
   const { positions } = usePositions({ pageNumber: 0, pageSize: 100 });
+
+  const [isAddingShift, setIsAddingShift] = useState(false);
+  const [editingShiftId, setEditingShiftId] = useState<string | null>(null);
+  const [shiftFormData, setShiftFormData] =
+    useState<ShiftFormData>(defaultShiftFormData);
 
   const getPositionName = (positionId: string) => {
     const position = positions?.content?.find((p) => p.id === positionId);
@@ -90,6 +147,155 @@ const ScheduleDetailsDrawer = ({
   };
 
   const canSolve = schedule.status === ScheduleStatusEnum.DRAFT;
+  const canEditShifts =
+    schedule.status === ScheduleStatusEnum.DRAFT ||
+    schedule.status === ScheduleStatusEnum.SOLVED;
+
+  const handleStartAddShift = () => {
+    setShiftFormData(defaultShiftFormData);
+    setEditingShiftId(null);
+    setIsAddingShift(true);
+  };
+
+  const handleStartEditShift = (shift: Shift) => {
+    setShiftFormData({
+      date: extractIsoDateFromLocalDateTime(shift.startTime),
+      startTime: extractTimeFromLocalDateTime(shift.startTime),
+      endTime: extractTimeFromLocalDateTime(shift.endTime),
+      requiredPositionId: shift.requiredPositionId,
+    });
+    setEditingShiftId(shift.id);
+    setIsAddingShift(false);
+  };
+
+  const handleCancelForm = () => {
+    setIsAddingShift(false);
+    setEditingShiftId(null);
+    setShiftFormData(defaultShiftFormData);
+  };
+
+  const handleSaveShift = async () => {
+    if (!shiftFormData.requiredPositionId || !shiftFormData.date) return;
+
+    const formattedData = {
+      startTime: formatTimeToLocalDateTime(
+        shiftFormData.startTime,
+        shiftFormData.date
+      ),
+      endTime: formatTimeToLocalDateTime(
+        shiftFormData.endTime,
+        shiftFormData.date
+      ),
+      requiredPositionId: shiftFormData.requiredPositionId,
+    };
+
+    if (isAddingShift) {
+      await onShiftAdd(schedule.id, formattedData);
+    } else if (editingShiftId) {
+      await onShiftUpdate(editingShiftId, formattedData);
+    }
+    handleCancelForm();
+  };
+
+  const shiftForm = (
+    <div className="bg-muted/50 flex flex-col gap-3 rounded-md border p-3">
+      <div className="flex items-center justify-between">
+        <Label className="font-medium">
+          {isAddingShift
+            ? t("details.drawer.shiftForm.title")
+            : t("details.drawer.shiftForm.editTitle")}
+        </Label>
+        <Button variant="ghost" size="icon" onClick={handleCancelForm}>
+          <X className="size-4" />
+        </Button>
+      </div>
+      <div className="flex flex-col gap-1">
+        <Label className="text-xs">{t("details.drawer.shiftForm.date")}</Label>
+        <Input
+          type="date"
+          value={shiftFormData.date}
+          onChange={(e) =>
+            setShiftFormData((prev) => ({
+              ...prev,
+              date: e.target.value,
+            }))
+          }
+        />
+      </div>
+      <div className="flex flex-wrap gap-3">
+        <div className="flex min-w-[120px] flex-1 flex-col gap-1">
+          <Label className="text-xs">
+            {t("details.drawer.shiftForm.startTime")}
+          </Label>
+          <Input
+            type="time"
+            value={shiftFormData.startTime}
+            onChange={(e) =>
+              setShiftFormData((prev) => ({
+                ...prev,
+                startTime: e.target.value,
+              }))
+            }
+          />
+        </div>
+        <div className="flex min-w-[120px] flex-1 flex-col gap-1">
+          <Label className="text-xs">
+            {t("details.drawer.shiftForm.endTime")}
+          </Label>
+          <Input
+            type="time"
+            value={shiftFormData.endTime}
+            onChange={(e) =>
+              setShiftFormData((prev) => ({ ...prev, endTime: e.target.value }))
+            }
+          />
+        </div>
+      </div>
+      <div className="flex flex-col gap-1">
+        <Label className="text-xs">
+          {t("details.drawer.shiftForm.position")}
+        </Label>
+        <select
+          className="border-input bg-background h-9 rounded-md border px-3 text-sm"
+          value={shiftFormData.requiredPositionId}
+          onChange={(e) =>
+            setShiftFormData((prev) => ({
+              ...prev,
+              requiredPositionId: e.target.value,
+            }))
+          }
+        >
+          <option value="">
+            {t("details.drawer.shiftForm.selectPosition")}
+          </option>
+          {positions?.content?.map((pos) => (
+            <option key={pos.id} value={pos.id}>
+              {pos.name}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="flex gap-2">
+        <Button
+          variant="outline"
+          size="sm"
+          className="flex-1"
+          onClick={handleCancelForm}
+        >
+          {t("details.drawer.actions.cancel")}
+        </Button>
+        <LoadingButton
+          size="sm"
+          className="flex-1"
+          onClick={handleSaveShift}
+          isLoading={isShiftLoading}
+          disabled={!shiftFormData.requiredPositionId || !shiftFormData.date}
+        >
+          {t("details.drawer.actions.save")}
+        </LoadingButton>
+      </div>
+    </div>
+  );
 
   return (
     <Drawer direction="right" open={open} onOpenChange={onOpenChange}>
@@ -151,12 +357,27 @@ const ScheduleDetailsDrawer = ({
                 <Clock className="size-4" />
                 {t("details.drawer.shifts")}
               </Label>
-              <span className="text-muted-foreground text-sm">
-                {t("details.drawer.shiftsCount", {
-                  count: schedule.shiftList?.length || 0,
-                })}
-              </span>
+              <div className="flex items-center gap-2">
+                <span className="text-muted-foreground text-sm">
+                  {t("details.drawer.shiftsCount", {
+                    count: schedule.shiftList?.length || 0,
+                  })}
+                </span>
+                {!isAddingShift && !editingShiftId && (
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => setIsAddingShift(true)}
+                  >
+                    <Plus className="size-4" />
+                    {t("details.drawer.actions.addShift")}
+                  </Button>
+                )}
+              </div>
             </div>
+
+            {/* Shift Form (for adding new or editing existing) */}
+            {(isAddingShift || editingShiftId) && shiftForm}
 
             {!schedule.shiftList || schedule.shiftList.length === 0 ? (
               <p className="text-muted-foreground text-sm">
@@ -169,23 +390,62 @@ const ScheduleDetailsDrawer = ({
                     <Item variant="muted" size="sm">
                       <ItemContent>
                         <ItemTitle className="flex items-center gap-2">
-                          <Clock className="text-muted-foreground size-3" />
-                          {shift.startTime} - {shift.endTime}
+                          <CalendarDays className="text-muted-foreground size-3" />
+                          {extractDateFromLocalDateTime(shift.startTime)}
                         </ItemTitle>
                         <ItemDescription className="flex flex-col gap-1">
                           <span className="flex items-center gap-1">
-                            <CalendarDays className="size-3" />
-                            {t("details.drawer.shiftDetails.position")}:{" "}
-                            {getPositionName(shift.requiredPositionId)}
+                            <Clock className="size-3" />
+                            {extractTimeFromLocalDateTime(
+                              shift.startTime
+                            )} - {extractTimeFromLocalDateTime(shift.endTime)}
                           </span>
                           <span className="flex items-center gap-1">
                             <User className="size-3" />
-                            {t("details.drawer.shiftDetails.employee")}:{" "}
-                            {shift.assignedEmployee ||
-                              t("details.drawer.shiftDetails.unassigned")}
+                            {t("details.drawer.shiftDetails.position")}:{" "}
+                            {getPositionName(shift.requiredPositionId)}
                           </span>
+                          {shift.assignedEmployee && (
+                            <span className="flex items-center gap-1">
+                              <User className="size-3" />
+                              {t("details.drawer.shiftDetails.employee")}:{" "}
+                              {shift.assignedEmployee}
+                            </span>
+                          )}
                         </ItemDescription>
                       </ItemContent>
+                      {/* Shift Actions */}
+                      <div className="flex items-center gap-1">
+                        <Button
+                          size="icon"
+                          variant="ghost"
+                          className="size-8"
+                          onClick={() => handleStartEditShift(shift)}
+                          disabled={isAddingShift || !!editingShiftId}
+                        >
+                          <Pencil className="size-3" />
+                        </Button>
+                        {shift.assignedEmployee && (
+                          <Button
+                            size="icon"
+                            variant="ghost"
+                            className="size-8"
+                            onClick={() => onShiftUnassign(shift.id)}
+                            disabled={isAddingShift || !!editingShiftId}
+                          >
+                            <UserMinus className="size-3" />
+                          </Button>
+                        )}
+                        <Button
+                          size="icon"
+                          variant="ghost"
+                          className="text-destructive hover:text-destructive size-8"
+                          onClick={() => onShiftDelete(shift.id)}
+                          disabled={isAddingShift || !!editingShiftId}
+                        >
+                          <Trash2 className="size-3" />
+                        </Button>
+                      </div>
                     </Item>
                     {index < schedule.shiftList.length - 1 && <ItemSeparator />}
                   </div>
@@ -267,6 +527,35 @@ export const ScheduleDetails = () => {
   });
 
   const { solveScheduleAsync, isPending: isSolving } = useSolveSchedule();
+  const { addShiftAsync, isPending: isAddingShift } = useAddShift();
+  const { updateShiftAsync, isPending: isUpdatingShift } = useUpdateShift();
+  const { deleteShiftAsync, isPending: isDeletingShift } = useDeleteShift();
+  const { unassignShiftAsync, isPending: isUnassigningShift } =
+    useUnassignShift();
+
+  const isShiftLoading =
+    isAddingShift || isUpdatingShift || isDeletingShift || isUnassigningShift;
+
+  const refreshSelectedSchedule = async () => {
+    await queryClient.invalidateQueries({
+      queryKey: [queryKeys.getSchedules],
+    });
+
+    // Get updated data from cache after invalidation
+    const updatedData = queryClient.getQueryData<typeof schedules>([
+      queryKeys.getSchedules,
+      { pageNumber: page, pageSize: 10 },
+    ]);
+
+    if (selectedSchedule && updatedData?.content) {
+      const updatedSchedule = updatedData.content.find(
+        (s) => s.id === selectedSchedule.id
+      );
+      if (updatedSchedule) {
+        setSelectedSchedule(updatedSchedule);
+      }
+    }
+  };
 
   const handleScheduleClick = (schedule: Schedule) => {
     setSelectedSchedule(schedule);
@@ -281,6 +570,60 @@ export const ScheduleDetails = () => {
         queryClient.invalidateQueries({
           queryKey: [queryKeys.getSchedules],
         });
+      },
+    });
+  };
+
+  const handleAddShift = async (
+    scheduleId: string,
+    shiftData: ShiftUpdateRequest
+  ) => {
+    await addShiftAsync(
+      {
+        scheduleId,
+        data: shiftData,
+      },
+      {
+        onSuccess: async () => {
+          toast.success(tInfo("shifts.added"));
+          await refreshSelectedSchedule();
+        },
+      }
+    );
+  };
+
+  const handleUpdateShift = async (
+    shiftId: string,
+    shiftData: ShiftUpdateRequest
+  ) => {
+    await updateShiftAsync(
+      {
+        shiftId,
+        data: shiftData,
+      },
+      {
+        onSuccess: async () => {
+          toast.success(tInfo("shifts.updated"));
+          await refreshSelectedSchedule();
+        },
+      }
+    );
+  };
+
+  const handleDeleteShift = async (shiftId: string) => {
+    await deleteShiftAsync(shiftId, {
+      onSuccess: async () => {
+        toast.success(tInfo("shifts.deleted"));
+        await refreshSelectedSchedule();
+      },
+    });
+  };
+
+  const handleUnassignShift = async (shiftId: string) => {
+    await unassignShiftAsync(shiftId, {
+      onSuccess: async () => {
+        toast.success(tInfo("shifts.unassigned"));
+        await refreshSelectedSchedule();
       },
     });
   };
@@ -336,6 +679,11 @@ export const ScheduleDetails = () => {
           onOpenChange={setDrawerOpen}
           onSolve={handleSolveSchedule}
           isSolving={isSolving}
+          onShiftAdd={handleAddShift}
+          onShiftUpdate={handleUpdateShift}
+          onShiftDelete={handleDeleteShift}
+          onShiftUnassign={handleUnassignShift}
+          isShiftLoading={isShiftLoading}
         />
       )}
     </div>
