@@ -94,8 +94,7 @@ const serwist = new Serwist({
       handler: cacheFirst,
     },
     {
-      matcher: ({ url }) =>
-        url.pathname.startsWith(import.meta.env.VITE_API_URL),
+     matcher: ({ url }) => url.href.startsWith(import.meta.env.VITE_API_URL),
       handler: networkFirst,
     },
 

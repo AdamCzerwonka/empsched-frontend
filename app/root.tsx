@@ -139,10 +139,10 @@ export default function App() {
         staleTime: 1000 * 60 * 5,
         gcTime: 1000 * 60 * 60 * 24, //24h
       },
-      // mutations: {
-      //   networkMode: "offlineFirst",
-      //   retry: 3,
-      // },
+      mutations: {
+        networkMode: "offlineFirst",
+        retry: 3,
+      },
     },
   });
 
