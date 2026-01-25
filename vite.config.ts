@@ -31,6 +31,9 @@ export default defineConfig({
     host: true,
     port: 4173,
     strictPort: true,
-    allowedHosts: ["cuneate-aphidious-clement.ngrok-free.dev"],
+    allowedHosts: [
+      "cuneate-aphidious-clement.ngrok-free.dev",
+      "essayistic-shantay-nonphotographically.ngrok-free.dev",
+    ],
   },
 });
