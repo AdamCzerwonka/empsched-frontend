@@ -16,6 +16,70 @@ declare const self: ServiceWorkerGlobalScope;
 const cacheFirst = new CacheFirst();
 const networkFirst = new NetworkFirst();
 
+// ============================================
+// PUSH NOTIFICATIONS - add BEFORE serwist.addEventListeners()
+// ============================================
+interface PushPayload {
+  type: string;
+  title: string;
+  body: string;
+  url?: string;
+  data?: Record<string, string>;
+}
+
+self.addEventListener("push", (event: PushEvent) => {
+  if (!event.data) return;
+
+  const payload: PushPayload = event.data.json();
+
+  const options: NotificationOptions = {
+    body: payload.body,
+    icon: "/icons/android-chrome-192x192.png",
+    badge: "/icons/android-chrome-192x192.png",
+    data: { url: payload.url, ...payload.data, type: payload.type },
+    tag: payload.type,
+  };
+
+  event.waitUntil(
+    Promise.all([
+      self.registration.showNotification(payload.title, options),
+      self.clients
+        .matchAll({ type: "window", includeUncontrolled: true })
+        .then((clients) => {
+          clients.forEach((client) => {
+            client.postMessage({
+              type: "PUSH_RECEIVED",
+              payload,
+            });
+          });
+        }),
+    ])
+  );
+});
+
+self.addEventListener("notificationclick", (event: NotificationEvent) => {
+  event.notification.close();
+
+  const url = event.notification.data?.url || "/";
+
+  event.waitUntil(
+    self.clients
+      .matchAll({ type: "window", includeUncontrolled: true })
+      .then((clients) => {
+        for (const client of clients) {
+          if (client.url.includes(self.location.origin) && "focus" in client) {
+            client.focus();
+            if ("navigate" in client) {
+              (client as WindowClient).navigate(url);
+            }
+            return;
+          }
+        }
+        return self.clients.openWindow(url);
+      })
+  );
+});
+
 const serwist = new Serwist({
   precacheEntries: self.__SW_MANIFEST,
   skipWaiting: false,

@@ -6,5 +6,6 @@ export * from "./filter/PaginationParams";
 export * from "./filter/StartDateFilterParams";
 export * from "./organisation/OrganisationCreateRequest";
 export * from "./position/PositionCreateRequest";
+export * from "./push/PushSubscriptionRequest";
 export * from "./ErrorResponse";
 export * from "./PagedData";
