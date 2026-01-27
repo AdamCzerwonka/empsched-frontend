@@ -7,7 +7,6 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-  Spinner,
   Switch,
   Table,
   TableBody,
@@ -42,10 +41,8 @@ export const ManageEmployeePositionsDrawer = ({
   const { positions, isPending } = usePositions();
   const { employeePositions, isPending: isPendingEmployeePositions } =
     useEmployeePositions(employeeId);
-  const { assignEmployeePositionAsync, isPending: isPendingAssign } =
-    useAssignEmployeePosition();
-  const { removeEmployeePositionAsync, isPending: isPendingRemove } =
-    useRemoveEmployeePosition();
+  const { assignEmployeePositionAsync } = useAssignEmployeePosition();
+  const { removeEmployeePositionAsync } = useRemoveEmployeePosition();
   const [currentEmployeePositions, setCurrentEmployeePositions] = useState<
     Position[]
   >(employeePositions || []);
@@ -63,16 +60,24 @@ export const ManageEmployeePositionsDrawer = ({
   }, [employeePositions]);
 
   const handleAddPosition = (positionId: string) => {
+    const position = positions?.content.find((p) => p.id === positionId);
+    if (position) {
+      setCurrentEmployeePositions((prev) => [...prev, position]);
+    }
     assignEmployeePositionAsync(
       { positionId, employeeId },
       {
-        onSuccess: (data) => {
+        onSuccess: () => {
           baseFormSuccessHandler(
             null,
             false,
             true,
-            tInfo("positions.positionAssigned"),
-            () => setCurrentEmployeePositions(data)
+            tInfo("positions.positionAssigned")
+          );
+        },
+        onError: () => {
+          setCurrentEmployeePositions((prev) =>
+            prev.filter((p) => p.id !== positionId)
           );
         },
       }
@@ -80,17 +85,25 @@ export const ManageEmployeePositionsDrawer = ({
   };
 
   const handleRemovePosition = (positionId: string) => {
+    setCurrentEmployeePositions((prev) =>
+      prev.filter((p) => p.id !== positionId)
+    );
     removeEmployeePositionAsync(
       { positionId, employeeId },
       {
-        onSuccess: (data) => {
+        onSuccess: () => {
           baseFormSuccessHandler(
             null,
             false,
             true,
-            tInfo("positions.positionRemoved"),
-            () => setCurrentEmployeePositions(data)
+            tInfo("positions.positionRemoved")
           );
+        },
+        onError: () => {
+          const position = positions?.content.find((p) => p.id === positionId);
+          if (position) {
+            setCurrentEmployeePositions((prev) => [...prev, position]);
+          }
         },
       }
     );
@@ -110,9 +123,6 @@ export const ManageEmployeePositionsDrawer = ({
             <TableRow key={position.id}>
               <TableCell>{position.name}</TableCell>
               <TableCell className="flex items-center justify-end">
-                {(isPendingAssign || isPendingRemove) && (
-                  <Spinner className="mr-2" />
-                )}
                 {isPositionAssigned(position.id) && (
                   <span className="text-muted-foreground mr-2 text-xs uppercase">
                     {t("assigned")}
@@ -120,11 +130,7 @@ export const ManageEmployeePositionsDrawer = ({
                 )}
                 <Switch
                   checked={isPositionAssigned(position.id)}
-                  disabled={
-                    isPendingAssign ||
-                    isPendingRemove ||
-                    isPendingEmployeePositions
-                  }
+                  disabled={isPendingEmployeePositions}
                   onCheckedChange={(val) => {
                     if (val) {
                       handleAddPosition(position.id);
