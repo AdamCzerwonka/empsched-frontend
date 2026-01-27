@@ -15,6 +15,5 @@ export * from "./position/usePositions";
 export * from "./position/useRemoveEmployeePosition";
 export * from "./push/useRegisterPushSubscription";
 export * from "./push/useUnregisterPushSubscription";
-export * from "./push/useVapidPublicKey";
 export * from "./employee/useEmployees";
 export * from "./employee/useCreateEmployee";

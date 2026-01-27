@@ -1,11 +1,8 @@
 import { useCallback } from "react";
-import {
-  useVapidPublicKey,
-  useRegisterPushSubscription,
-} from "~/api/hooks/push";
+import { useRegisterPushSubscription } from "~/api/hooks/push";
 import i18n from "~/i18n/i18n";
 
-function urlBase64ToUint8Array(base64String: string): Uint8Array<ArrayBuffer> {
+function urlBase64ToUint8Array(base64String: string): Uint8Array {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
   const base64 = (base64String + padding)
     .replace(/-/g, "+")
@@ -15,16 +12,18 @@ function urlBase64ToUint8Array(base64String: string): Uint8Array<ArrayBuffer> {
   for (let i = 0; i < rawData.length; ++i) {
     outputArray[i] = rawData.charCodeAt(i);
   }
-  return outputArray as Uint8Array<ArrayBuffer>;
+  return outputArray;
 }
 
 export const usePushSubscription = () => {
-  const { data: vapidPublicKey } = useVapidPublicKey();
+  const vapidPublicKey = import.meta.env.VITE_VAPID_PUBLIC_KEY;
   const registerMutation = useRegisterPushSubscription();
 
   const subscribe = useCallback(async (): Promise<boolean> => {
     if (!vapidPublicKey) {
-      console.error("VAPID public key not found");
+      console.error(
+        "VAPID public key not found in .env file (VITE_VAPID_PUBLIC_KEY)"
+      );
       return false;
     }
     if (!("serviceWorker" in navigator)) {
@@ -44,11 +43,13 @@ export const usePushSubscription = () => {
       const registration = await navigator.serviceWorker.ready;
       const subscription = await registration.pushManager.subscribe({
         userVisibleOnly: true,
+        // @ts-ignore
         applicationServerKey: urlBase64ToUint8Array(vapidPublicKey),
       });
 
       const json = subscription.toJSON();
-      if (!json.endpoint || !json.keys?.p256dh || !json.keys?.auth) return false;
+      if (!json.endpoint || !json.keys?.p256dh || !json.keys?.auth)
+        return false;
 
       await registerMutation.mutateAsync({
         endpoint: json.endpoint,
