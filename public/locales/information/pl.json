@@ -23,5 +23,14 @@
   "newVersion": {
     "description": "Nowa wersja aplikacji dostępna",
     "triggerButton": "Odswież"
+  "schedules": {
+    "draftCreated": "Wersja robocza grafiku została pomyślnie utworzona",
+    "solveStarted": "Rozpoczęto rozwiązywanie grafiku"
+  },
+  "shifts": {
+    "added": "Zmiana została pomyślnie dodana",
+    "updated": "Zmiana została pomyślnie zaktualizowana",
+    "deleted": "Zmiana została pomyślnie usunięta",
+    "unassigned": "Pracownik został odprzypisany ze zmiany"
   }
 }

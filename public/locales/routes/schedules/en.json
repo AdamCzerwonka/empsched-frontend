@@ -1,0 +1,106 @@
+{
+  "tabs": {
+    "create": {
+      "trigger": "Create Schedule"
+    },
+    "details": {
+      "trigger": "Schedule Details"
+    }
+  },
+  "details": {
+    "title": "Schedules",
+    "totalSchedules": "Total schedules",
+    "empty": {
+      "title": "No schedules yet",
+      "description": "Create your first schedule to get started with staff planning."
+    },
+    "list": {
+      "period": "Period",
+      "status": "Status",
+      "to": "to"
+    },
+    "status": {
+      "DRAFT": "Draft",
+      "SOLVING": "Solving",
+      "SOLVED": "Solved",
+      "PUBLISHED": "Published",
+      "ERROR": "Error"
+    },
+    "drawer": {
+      "title": "Schedule Details",
+      "description": "View detailed information about this schedule.",
+      "id": "Schedule ID",
+      "period": "Period",
+      "status": "Status",
+      "score": "Score",
+      "shifts": "Shifts",
+      "shiftsCount": "{{count}} shift",
+      "shiftsCount_other": "{{count}} shifts",
+      "noShifts": "No shifts in this schedule.",
+      "shiftDetails": {
+        "time": "Time",
+        "position": "Position",
+        "employee": "Assigned Employee",
+        "unassigned": "Unassigned"
+      },
+      "actions": {
+        "solve": "Solve Schedule",
+        "addShift": "Add Shift",
+        "editShift": "Edit",
+        "deleteShift": "Delete",
+        "unassign": "Unassign",
+        "save": "Save",
+        "cancel": "Cancel"
+      },
+      "shiftForm": {
+        "title": "Add New Shift",
+        "editTitle": "Edit Shift",
+        "date": "Date",
+        "startTime": "Start Time",
+        "endTime": "End Time",
+        "position": "Position",
+        "selectPosition": "Select position...",
+        "employee": "Assigned Employee",
+        "selectEmployee": "Select employee (optional)..."
+      }
+    }
+  },
+  "create": {
+    "title": "Create Draft Schedule",
+    "description": "Define the schedule period and configure shifts for each day of the week.",
+    "dateRange": {
+      "title": "Schedule Period",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "selectDate": "Select a date..."
+    },
+    "weeklyPattern": {
+      "title": "Weekly Pattern",
+      "days": {
+        "MONDAY": "Monday",
+        "TUESDAY": "Tuesday",
+        "WEDNESDAY": "Wednesday",
+        "THURSDAY": "Thursday",
+        "FRIDAY": "Friday",
+        "SATURDAY": "Saturday",
+        "SUNDAY": "Sunday"
+      },
+      "shiftsCount": "shift",
+      "shiftsCount_other": "shifts",
+      "noShifts": "No shifts configured for this day. Click the button below to add a shift.",
+      "shift": "Shift",
+      "startTime": "Start Time",
+      "endTime": "End Time",
+      "addShift": "Add Shift",
+      "requirements": "Staff Requirements",
+      "noRequirements": "No staff requirements added. Add positions and quantities needed for this shift.",
+      "addRequirement": "Add Requirement",
+      "position": "Position",
+      "selectPosition": "Select position...",
+      "quantity": "Quantity"
+    },
+    "summary": "Total: {{count}} shift configured",
+    "summary_other": "Total: {{count}} shifts configured",
+    "submit": "Create Draft Schedule"
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "tabs": {
+    "create": {
+      "trigger": "Utwórz grafik"
+    },
+    "details": {
+      "trigger": "Szczegóły grafiku"
+    }
+  },
+  "details": {
+    "title": "Grafiki",
+    "totalSchedules": "Łączna liczba grafików",
+    "empty": {
+      "title": "Brak grafików",
+      "description": "Utwórz swój pierwszy grafik, aby rozpocząć planowanie pracy."
+    },
+    "list": {
+      "period": "Okres",
+      "status": "Status",
+      "to": "do"
+    },
+    "status": {
+      "DRAFT": "Wersja robocza",
+      "SOLVING": "W trakcie przygotowywania",
+      "SOLVED": "Gotowy",
+      "PUBLISHED": "Opublikowany",
+      "ERROR": "Błąd"
+    },
+    "drawer": {
+      "title": "Szczegóły grafiku",
+      "description": "Wyświetl szczegółowe informacje o tym grafiku.",
+      "id": "ID grafiku",
+      "period": "Okres",
+      "status": "Status",
+      "score": "Wynik",
+      "shifts": "Zmiany",
+      "shiftsCount": "{{count}} zmiana",
+      "shiftsCount_few": "{{count}} zmiany",
+      "shiftsCount_many": "{{count}} zmian",
+      "noShifts": "Brak zmian w tym grafiku.",
+      "shiftDetails": {
+        "time": "Czas",
+        "position": "Stanowisko",
+        "employee": "Przypisany pracownik",
+        "unassigned": "Nieprzypisany"
+      },
+      "actions": {
+        "solve": "Rozwiąż grafik",
+        "addShift": "Dodaj zmianę",
+        "editShift": "Edytuj",
+        "deleteShift": "Usuń",
+        "unassign": "Odprzypisz",
+        "save": "Zapisz",
+        "cancel": "Anuluj"
+      },
+      "shiftForm": {
+        "title": "Dodaj nową zmianę",
+        "editTitle": "Edytuj zmianę",
+        "date": "Data",
+        "startTime": "Godzina rozpoczęcia",
+        "endTime": "Godzina zakończenia",
+        "position": "Stanowisko",
+        "selectPosition": "Wybierz stanowisko...",
+        "employee": "Przypisany pracownik",
+        "selectEmployee": "Wybierz pracownika (opcjonalnie)..."
+      }
+    }
+  },
+  "create": {
+    "title": "Utwórz wersję roboczą grafiku",
+    "description": "Zdefiniuj okres grafiku i skonfiguruj zmiany dla każdego dnia tygodnia.",
+    "dateRange": {
+      "title": "Okres grafiku",
+      "startDate": "Data początkowa",
+      "endDate": "Data końcowa",
+      "selectDate": "Wybierz datę..."
+    },
+    "weeklyPattern": {
+      "title": "Wzorzec tygodniowy",
+      "days": {
+        "MONDAY": "Poniedziałek",
+        "TUESDAY": "Wtorek",
+        "WEDNESDAY": "Środa",
+        "THURSDAY": "Czwartek",
+        "FRIDAY": "Piątek",
+        "SATURDAY": "Sobota",
+        "SUNDAY": "Niedziela"
+      },
+      "shiftsCount": "zmiana",
+      "shiftsCount_few": "zmiany",
+      "shiftsCount_many": "zmian",
+      "noShifts": "Brak zmian skonfigurowanych na ten dzień. Kliknij przycisk poniżej, aby dodać zmianę.",
+      "shift": "Zmiana",
+      "startTime": "Godzina rozpoczęcia",
+      "endTime": "Godzina zakończenia",
+      "addShift": "Dodaj zmianę",
+      "requirements": "Wymagania personelu",
+      "noRequirements": "Brak wymagań personelu. Dodaj stanowiska i ilości potrzebne dla tej zmiany.",
+      "addRequirement": "Dodaj wymaganie",
+      "position": "Stanowisko",
+      "selectPosition": "Wybierz stanowisko...",
+      "quantity": "Ilość"
+    },
+    "summary": "Razem: {{count}} zmiana skonfigurowana",
+    "summary_few": "Razem: {{count}} zmiany skonfigurowane",
+    "summary_many": "Razem: {{count}} zmian skonfigurowanych",
+    "submit": "Utwórz wersję roboczą grafiku"
+  }
+}

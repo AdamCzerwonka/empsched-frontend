@@ -29,3 +29,15 @@ export const employeeEndpoints = Object.fromEntries(
     deleteAbsence: "/absences/:absenceId",
   }).map(([key, value]) => [key, `employees${value}`])
 );
+
+export const scheduleEndpoints = Object.fromEntries(
+  Object.entries({
+    createDraftSchedule: "/schedules/draft",
+    getSchedules: "/schedules",
+    solveSchedule: "/schedules/solve/:scheduleId",
+    updateShift: "/shifts/:shiftId",
+    addShift: "/shifts/schedule/:scheduleId",
+    removeShift: "/shifts/:shiftId",
+    unassignShift: "/shifts/:shiftId/unassign",
+  }).map(([key, value]) => [key, `scheduling${value}`])
+);
