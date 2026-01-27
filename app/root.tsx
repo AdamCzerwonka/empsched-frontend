@@ -28,6 +28,7 @@ import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client
 import { createAsyncStoragePersister } from "@tanstack/query-async-storage-persister";
 import type { Serwist } from "@serwist/window";
 import { Button } from "./components/ui";
+import { SplashScreen } from "./components/splash/SplashScreen";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -89,6 +90,7 @@ export default function App() {
 
   const [showRefreshButton, setShowRefreshButton] = useState(false);
   const [serwistInstance, setSerwistInstance] = useState<Serwist | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const loadSerwist = async () => {
@@ -152,6 +154,7 @@ export default function App() {
 
   return (
     <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
+      {isLoading && <SplashScreen finishLoading={() => setIsLoading(false)} />}
       <PersistQueryClientProvider
         client={queryClient}
         persistOptions={{
@@ -168,7 +171,7 @@ export default function App() {
         <ToasterWrapper />
       </PersistQueryClientProvider>
       {showRefreshButton && (
-        <div className="fixed right-5 bottom-5 z-[9999] flex flex-col gap-2 rounded-lg bg-[#333] p-5 text-white">
+        <div className="fixed bottom-5 z-[9999] flex flex-col gap-2 rounded-lg bg-[#333] p-5 text-white">
           {tInfo("newVersion.description")}
           <Button onClick={handleUpdateClick}>
             {tInfo("newVersion.triggerButton")}

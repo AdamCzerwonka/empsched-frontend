@@ -58,6 +58,19 @@
           "type": "image/png"
         }
       ]
+    },
+    {
+      "name": "Organisation",
+      "short_name": "Organisation",
+      "description": "View organisation",
+      "url": "/organisation",
+      "icons": [
+        {
+          "src": "/icons/icon-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
     }
   ]
 }
