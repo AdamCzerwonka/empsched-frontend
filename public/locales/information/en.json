@@ -20,6 +20,9 @@
   "profilePicture": {
     "changeSuccess": "Profile picture changed successfully"
   },
+  "newVersion": {
+    "description": "New version available",
+    "triggerButton": "Refresh"
   "schedules": {
     "draftCreated": "Draft schedule created successfully",
     "solveStarted": "Schedule solving has been started"

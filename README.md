@@ -4,7 +4,7 @@ This is the frontend for the Employee Scheduling application, built with React a
 
 ## Features
 
-- 🚀 Single Page Application
+- 🚀 Single Page Application & PWA Ready
 - ⚡️ Hot Module Replacement (HMR)
 - 📦 Asset bundling and optimization
 - 🔄 Data loading and mutations with TanStack Query
@@ -14,12 +14,25 @@ This is the frontend for the Employee Scheduling application, built with React a
 - 🛡️ Type-safe routing with React Router
 - ✍️ Form management with React Hook Form and Zod for validation
 - 🏪 State management with Zustand
+- 🔔 Push Notifications
 
 ## Getting Started
 
 ### Prerequisites
 
 Make sure you have [pnpm](https://pnpm.io/installation) installed.
+
+### Environment Variables
+
+Before running the application, you need to set up your environment variables.
+
+1.  Create a `.env` file in the root of the `empsched-frontend` directory by copying the example file:
+    ```bash
+    cp .env.example .env
+    ```
+2.  Open the new `.env` file and fill in the required values. At a minimum, you will need:
+    *   `VITE_API_URL`: The URL of the backend API gateway (e.g., `http://localhost:8080`).
+    *   `VITE_VAPID_PUBLIC_KEY`: The public VAPID key for push notifications. This key is provided by the backend.
 
 ### Installation
 
@@ -48,6 +61,27 @@ pnpm run build
 ```
 
 The build output will be in the `build` directory.
+
+## Progressive Web App (PWA) Features
+
+This application is a Progressive Web App, which includes features like offline capabilities and push notifications.
+
+### Service Worker
+
+The service worker is the backbone of the PWA features. The implementation is in `sw.ts` at the root of the project. It is responsible for:
+- Handling push notifications from the backend.
+- Managing the notification lifecycle, including click events.
+- Caching assets for offline use (if configured).
+
+The service worker is built using Vite and is automatically registered when the application starts.
+
+### Push Notifications
+
+The application can receive push notifications to alert users about important updates.
+
+- **Subscription**: The `usePushSubscription` hook (`app/hooks/usePushSubscription.ts`) manages the user's subscription status. It prompts the user for permission and sends the subscription details to the backend.
+- **State Management**: The `notificationStore` (`app/store/notificationStore.ts`) manages the state of notifications displayed within the application.
+- **Configuration**: For push notifications to work, the `VITE_VAPID_PUBLIC_KEY` environment variable must be set. The frontend uses this key to subscribe to the push service. This key must correspond to the key pair being used by the backend.
 
 ## Developing the Project
 

@@ -2,7 +2,7 @@
   "tabs": {
     "details": {
       "trigger": "Details",
-      "title": "Organisation details",
+      "title": "Organisation details 1",
       "fields": {
         "name.value": "Name",
         "owner.value": "Owner",

@@ -1,3 +1,4 @@
+export * from "./badgeApi";
 export * from "./dateUtils";
 export * from "./formUtils";
 export * from "./navbarLinksUtils";
