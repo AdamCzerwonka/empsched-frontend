@@ -124,33 +124,43 @@ export default function App() {
     }
   };
 
-  const queryClient = new QueryClient({
-    queryCache: new QueryCache({
-      onError: (error) => {
-        showApiErrorToast(error as AxiosError<ErrorResponse>, t);
+  const [queryClient] = useState(() => {
+    const client = new QueryClient({
+      queryCache: new QueryCache({
+        onError: (error) => {
+          showApiErrorToast(error as AxiosError<ErrorResponse>, t);
+        },
+      }),
+      mutationCache: new MutationCache({
+        onError: (error, _, __, ___) => {
+          showApiErrorToast(error as AxiosError<ErrorResponse>, t);
+        },
+      }),
+      defaultOptions: {
+        queries: {
+          networkMode: "offlineFirst",
+          staleTime: 1000 * 60 * 5,
+          gcTime: 1000 * 60 * 60 * 24, //24h
+        },
+        mutations: {
+          networkMode: "offlineFirst",
+          retry: 3,
+        },
       },
-    }),
-    mutationCache: new MutationCache({
-      onError: (error, _, __, ___) => {
-        showApiErrorToast(error as AxiosError<ErrorResponse>, t);
-      },
-    }),
-    defaultOptions: {
-      queries: {
-        networkMode: "offlineFirst",
-        staleTime: 1000 * 60 * 5,
-        gcTime: 1000 * 60 * 60 * 24, //24h
-      },
-      mutations: {
-        networkMode: "offlineFirst",
-        retry: 3,
-      },
-    },
+    });
+
+    client.getMutationCache().config.onSuccess = () => {
+      client.invalidateQueries();
+    };
+
+    return client;
   });
 
-  const persister = createAsyncStoragePersister({
-    storage: window.localStorage,
-  });
+  const [persister] = useState(() =>
+    createAsyncStoragePersister({
+      storage: window.localStorage,
+    })
+  );
 
   return (
     <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
