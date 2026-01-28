@@ -1,4 +1,5 @@
 export const queryKeys = {
+  getMe: "me",
   getProfilePicture: "profilePicture",
   getEmployees: "employees",
   getOrganisationDetails: "organisation",

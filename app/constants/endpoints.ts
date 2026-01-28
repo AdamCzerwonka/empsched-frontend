@@ -15,6 +15,7 @@ export const organisationEndpoints = Object.fromEntries(
 
 export const employeeEndpoints = Object.fromEntries(
   Object.entries({
+    getMe: "/employees/me",
     createEmployee: "/employees",
     getProfilePicture: "/employees/profile-picture",
     updateProfilePicture: "/employees/profile-picture",
