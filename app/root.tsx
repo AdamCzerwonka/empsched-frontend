@@ -103,7 +103,7 @@ export default function App() {
         });
 
         serwist?.addEventListener("installed", () => {
-          console.log("New version installed offline!");
+          console.log("New version installed");
         });
 
         serwist?.addEventListener("controlling", () => {
@@ -181,7 +181,7 @@ export default function App() {
         <ToasterWrapper />
       </PersistQueryClientProvider>
       {showRefreshButton && (
-        <div className="fixed bottom-5 z-[9999] flex flex-col gap-2 rounded-lg bg-[#333] p-5 text-white">
+        <div className="fixed right-5 bottom-5 z-[9999] flex flex-col gap-2 rounded-lg bg-[#333] p-5 text-white">
           {tInfo("newVersion.description")}
           <Button onClick={handleUpdateClick}>
             {tInfo("newVersion.triggerButton")}
