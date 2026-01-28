@@ -23,6 +23,7 @@
   "newVersion": {
     "description": "Nowa wersja aplikacji dostępna",
     "triggerButton": "Odswież"
+  },
   "schedules": {
     "draftCreated": "Wersja robocza grafiku została pomyślnie utworzona",
     "solveStarted": "Rozpoczęto rozwiązywanie grafiku"
