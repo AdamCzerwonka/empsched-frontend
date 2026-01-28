@@ -13,7 +13,8 @@ export default defineConfig({
     serwist({
       swSrc: "sw.ts",
       swDest: "sw.js",
-      globDirectory: "dist",
+      globDirectory: "build/client",
+      globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
       injectionPoint: "self.__SW_MANIFEST",
       rollupFormat: "iife",
       // disable: process.env.NODE_ENV === "development",
