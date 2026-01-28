@@ -26,7 +26,8 @@
   },
   "schedules": {
     "draftCreated": "Wersja robocza grafiku została pomyślnie utworzona",
-    "solveStarted": "Rozpoczęto rozwiązywanie grafiku"
+    "solveStarted": "Rozpoczęto rozwiązywanie grafiku",
+    "draftCreatedOffline" : "Wersja robocza grafiku została utworzona w trybie offline, oczekiwanie na sieć"
   },
   "shifts": {
     "added": "Zmiana została pomyślnie dodana",

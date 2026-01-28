@@ -26,7 +26,8 @@
   },
   "schedules": {
     "draftCreated": "Draft schedule created successfully",
-    "solveStarted": "Schedule solving has been started"
+    "solveStarted": "Schedule solving has been started",
+    "draftCreatedOffline" : "Draft schedule created in offline mode, waiting for connection"
   },
   "shifts": {
     "added": "Shift added successfully",

@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import { useCreateDraftSchedule, usePositions } from "~/api/hooks";
 import { defaultPaginationParams } from "~/types/api";
 import type { ShiftDefinition, ShiftRequirement } from "~/types/api";
+import { ScheduleStatusEnum } from "~/types/general";
+import type { Schedule } from "~/types/general";
 import {
   Accordion,
   AccordionContent,
@@ -83,8 +85,44 @@ export const ScheduleCreateDetails = () => {
     ...defaultPaginationParams,
     pageSize: 100,
   });
-  const { createDraftSchedule, isPending: isCreating } =
-    useCreateDraftSchedule();
+  const { createDraftSchedule } = useCreateDraftSchedule({
+    onMutate: async (newSchedule) => {
+      await queryClient.cancelQueries({ queryKey: [queryKeys.getSchedules] });
+      const previousSchedules = queryClient.getQueriesData({
+        queryKey: [queryKeys.getSchedules],
+      });
+
+      queryClient.setQueriesData(
+        { queryKey: [queryKeys.getSchedules] },
+        (old: any) => {
+          if (!old) return old;
+          const optimisticSchedule: Schedule = {
+            id: crypto.randomUUID(),
+            startDate: newSchedule.startDate,
+            endDate: newSchedule.endDate,
+            status: ScheduleStatusEnum.DRAFT,
+            shiftList: [],
+            score: "",
+          };
+          return {
+            ...old,
+            content: [optimisticSchedule, ...old.content],
+            totalElements: old.totalElements + 1,
+          };
+        }
+      );
+      toast.info(tInfo("schedules.draftCreatedOffline"));
+      resetForm();
+      return { previousSchedules };
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: [queryKeys.getSchedules] });
+    },
+    onSuccess: () => {
+      toast.success(tInfo("schedules.draftCreated"));
+      resetForm();
+    },
+  });
 
   const [startDate, setStartDate] = useState<Date | undefined>(undefined);
   const [endDate, setEndDate] = useState<Date | undefined>(undefined);
@@ -219,22 +257,11 @@ export const ScheduleCreateDetails = () => {
       }
     }
 
-    await createDraftSchedule(
-      {
-        startDate: parseToIsoDate(startDate),
-        endDate: parseToIsoDate(endDate),
-        weeklyPattern: weeklyPatternObj,
-      },
-      {
-        onSuccess: () => {
-          toast.success(tInfo("schedules.draftCreated"));
-          resetForm();
-          queryClient.invalidateQueries({
-            queryKey: [queryKeys.getSchedules],
-          });
-        },
-      }
-    );
+    await createDraftSchedule({
+      startDate: parseToIsoDate(startDate),
+      endDate: parseToIsoDate(endDate),
+      weeklyPattern: weeklyPatternObj,
+    });
   };
 
   const getTotalShiftsCount = () =>
@@ -519,7 +546,7 @@ export const ScheduleCreateDetails = () => {
         </p>
         <LoadingButton
           onClick={handleSubmit}
-          isLoading={isCreating}
+          isLoading={false}
           disabled={!startDate || !endDate || getTotalShiftsCount() === 0}
         >
           {t("create.submit")}
