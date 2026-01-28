@@ -17,6 +17,7 @@ export * from "./push/useRegisterPushSubscription";
 export * from "./push/useUnregisterPushSubscription";
 export * from "./employee/useEmployees";
 export * from "./employee/useCreateEmployee";
+export * from "./employee/useMyEmployee";
 export * from "./schedule/useCreateDraftSchedule";
 export * from "./schedule/useSchedule";
 export * from "./schedule/useSolveSchedule";

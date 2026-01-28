@@ -5,11 +5,16 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import { ClipboardPlus, FolderOpen } from "lucide-react";
 import { ScheduleCreateDetails } from "./ScheduleCreateDetails";
 import { ScheduleDetails } from "./ScheduleDetails";
+import { useAuthStore } from "~/store";
+import { RoleEnum } from "~/types/general";
 // import { ScheduleDetails } from "./ScheduleDetails";
 
 export const SchedulePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useTranslation("routes/schedules");
+   const { roles } = useAuthStore();
+
+  const isAdmin = roles?.includes(RoleEnum.ADMIN) || roles?.includes(RoleEnum.ORGANISATION_ADMIN);
 
   return (
     <Tabs
@@ -30,6 +35,7 @@ export const SchedulePage = () => {
               <FolderOpen />
               {t("tabs.details.trigger")}
             </TabsTrigger>
+            { isAdmin && (
             <TabsTrigger
               variant={"primary"}
               value="create"
@@ -38,6 +44,7 @@ export const SchedulePage = () => {
               <ClipboardPlus />
               {t("tabs.create.trigger")}
             </TabsTrigger>
+            )}
           </TabsList>
         </CardContent>
       </Card>
@@ -46,9 +53,11 @@ export const SchedulePage = () => {
           <TabsContent className="h-full w-full" value="details">
             <ScheduleDetails />
           </TabsContent>
+          { isAdmin && (
           <TabsContent className="h-full w-full" value="create">
             <ScheduleCreateDetails />
           </TabsContent>
+          )}
         </CardContent>
       </Card>
     </Tabs>
